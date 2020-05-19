@@ -65,3 +65,12 @@ function get_template_engine() {
 	return new League\Plates\Engine( $templates_path );
 
 }
+
+function isLoggedIn()
+{
+    if (isset($_SESSION['user_id'])) {
+        return true;
+    } else {
+        return false;
+    }
+}
