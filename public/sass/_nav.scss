@@ -1,4 +1,5 @@
 /* Navbar */
+$oranje: #FF8800;
 
 .menu {
     width: 80%;
@@ -16,7 +17,7 @@
 }
 
 .hulp-items > a{
-    color: #FF8800;
+    color: $oranje;
     font-weight: bold;
 }
 
@@ -38,7 +39,7 @@
     margin-left: 50px;
     margin-top: -12px;
     &:hover{
-        color: #FF8800;
+        color: $oranje;
     }
 }
 
@@ -48,6 +49,7 @@
     width: 100vw;
     position: absolute;
     height: 65px;
+    background-color: white;
 }
 
 .hulp-items > a{

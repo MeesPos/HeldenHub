@@ -10,12 +10,59 @@
 </head>
 
 <body>
-    
+
     <header>
         <?php include '../private/includes/nav.php' ?>
     </header>
     <main>
+        <section id="header">
+            <img src="../public/img/logo.png" alt="Logo van HeldenHub" class="logoheader">
+        </section>
 
+        <section id="meerinfo">
+            <h2 class="kominactie">Kom in actie!</h2>
+            <p class="actietext">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Corporis perspiciatis dolor saepe nostrum incidunt a totam, enim at,
+                provident repellendus ab sapiente, reiciendis id voluptates error culpa
+                est voluptate beatae!Corporis perspiciatis dolor saepe nostrum incidunt a totam, enim at,
+                provident repellendus ab sapiente, reiciendis id voluptates error culpa
+                est voluptate beatae!</p>
+        </section>
+
+        <section id="helpen">
+            <div class="helpenplaatje">
+                <img src="../public/img/hulp.png" alt="Plaatje bij Hulp">
+            </div>
+
+            <div class="helpinfo">
+                <h2>WILT U HELPEN?</h2>
+
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Corporis perspiciatis dolor saepe nostrum incidunt a totam, enim at,
+                    provident repellendus ab sapiente, reiciendis id voluptates error culpa
+                    est voluptate beatae!Corporis perspiciatis dolor saepe nostrum incidunt a totam, enim at,
+                    provident repellendus ab sapiente, reiciendis id voluptates error culpa
+                    est voluptate beatae! reiciendis id voluptates error culpa
+                    est voluptate beatae!Corporis perspiciatis dolor saepe nostrum incidunt a totam, enim at,
+                    provident repellendus ab sapiente, reiciendis id voluptates error culpa
+                    est voluptate beatae!</p>
+
+                <div class="knoppenhelpen">
+                    <button class="wilhelpen">IK WIL HELPEN</button>
+                    <button class="hulpnodig">HULP NODIG</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="leaderbord">
+            <div class="leaderinfo">
+
+            </div>
+
+            <div class="leaderplaatje">
+                
+            </div>
+        </section>
     </main>
 
 </body>

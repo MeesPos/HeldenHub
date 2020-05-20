@@ -1,0 +1,74 @@
+/* Home */
+
+#header {
+    background-image: linear-gradient(rgba(123, 123, 123, 0.4), rgba(123, 123, 123, 0.4)), url(../img/stad.png);
+    height: 70vh;
+    background-position: bottom;
+}
+
+.logoheader{
+    width: 50%;
+    margin-left: 25vw;
+    margin-top: 15vh;
+}
+
+.kominactie{
+    font-size: 40px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 4vh;
+    opacity: 70%;
+}
+
+.actietext{
+    text-align: center;
+    padding: 0 20vw;
+}
+
+#helpen{
+    margin-top: 5vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0;
+}
+
+.helpinfo{
+    background-color: $oranje;
+    height: 610px!important;
+    width: 60vw;
+}
+
+.helpinfo h2{
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    margin-right: 7vw;
+    font-weight: bold;
+    margin-top: 10vh;
+    margin-bottom: 3vh;
+}
+
+.helpinfo p{
+    color: white;
+    padding: 0 8vw;
+    text-align: center;
+    margin-right: 7vw;
+}
+
+.knoppenhelpen{
+    margin-left: 1.5vw;
+    margin-top: 5vh;
+}
+
+.wilhelpen, .hulpnodig{
+    width: 200px;
+    height: 70px;
+    border: 10px solid white;
+    font-weight: bold;
+    font-size: 20px;
+    background: none;
+    border-radius: 5px;
+    border-radius: 10px;
+    color: white;
+    margin-left: 10vw;
+}
