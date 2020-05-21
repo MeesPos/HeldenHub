@@ -25,50 +25,75 @@
     padding: 0 20vw;
 }
 
-#helpen{
-    margin-top: 5vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 0;
-}
-
-.helpinfo{
-    background-color: $oranje;
-    height: 610px!important;
-    width: 60vw;
-}
-
-.helpinfo h2{
-    font-size: 50px;
-    color: white;
-    text-align: center;
-    margin-right: 7vw;
-    font-weight: bold;
-    margin-top: 10vh;
-    margin-bottom: 3vh;
-}
-
-.helpinfo p{
-    color: white;
-    padding: 0 8vw;
-    text-align: center;
-    margin-right: 7vw;
-}
-
-.knoppenhelpen{
-    margin-left: 1.5vw;
-    margin-top: 5vh;
-}
-
 .wilhelpen, .hulpnodig{
     width: 200px;
     height: 70px;
-    border: 10px solid white;
+    background-color: $oranje;
     font-weight: bold;
     font-size: 20px;
-    background: none;
-    border-radius: 5px;
     border-radius: 10px;
+    border: none;
     color: white;
-    margin-left: 10vw;
+    text-align: center;
+    margin-left: 30vw;
+    margin-top: 5vh;
+}
+
+.wilhelpen{
+    margin-right: -10vw;
+}
+
+#leaderbord{
+    background-color: $oranje;
+    margin-top: 10vh;
+}
+
+.leaderinfo > h2{
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2vh;
+    padding-top: 5vh;
+}
+
+.leaderinfo > p{
+    color: white;
+    text-align: center;
+    padding: 0 20vw;
+}
+
+.begin{
+    border: 10px solid white;
+    border-radius: 10px;
+    background: none;
+    width: 200px;
+    height: 70px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+.beginknop{
+    text-align: center;
+    margin-top: 5vh;
+    padding-bottom: 5vh;
+}
+
+button{
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) and (orientation: portrait) {
+    .wilhelpen, .hulpnodig{
+        margin-left: 23vw;
+    }
+    .logoheader{
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 8vh;
+    }
+    #header{
+        height: 30vh;
+    }
 }
