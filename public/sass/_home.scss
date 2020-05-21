@@ -1,0 +1,99 @@
+/* Home */
+
+#header {
+    background-image: linear-gradient(rgba(123, 123, 123, 0.4), rgba(123, 123, 123, 0.4)), url(../img/stad.png);
+    height: 70vh;
+    background-position: bottom;
+}
+
+.logoheader{
+    width: 50%;
+    margin-left: 25vw;
+    margin-top: 15vh;
+}
+
+.kominactie{
+    font-size: 40px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 4vh;
+    opacity: 70%;
+}
+
+.actietext{
+    text-align: center;
+    padding: 0 20vw;
+}
+
+.wilhelpen, .hulpnodig{
+    width: 200px;
+    height: 70px;
+    background-color: $oranje;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    text-align: center;
+    margin-left: 30vw;
+    margin-top: 5vh;
+}
+
+.wilhelpen{
+    margin-right: -10vw;
+}
+
+#leaderbord{
+    background-color: $oranje;
+    margin-top: 10vh;
+}
+
+.leaderinfo > h2{
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2vh;
+    padding-top: 5vh;
+}
+
+.leaderinfo > p{
+    color: white;
+    text-align: center;
+    padding: 0 20vw;
+}
+
+.begin{
+    border: 10px solid white;
+    border-radius: 10px;
+    background: none;
+    width: 200px;
+    height: 70px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+.beginknop{
+    text-align: center;
+    margin-top: 5vh;
+    padding-bottom: 5vh;
+}
+
+button{
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) and (orientation: portrait) {
+    .wilhelpen, .hulpnodig{
+        margin-left: 23vw;
+    }
+    .logoheader{
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 8vh;
+    }
+    #header{
+        height: 30vh;
+    }
+}

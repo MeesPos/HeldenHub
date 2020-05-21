@@ -10,12 +10,49 @@
 </head>
 
 <body>
-    
+
     <header>
         <?php include '../private/includes/nav.php' ?>
     </header>
     <main>
+        <section id="header">
+            <img src="../public/img/logo.png" alt="Logo van HeldenHub" class="logoheader">
+        </section>
 
+        <section id="meerinfo">
+            <h2 class="kominactie">Kom in actie!</h2>
+            <p class="actietext">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Corporis perspiciatis dolor saepe nostrum incidunt a totam, enim at,
+                provident repellendus ab sapiente, reiciendis id voluptates error culpa
+                est voluptate beatae!Corporis perspiciatis dolor saepe nostrum incidunt a totam, enim at,
+                provident repellendus ab sapiente, reiciendis id voluptates error culpa
+                est voluptate beatae!</p>
+
+                <div class="knoppenhelpen">
+                    <button class="wilhelpen">IK WIL HELPEN</button>
+                    <button class="hulpnodig">HULP NODIG</button>
+                </div>
+        </section>
+
+        <section id="leaderbord">
+            <div class="leaderinfo">
+                <h2 class="scoor">SCOOR PUNTEN</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Corporis perspiciatis dolor saepe nostrum incidunt a totam, enim at,
+                    provident repellendus ab sapiente, reiciendis id voluptates error culpa
+                    est voluptate beatae!Corporis perspiciatis dolor saepe nostrum incidunt a totam, enim at,
+                    provident repellendus ab sapiente, reiciendis id voluptates error culpa
+                    est voluptate beatae! reiciendis id voluptates error culpa
+                    est voluptate beatae!Corporis perspiciatis dolor saepe nostrum incidunt a totam, enim at,
+                    provident repellendus ab sapiente, reiciendis id voluptates error culpa
+                    est voluptate beatae!</p>
+
+                    <div class="beginknop">
+                        <button class="begin">BEGIN TE SCOREN</button>
+                    </div>
+
+            </div>
+        </section>
     </main>
 
 </body>
