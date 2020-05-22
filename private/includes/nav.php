@@ -19,7 +19,7 @@
                 <div class="nav">
                     <div class="menu sticky ondernav">
                         <a href="">
-                            <img src="../public/img/logo.png" alt="Logo Heldenhub" class="logonav">
+                            <img src="<?php echo site_url('/img/logo.png') ?> " alt="Logo Heldenhub" class="logonav">
                         </a>
                         <div class="hulp-items">
                             <a class="nav-items hulp-items aanbieden" href="#">HULP AANBIEDEN</a>
