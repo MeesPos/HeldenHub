@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Homepage</title>
-    <link rel="stylesheet" href="<?php echo site_url('css/style.css') ?>" media="all">
+    <link rel="stylesheet" href="<?php echo site_url('/css/style.css') ?>" media="all">
 </head>
 
 <body>
@@ -15,8 +15,8 @@
         <?php include '../private/includes/nav.php' ?>
     </header>
     <main>
-        <section id="header">
-            <img src="../public/img/logo.png" alt="Logo van HeldenHub" class="logoheader">
+        <section id="header" style="background-image: linear-gradient(rgba(123, 123, 123, 0.4), rgba(123, 123, 123, 0.4)), url( <?php echo site_url('/img/stad.png') ?> )" >
+            <img src="<?php echo site_url('/img/logo.png') ?> " alt="Logo van HeldenHub" class="logoheader">
         </section>
 
         <section id="meerinfo">
