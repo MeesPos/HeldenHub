@@ -19,10 +19,10 @@ class WebsiteController {
 
 	}
 
-	public function aanmeldenIndex(){
+	public function aanmelden(){
 
         $template_engine = get_template_engine();
-        echo $template_engine->render('homepage');
+        echo $template_engine->render('AanmeldPagina');
     }
 
 }
