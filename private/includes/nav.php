@@ -30,4 +30,3 @@
             </section>
         </header>
     </nav>
-</body>

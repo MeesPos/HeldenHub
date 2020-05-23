@@ -10,10 +10,7 @@
 </head>
 
 <body>
-
-    <header>
         <?php include '../private/includes/nav.php' ?>
-    </header>
     <main>
         <section id="header" style="background-image: linear-gradient(rgba(123, 123, 123, 0.4), rgba(123, 123, 123, 0.4)), url( <?php echo site_url('/img/stad.png') ?> )" >
             <img src="<?php echo site_url('/img/logo.png') ?> " alt="Logo van HeldenHub" class="logoheader">
@@ -30,7 +27,7 @@
 
                 <div class="knoppenhelpen">
                     <button class="wilhelpen">IK WIL HELPEN</button>
-                    <button class="hulpnodig">HULP NODIG</button>
+                    <a href="hulp-vragen"><button class="hulpnodig">HULP NODIG</button></a>
                 </div>
         </section>
 

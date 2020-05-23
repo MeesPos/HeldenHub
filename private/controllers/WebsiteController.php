@@ -23,6 +23,12 @@ class WebsiteController {
 
         $template_engine = get_template_engine();
         echo $template_engine->render('homepage');
+	}
+	
+	public function hulpVragen(){
+
+        $template_engine = get_template_engine();
+        echo $template_engine->render('hulp');
     }
 
 }
