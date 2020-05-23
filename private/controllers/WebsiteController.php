@@ -18,4 +18,12 @@ class WebsiteController {
 		echo $template_engine->render('homepage');
 
 	}
+
+	public function hulp() {
+
+		echo "welkom";
+		$template_engine = get_template_engine();
+		echo $template_engine->render('hulp');
+
+	}
 }
