@@ -30,7 +30,7 @@
 
                 <div class="knoppenhelpen">
                     <button class="wilhelpen">IK WIL HELPEN</button>
-                    <a href="hulpVragen"><button class="hulpnodig">HULP NODIG</button></a>
+                    <a href="hulp-vragen"><button class="hulpnodig">HULP NODIG</button></a>
                 </div>
         </section>
 
