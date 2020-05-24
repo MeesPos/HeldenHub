@@ -18,7 +18,7 @@
             <section id="navbar">
                 <div class="nav">
                     <div class="menu sticky ondernav">
-                        <a href="">
+                        <a href="public">
                             <img src="<?php echo site_url('/img/logo.png') ?> " alt="Logo Heldenhub" class="logonav">
                         </a>
                         <div class="hulp-items">
