@@ -5,7 +5,7 @@
                 <div class="nav boven">
                     <div class="menu sticky bovennav">
                         <?php if (!isLoggedIn()) : ?>
-                            <a class="nav-items" href="#">Aanmelden</a>
+                            <a class="nav-items" href="aanmelden">Aanmelden</a>
                         <?php else : ?>
                             <a class="nav-items" href="#">Mijn Account</a>
                             <a class="nav-items" href="#">Uitloggen</a>
