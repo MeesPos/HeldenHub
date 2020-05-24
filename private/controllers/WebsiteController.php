@@ -23,6 +23,13 @@ class WebsiteController {
 
         $template_engine = get_template_engine();
         echo $template_engine->render('AanmeldPagina');
+        
+	}
+	
+	public function hulpVragen(){
+
+        $template_engine = get_template_engine();
+        echo $template_engine->render('hulp');
     }
 
 }
