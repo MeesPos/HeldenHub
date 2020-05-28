@@ -42,7 +42,7 @@
             <div class="grid">
                
                     <div class="form">
-                        <form action="save_user.php" method="POST" class="form2">
+                        <form action="<?php echo url("registreer")?>" method="POST" class="form2">
                         <div class="voornaam">
                            <input type="name" name="voornaam" required placeholder="Voornaam">
                            </div>
@@ -50,13 +50,19 @@
                             <input type="name" name="achternaam" required placeholder="Achternaam">
                             </div>
                            <div class="email">
-                           <input type="email" name="email" required placeholder="Achternaam">
+                           <input type="email" name="email" required placeholder="E-mail adres">
+                           <?php if(isset($errors['email'])): ?>
+                             <?php echo $errors['email'] ?>
+                           <?php endif; ?>
                            </div>
                            <div class="datum">
                             <input type="date" id="birthday" name="birthday">
                             </div>
                            <div class="ww">
                           <input type="password" name="wachtwoord" required placeholder="Wachtwoord">
+                          <?php if(isset($errors['wachtwoord'])): ?>
+                             <?php  echo $errors['wachtwoord'] ?>
+                           <?php endif; ?>
                           </div>
                           <div class="herww">
                           <input type="password" name="herwachtwoord" required placeholder="Hereaal wachtwoord">
