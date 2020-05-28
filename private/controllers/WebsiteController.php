@@ -19,7 +19,7 @@ class WebsiteController {
 
 	}
 
-	public function aanmelden(){
+	public function aanmeldenIndex(){
 
         $template_engine = get_template_engine();
         echo $template_engine->render('AanmeldPagina');
