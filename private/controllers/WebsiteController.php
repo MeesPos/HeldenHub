@@ -27,6 +27,10 @@ class WebsiteController {
 	}
 	
 	public function hulpVragen(){
+		isLoggedIn();
+		$connection = dbConnect();
+		$userData = getUserData($connection);
+		
 
         $template_engine = get_template_engine();
         echo $template_engine->render('hulp');
