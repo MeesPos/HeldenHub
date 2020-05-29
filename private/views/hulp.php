@@ -29,10 +29,12 @@
             <div class="oranje-balk"></div>
             <div class="mijn-post">
                 <div class="mijn-post-user">
-                    <img src=" <?php echo site_url('img/vrouw-headshot.jpg') ?>" alt="Profielfoto van persoon die post" class="hulp-profielfoto">
+                    <img src=" <?php echo $userData['myfile'] ?>" alt="Profielfoto van persoon die post" class="hulp-profielfoto">
                     <section class="post-user-info">
-                        <p class="hulp-naam">Voornaam achternaam</p>
-                        <p class="hulp-woonplaats">Amsterdam</p>
+                        <p class="hulp-naam"><?php echo ucfirst($userData['voornaam']) . ' ' . ucfirst($userData['achternaam']); ?></p>
+                        <p class="hulp-woonplaats"><?php 
+                                                    // Making first letter of place always uppercase
+                                                    echo ucfirst($userData['plaats']); ?></p>
                     </section>
                 </div>
                 <div class="mijn-post-punten">
@@ -51,6 +53,6 @@
             
     </div>
     </div> 
-    
+
 </body>
 </html>

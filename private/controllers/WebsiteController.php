@@ -28,12 +28,11 @@ class WebsiteController {
 	
 	public function hulpVragen(){
 		isLoggedIn();
-		$connection = dbConnect();
-		$userData = getUserData($connection);
+		$userData = getUserData();
 		
 
         $template_engine = get_template_engine();
-        echo $template_engine->render('hulp');
+        echo $template_engine->render('hulp', ['userData' => $userData]);
     }
 
 }
