@@ -25,7 +25,7 @@ class WebsiteController {
         echo $template_engine->render('AanmeldPagina');
         
 	}
-	
+	// Hulp vragen page
 	public function hulpVragen(){
 		isLoggedIn();
 		$userData = getUserData();
@@ -33,6 +33,10 @@ class WebsiteController {
 
         $template_engine = get_template_engine();
         echo $template_engine->render('hulp', ['userData' => $userData]);
-    }
+	}
+	
+	public function postOpslaan(){
+		savePost();
+	}
 
 }

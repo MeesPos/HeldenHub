@@ -15,6 +15,9 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::get( '/aanmelden', 'WebsiteController@aanmeldenIndex' )->name( 'aanmelden' );
 	SimpleRouter::get( '/hulp-vragen', 'WebsiteController@hulpVragen' )->name( 'hulp-vragen' );
 
+	// POST routers
+	SimpleRouter::post('/hulp-vragen/post-opslaan', 'WebsiteController@postOpslaan' )->name( 'post-opslaan' );
+
 
 
 	// STOP: Tot hier al je eigen URL's zetten

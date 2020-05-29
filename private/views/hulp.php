@@ -42,9 +42,9 @@
                     <p class="punt-hoeveelheid">1</p>
                 </div>
                 <div class="mijn-post-form-div">
-                    <form action="" method="post" class="mijn-post-form">
-                        <input type="text" name="post-titel" id="post-titel" placeholder="Titel" class="post-text-input">
-                        <input type="textarea"  name="post-hulp" id="post-hulp" placeholder="Waar heeft u hulp bij nodig?" class="post-text-input">
+                    <form action="<?php echo url("post-opslaan") ?>" method="post" class="mijn-post-form">
+                        <input type="text" name="titel" id="post-titel" placeholder="Titel" class="post-text-input">
+                        <input type="textarea"  name="inhoud" id="post-hulp" placeholder="Waar heeft u hulp bij nodig?" class="post-text-input">
                         <input type="submit" name="post-form-submit" id="post-form-submit">
                     </form>
                 </div>
