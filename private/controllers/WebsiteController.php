@@ -30,6 +30,22 @@ class WebsiteController {
 
         $template_engine = get_template_engine();
         echo $template_engine->render('hulp');
-    }
+	}
+	
+	public function details(){
+
+		$details = alleDetails();
+
+        $template_engine = get_template_engine();
+        echo $template_engine->render( 'details', [ 'AlleDetails' => $details ] );
+	}
+	
+	public function detailscontact() {
+
+		$detailsContact = alleDetails();
+
+		$template_engine = get_template_engine();
+        echo $template_engine->render( 'contactformulier', [ 'AlleDetails' => $detailsContact ] );
+	}
 
 }
