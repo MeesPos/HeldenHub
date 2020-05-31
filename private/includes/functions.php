@@ -28,7 +28,6 @@ function dbConnect() {
 		echo 'Fout bij maken van database verbinding: ' . $e->getMessage();
 		exit;
 	}
-
 }
 
 /**
