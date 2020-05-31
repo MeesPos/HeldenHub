@@ -16,15 +16,21 @@
 <body style="background-image: linear-gradient(rgba(123, 123, 123, 0.4), rgba(123, 123, 123, 0.4)), url( <?php echo site_url('/img/stad.png') ?> )">
     <main class="aanmeld">
         <section id="login">
-            <div class="lijn1"></div>
+          
             <h1><strong>INLOGGEN</strong></h1>
             <div class="form">
-                <form action="login.php" method="POST" class="form1">
+                <form action="<?php echo url("login")?>" method="POST" class="form1">
                     <div class="email">
                         <input type="email" name="email" placeholder="E-mail adres">
+                        <?php if(isset($errors['email'])):?>
+                           <span class="errors"> <?php echo $errors['email']?></span>
+                           <?php endif; ?>
                     </div>
                     <div class="ww">
                         <input type="password" name="wachtwoord" placeholder="Wachtwoord">
+                        <?php if(isset($errors['wachtwoord'])):?>
+                           <span class="errors"> <?php echo $errors['wachtwoord']?></span>
+                           <?php endif; ?>
                     </div>
                     <div class="wwv">
                         <a href="index.php" class="button2">Wachtwoord vergeten?</a>
@@ -39,12 +45,12 @@
         </section>
 
         <section id="registreren">
-            <div class="lijn2"></div>
+            
             <h1><strong> REGISTREREN</strong></h1>
             <div class="grid">
 
                 <div class="form">
-                    <form action="save_user.php" method="POST" class="form2">
+                    <form action="<?php echo url("registreer")?>" method="POST" class="form2">
                         <div class="voornaam">
                             <input type="name" name="voornaam" required placeholder="Voornaam">
                         </div>
@@ -52,13 +58,19 @@
                             <input type="name" name="achternaam" required placeholder="Achternaam">
                         </div>
                         <div class="email">
-                            <input type="email" name="email" required placeholder="Achternaam">
+                            <input type="email" name="email" required placeholder="E-mail">
+                            <?php if(isset($errors['email'])):?>
+                           <span class="errors"> <?php echo $errors['email']?></span>
+                           <?php endif; ?>
                         </div>
                         <div class="datum">
                             <input type="date" id="birthday" name="birthday">
                         </div>
                         <div class="ww">
                             <input type="password" name="wachtwoord" required placeholder="Wachtwoord">
+                            <?php if(isset($errors['wachtwoord'])):?>
+                           <span class="errors"> <?php echo $errors['wachtwoord']?></span>
+                           <?php endif; ?>
                         </div>
                         <div class="herww">
                             <input type="password" name="herwachtwoord" required placeholder="Hereaal wachtwoord">
