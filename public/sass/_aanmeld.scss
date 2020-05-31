@@ -47,6 +47,8 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical;
+    border: none;
+    background-color:  #efefef ;
   }
  button{
     width: 66%;
@@ -63,20 +65,18 @@
     height: 400px;
     margin-left: 5em;
     text-align: center;
+    border-radius: 4px;
+    resize: vertical;
 }
 #registreren{
     text-align: center;
     width: 700px;
     height: 400px;
     margin-right: 5em;
+    border-radius: 4px;
+    resize: vertical;
 }
-.small h6{
-    margin-top: 4px;
-    color: #FF8800;
-}
-.small{
-    color: #FF8800;
-}
+
 
 @media only screen and (max-width: 80em) and (orientation: portrait){
 .aanmeld{
@@ -128,6 +128,7 @@ button{
     align-items: center;
     justify-items: center;
     overflow: hidden;
+
 }
 .modaallInhoud{
     background-color: white;
@@ -137,11 +138,16 @@ button{
     margin-top: 1em;
     overflow: auto;
     border-top: 10px solid #FF8800;
+    border-radius: 4px;
+    resize: vertical;
     
    
 }
-#infoTitel{
+.infoTitel{
     padding: 1em;
+}
+#info{
+    color: #FF8800;
 }
 #infoP{
     padding: 1em;

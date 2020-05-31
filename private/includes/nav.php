@@ -7,8 +7,8 @@
                         <?php if (!isLoggedIn()) : ?>
                             <a class="nav-items" href="aanmelden">Aanmelden</a>
                         <?php else : ?>
-                            <a class="nav-items" href="#">Mijn Account</a>
-                            <a class="nav-items" href="#">Uitloggen</a>
+                            <a class="nav-items" href="<?php echo url("ingelogd")?>">Mijn Account</a>
+                            <a class="nav-items" href="<?php echo url("loguit")?>">Uitloggen</a>
                         <?php endif; ?>
                         <a class="nav-items" href="#">Shop</a>
                         <a class="nav-items" href="#">Leaderbord</a>
