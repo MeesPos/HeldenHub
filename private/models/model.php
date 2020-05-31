@@ -18,7 +18,8 @@ function getUserData() {
 
 function savePost() {
     $connection = dbConnect();
-    $query      = "INSERT INTO `posts` (`titel`, `inhoud`, `gebruiker_id`) VALUES (:titel, :inhoud :gebruiker_id)";
+    $query      = 'INSERT INTO `posts` (`id`, `titel`, `inhoud`, `gebruiker_id`) VALUES (NULL, :titel, :inhoud,  :gebruiker_id)';
+ 
     $statement  = $connection->prepare($query);
 
     $params = [
@@ -29,6 +30,6 @@ function savePost() {
 
     $statement->execute($params);
 
-    $redirectURL = url('/');
+    $redirectURL = url('/bap/Heldenhub/public');
 	redirect($redirectURL);
 }

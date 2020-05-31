@@ -39,4 +39,11 @@ class WebsiteController {
 		savePost();
 	}
 
+	// Overzicht pagina
+	public function overzicht() {
+
+		$template_engine = get_template_engine();
+		echo $template_engine->render('overzicht');
+	}
+
 }
