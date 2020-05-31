@@ -5,7 +5,7 @@
                 <div class="nav boven">
                     <div class="menu sticky bovennav">
                         <?php if (!isLoggedIn()) : ?>
-                            <a class="nav-items" href="aanmelden">Aanmelden</a>
+                            <a class="nav-items" href="<?php echo site_url('aanmelden') ?> ">Aanmelden</a>
                         <?php else : ?>
                             <a class="nav-items" href="#">Mijn Account</a>
                             <a class="nav-items" href="#">Uitloggen</a>
@@ -23,7 +23,7 @@
                         </a>
                         <div class="hulp-items">
                             <a class="nav-items hulp-items aanbieden" href="#">HULP AANBIEDEN</a>
-                            <a class="nav-items hulp-items" href="hulp-vragen">HULP VINDEN</a>
+                            <a class="nav-items hulp-items" href="<?php echo site_url('hulp-vragen') ?> ">HULP VINDEN</a>
                         </div>
                     </div>
                 </div>

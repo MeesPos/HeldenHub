@@ -31,7 +31,7 @@
 
             <div class="contact">
                 <h2>Wilt u <?php echo $row['voornaam'] ?> helpen?</h2>
-                <form method="post" action="<?php echo site_url('/details/contact') ?>">
+                <form method="post" action="<?php echo site_url('/contact') ?>">
                     <input type="text" name="naam" placeholder="Naam">
                     <input type="email" name="email" placeholder="Email Adres">
                     <input type="comment" name="bericht" placeholder="Bericht">
