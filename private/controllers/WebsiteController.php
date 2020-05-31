@@ -19,17 +19,31 @@ class WebsiteController {
 
 	}
 
-	public function aanmelden(){
+	public function aanmeldenIndex(){
 
         $template_engine = get_template_engine();
         echo $template_engine->render('AanmeldPagina');
         
 	}
-	
+	// Hulp vragen page
 	public function hulpVragen(){
+		isLoggedIn();
+		$userData = getUserData();
+		
 
         $template_engine = get_template_engine();
-        echo $template_engine->render('hulp');
-    }
+        echo $template_engine->render('hulp', ['userData' => $userData]);
+	}
+	
+	public function postOpslaan(){
+		savePost();
+	}
+
+	// Overzicht pagina
+	public function overzicht() {
+
+		$template_engine = get_template_engine();
+		echo $template_engine->render('overzicht');
+	}
 
 }
