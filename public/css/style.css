@@ -417,6 +417,8 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: vertical;
+  border: none;
+  background-color: #efefef;
 }
 
 button {
@@ -435,6 +437,8 @@ button {
   height: 400px;
   margin-left: 5em;
   text-align: center;
+  border-radius: 4px;
+  resize: vertical;
 }
 
 #registreren {
@@ -442,15 +446,8 @@ button {
   width: 700px;
   height: 400px;
   margin-right: 5em;
-}
-
-.small h6 {
-  margin-top: 4px;
-  color: #FF8800;
-}
-
-.small {
-  color: #FF8800;
+  border-radius: 4px;
+  resize: vertical;
 }
 
 @media only screen and (max-width: 80em) and (orientation: portrait) {
@@ -512,10 +509,16 @@ button {
   margin-top: 1em;
   overflow: auto;
   border-top: 10px solid #FF8800;
+  border-radius: 4px;
+  resize: vertical;
 }
 
-#infoTitel {
+.infoTitel {
   padding: 1em;
+}
+
+#info {
+  color: #FF8800;
 }
 
 #infoP {
