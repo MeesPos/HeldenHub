@@ -544,5 +544,104 @@ button {
     margin-top: 0;
   }
 }
+#hulpdetail {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  height: 80vh;
+}
+
+.geplaatstdoor {
+  margin-left: 20%;
+  margin-top: 10%;
+  width: 325px;
+  height: 400px;
+  background-color: white;
+  border-top: #FF8800 solid 10px;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.geplaatstdoor > h2 {
+  font-size: 30px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 2%;
+}
+
+.geplaatstdoor > img{
+  max-width: 100%!important;
+}
+
+.gegevens > h3 {
+  text-align: center;
+  font-size: 25px;
+}
+
+.gegevens {
+  margin-top: 2%;
+}
+
+.hulpinfo {
+  margin-top: 10%;
+  padding: 0 10%;
+}
+
+.hulpinfo > h2 {
+  text-align: center;
+  font-size: 30px;
+  text-transform: uppercase;
+  margin-bottom: 2%;
+  margin-left: -5%;
+}
+
+.contact {
+  margin-top: 10%;
+  text-align: center;
+}
+
+.contact > h2 {
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 2%;
+  font-size: 30px;
+}
+
+.contact > form > input {
+  background-color: #efefef;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: none;
+}
+.contact > form > input::placeholder {
+  font-style: italic;
+}
+
+input[type=comment] {
+  padding-bottom: 100px;
+}
+
+.contact > form > input[type=submit] {
+  background-color: #FF8800;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  #hulpdetail {
+    grid-template-columns: 1fr;
+  }
+
+  .geplaatstdoor {
+    margin-left: 7%;
+  }
+
+  .hulpinfo > h2{
+    margin-left: 0;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */
