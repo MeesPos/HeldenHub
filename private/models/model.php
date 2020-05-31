@@ -26,4 +26,34 @@ function alleDetailsContact()
     $statement = $connection->query($sql);
 
     return $statement->fetchAll();
+function getUserData() {
+    $connection = dbConnect();
+    $query      = 'SELECT * FROM `gebruikers` WHERE `id` = :gebruiker_id';
+    $statement  = $connection->prepare($query);
+
+    $params = [
+        'gebruiker_id' => 1
+    ];
+    
+    $statement->execute($params);
+    
+    return $statement->fetch();
+}
+
+function savePost() {
+    $connection = dbConnect();
+    $query      = 'INSERT INTO `posts` (`id`, `titel`, `inhoud`, `gebruiker_id`) VALUES (NULL, :titel, :inhoud,  :gebruiker_id)';
+ 
+    $statement  = $connection->prepare($query);
+
+    $params = [
+        'titel'         => $_POST['titel'],
+        'inhoud'        => $_POST['inhoud'],
+        'gebruiker_id'  => 1,
+    ];
+
+    $statement->execute($params);
+
+    $redirectURL = url('/bap/Heldenhub/public');
+	redirect($redirectURL);
 }
