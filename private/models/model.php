@@ -72,19 +72,7 @@ function getUserData() {
     return $statement->fetch();
 }
 
-function getUserData() {
-    $connection = dbConnect();
-    $query      = 'SELECT * FROM `gebruikers` WHERE `id` = :gebruiker_id';
-    $statement  = $connection->prepare($query);
 
-    $params = [
-        'gebruiker_id' => 1
-    ];
-    
-    $statement->execute($params);
-    
-    return $statement->fetch();
-}
 
 	function savePost() {
     $connection = dbConnect();
@@ -102,4 +90,5 @@ function getUserData() {
 
     $redirectURL = url('/bap/Heldenhub/public');
 	redirect($redirectURL);
+}
 }
