@@ -58,6 +58,7 @@ function alleDetailsContact()
     $statement = $connection->query($sql);
 
     return $statement->fetchAll();
+}
 function getUserData() {
     $connection = dbConnect();
     $query      = 'SELECT * FROM `gebruikers` WHERE `id` = :gebruiker_id';
@@ -88,7 +89,7 @@ function getUserData() {
 
     $statement->execute($params);
 
-    $redirectURL = url('/bap/Heldenhub/public');
+    $redirectURL = url('home');
 	redirect($redirectURL);
 }
-}
+

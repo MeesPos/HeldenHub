@@ -121,7 +121,6 @@ class WebsiteController {
 
 // Hulp vragen page
 	public function hulpVragen(){
-		isLoggedIn();
 		$userData = getUserData();
 		
 
