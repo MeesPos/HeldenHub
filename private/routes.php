@@ -22,6 +22,7 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::post('/aanmelden/login','WebsiteController@login')->name('login');
 	SimpleRouter::get( '/MijnAccount', 'WebsiteController@ingelogd' )->name( 'ingelogd' );
 	SimpleRouter::get( '/Uitloggen', 'WebsiteController@loguit' )->name( 'loguit' );
+	SimpleRouter::get( '/stuur-test-email', 'WebsiteController@sendTestEmail')->name( 'email.test' );
 
 	// STOP: Tot hier al je eigen URL's zetten
 
