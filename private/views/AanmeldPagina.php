@@ -21,13 +21,13 @@
             <div class="form">
                 <form action="<?php echo url("login")?>" method="POST" class="form1">
                     <div class="email">
-                        <input type="email" name="email" placeholder="E-mail adres">
+                        <input type="email" name="email" placeholder="E-mail adres"><br>
                         <?php if(isset($errors['email'])):?>
                            <span class="errors"> <?php echo $errors['email']?></span>
                            <?php endif; ?>
                     </div>
                     <div class="ww">
-                        <input type="password" name="wachtwoord" placeholder="Wachtwoord">
+                        <input type="password" name="wachtwoord" placeholder="Wachtwoord"><br>
                         <?php if(isset($errors['wachtwoord'])):?>
                            <span class="errors"> <?php echo $errors['wachtwoord']?></span>
                            <?php endif; ?>
@@ -58,7 +58,7 @@
                             <input type="name" name="achternaam" required placeholder="Achternaam">
                         </div>
                         <div class="email">
-                            <input type="email" name="email" required placeholder="E-mail">
+                            <input type="email" name="email" required placeholder="E-mail"><br>
                             <?php if(isset($errors['email'])):?>
                            <span class="errors"> <?php echo $errors['email']?></span>
                            <?php endif; ?>
@@ -67,7 +67,7 @@
                             <input type="date" id="birthday" name="birthday">
                         </div>
                         <div class="ww">
-                            <input type="password" name="wachtwoord" required placeholder="Wachtwoord">
+                            <input type="password" name="wachtwoord" required placeholder="Wachtwoord"><br>
                             <?php if(isset($errors['wachtwoord'])):?>
                            <span class="errors"> <?php echo $errors['wachtwoord']?></span>
                            <?php endif; ?>

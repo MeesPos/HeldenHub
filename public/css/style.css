@@ -435,7 +435,7 @@ button {
 #login {
   width: 300px;
   height: 400px;
-  margin-left: 5em;
+  margin-left: 10em;
   text-align: center;
   border-radius: 4px;
   resize: vertical;
@@ -652,7 +652,7 @@ input[type=comment] {
   padding-top: 1.5em;
   width: 300px;
   height: 300px;
-  margin-left: 5em;
+  margin-left: 11em;
   text-align: center;
   border-radius: 4px;
   resize: vertical;
@@ -675,7 +675,7 @@ input[type=comment] {
   padding-top: 1.5em;
   width: 260px;
   height: 200px;
-  margin-left: 6.2em;
+  margin-left: 12.2em;
   text-align: left;
   border-radius: 4px;
   resize: vertical;
@@ -737,7 +737,7 @@ input[type=comment] {
   padding: 20px;
   width: 600px;
   height: 200px;
-  margin-left: 6.5em;
+  margin-left: 12.5em;
   text-align: left;
   border-radius: 4px;
   resize: vertical;
@@ -752,7 +752,7 @@ input[type=comment] {
 #postTitel {
   text-align: center;
   margin-top: 3em;
-  margin-left: 4.5em;
+  margin-left: 6.5em;
   font-size: 30px;
 }
 
