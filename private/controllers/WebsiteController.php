@@ -74,7 +74,10 @@ class WebsiteController {
 				'herwachtwoord' => $safe_wachtwoord
 			];
 			$statement->execute( $params );
-			echo $email;
+		$message = "u krijgt binnen 5 secondeer Email voor bevestigen.";
+		echo "<script type='text/javascript'>alert('$message');</script>";
+		    $template_engine = get_template_engine();
+	        echo $template_engine->render('AanmeldPagina');
 			exit;
 		}else{
            $errors ['email'] = 'Dit accouny bestaat al!!!!!';
@@ -238,6 +241,16 @@ class WebsiteController {
 
 		$template_engine = get_template_engine();
 		echo $template_engine->render('overzicht');
+	}
+	public function bevestigenEmail(){
+		
+		$mailer = getSwiftMailer();
+
+		$message = createEmailMessage('buneya2001@gmail.com' , 'dit is een test email', 'Duneya', '29269@ma-web.nl');
+		$message->setBody('Dit is de inhoud van mijn test message');
+		
+		$aantal_verstuurd = $mailer->send($message);
+		 echo "Aantal = " . $aantal_verstuurd;
 	}
 }
 ?>
