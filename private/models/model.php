@@ -93,3 +93,17 @@ function getUserData() {
 	redirect($redirectURL);
 }
 
+function getCardData() {
+    $connection = dbConnect();
+
+    // Inner join query to get all info needed and skip deleted users 
+    $query      = 'SELECT * 
+                   FROM `posts` 
+                   INNER JOIN `gebruikers` 
+                   ON `gebruikers` . `id` = `posts` . `gebruiker_id` '; 
+    
+    // Prepare and return executed query
+    $statement  = $connection->prepare($query);
+    return $statement->fetchAll();
+
+};

@@ -14,16 +14,12 @@ class OverviewController {
 
 	public function displayOverview() {
 
-		$template_engine = get_template_engine();
-		echo $template_engine->render('overview');
-	}
-
-	public function getOverviewCardsData() {
+		$cardData = getCardData();
 
 		$template_engine = get_template_engine();
-		echo $template_engine->render('homepage');
-
+		echo $template_engine->render('overview', [	'cards' => $cardData ]);
 	}
+
 
 	
 }
