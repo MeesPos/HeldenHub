@@ -7,7 +7,7 @@
     "league/plates": "3.3.*",
     "ext-pdo": "*",
     "nesbot/carbon": "^2.35",
-    "swiftmailer/swiftmailer": "^6.2"
+    "swiftmailer/swiftmailer": "6.0"
   }
   ,
   "require-dev": {

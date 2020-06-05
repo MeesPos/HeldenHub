@@ -10,13 +10,20 @@ function getUsers(){
 
 function alleDetails()
 {
+    // $id = $_POST['postId'];
+    $id = 1;
+
     $connection = dbConnect();
     $sql = 'SELECT * 
-    FROM `gebruikers`
-    INNER JOIN `posts` 
-    ON `posts`.`gebruiker_id` = `gebruikers`.`id`
-    WHERE `posts`.`gebruiker_id` = 1';
-    $statement = $connection->query($sql);
+        FROM `gebruikers`
+        INNER JOIN `posts` 
+        ON `posts`.`gebruiker_id` = `gebruikers`.`id`
+        WHERE `posts`.`id` = :id';
+    $statement = $connection->prepare($sql);
+    $idQuery = [
+        'id' => $id
+    ];
+    $statement->execute($idQuery);
 
     return $statement->fetchAll();
 }

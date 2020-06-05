@@ -792,5 +792,53 @@ input[type=comment] {
     margin-left: 4.5em;
   }
 }
+.fa-check-circle {
+  color: #FF8800;
+  font-size: 100px;
+}
+
+.check {
+  margin-top: 4%;
+}
+
+#bedankt {
+  text-align: center !important;
+}
+
+.bedanktcontent > h1 {
+  font-size: 40px;
+  margin-top: 1%;
+}
+
+.bedanktcontent > p {
+  font-size: 20px;
+}
+
+.buttonHome {
+  width: 300px;
+  font-size: 20px;
+  margin-top: 1.5%;
+}
+
+@media screen and (max-width: 800px) {
+  .bedanktcontent > h1 {
+    font-size: 25px;
+  }
+
+  .bedanktcontent > p {
+    font-size: 20px;
+  }
+
+  .buttonHome {
+    width: 200px;
+    margin-top: 2vh;
+  }
+
+  .fa-check-circle {
+    margin-right: -60vw;
+    margin-top: 4vh;
+    margin-bottom: 2vh;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */
