@@ -3,6 +3,7 @@
 use Pecee\Http\Request;
 use Pecee\SimpleRouter\Exceptions\NotFoundHttpException;
 use Pecee\SimpleRouter\SimpleRouter;
+use Website\Controllers\WebsiteController;
 
 SimpleRouter::setDefaultNamespace( 'Website\Controllers' );
 
@@ -22,7 +23,7 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::post('/aanmelden/login','WebsiteController@login')->name('login');
 	SimpleRouter::get( '/MijnAccount', 'WebsiteController@ingelogd' )->name( 'ingelogd' );
 	SimpleRouter::get( '/Uitloggen', 'WebsiteController@loguit' )->name( 'loguit' );
-	SimpleRouter::get( '/stuur-test-email', 'WebsiteController@sendTestEmail')->name( 'email.test' );
+	SimpleRouter::get( '/details/contact/bedankt', 'WebsiteController@bedanktContact')->name('bedanktContact');
 
 	// STOP: Tot hier al je eigen URL's zetten
 

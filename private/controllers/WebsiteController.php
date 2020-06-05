@@ -143,15 +143,11 @@ class WebsiteController
 		echo $template_engine->render('details', ['AlleDetails' => $details]);
 	}
 
-	public function detailscontact()
-	{
+	public function bedanktContact() {
 
-
-		$connection = dbConnect();
-		$sql		= "SELECT * FROM `gebruikers` WHERE `id` = :id";
-		$statement	= $connection->prepare($sql);
+		$template_engine = get_template_engine();
+		echo $template_engine->render('bedanktContact');
 	}
-
 
 	public function postOpslaan()
 	{
@@ -166,8 +162,9 @@ class WebsiteController
 		echo $template_engine->render('overzicht');
 	}
 
-	public function sendTestEmail()
+	public function detailsContact()
 	{
+		$id = $_POST['hiddenId'];
 		$naam = $_POST['naam'];
 		$email = $_POST['email'];
 		$bericht = $_POST['bericht'];
@@ -177,15 +174,32 @@ class WebsiteController
     		FROM `gebruikers`
     		INNER JOIN `posts` 
     		ON `posts`.`gebruiker_id` = `gebruikers`.`id`
-    		WHERE `posts`.`gebruiker_id` = 1';
-    	$statement = $connection->query($sql);
+			WHERE `posts`.`id` = :id';
+		$statement = $connection->prepare($sql);
+		$idQuery = [
+			'id' => $id
+		];
+		$statement->execute($idQuery);
+
+		$data = $statement->fetch();
 
 		$mailer = getSwiftMailer();
 
-		$message = createEmailMessage('', '$naam wilt u Helpen!', '$naam', '$email');
-		$message->setBody('$bericht');
+		$message = createEmailMessage($data['email'], $naam . ' wilt u helpen!', $naam, '29035@ma-web.nl');
+		
+		$message->setBody('<html>' .
+		' <body> ' .
+		' <p> U kunt niet reagen op deze email, die wordt niet gelezen.</p>' .
+		' <p> Contact opnemen met degene die u wilt helpen? Neem contact op met: ' . '<b>' . $email . '</b>' .
+		' <p> Zijn/Haar bericht was: ' . $bericht . '</p>' .
+		' <p> Email van ' . '<b>' . $naam . '</b>' . ' is ' . '<b>' . $email . '</b>' .
+		' </body> ' .
+		' </html>',
+		'text/html' );
 
 		$aantalVerstuurd = $mailer->send($message);
-		echo "Aantal = " . $aantalVerstuurd;
+		
+		$bedanktUrl = url("bedanktContact");
+		redirect($bedanktUrl);
 	}
 }

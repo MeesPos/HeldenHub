@@ -32,6 +32,7 @@
             <div class="contact">
                 <h2>Wilt u <?php echo $row['voornaam'] ?> helpen?</h2>
                 <form method="post" action="<?php echo url("detailsContact") ?>">
+                    <input type="hidden" name="hiddenId" value="<?php echo $row['id'] ?>">
                     <input type="text" name="naam" placeholder="Naam">
                     <input type="email" name="email" placeholder="Email Adres">
                     <input type="comment" name="bericht" placeholder="Bericht">
