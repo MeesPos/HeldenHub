@@ -104,6 +104,7 @@ function getCardData() {
     
     // Prepare and return executed query
     $statement  = $connection->prepare($query);
-    return $statement->fetchAll();
+    $cardData   = $statement->fetchAll();
+    return $cardData;
 
 };
