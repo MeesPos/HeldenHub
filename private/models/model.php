@@ -98,12 +98,11 @@ function getCardData() {
 
     // Inner join query to get all info needed and skip deleted users 
     $query      = 'SELECT * 
-                   FROM `posts` 
-                   INNER JOIN `gebruikers` 
-                   ON `gebruikers` . `id` = `posts` . `gebruiker_id` '; 
+    FROM `gebruikers`
+    INNER JOIN `posts` 
+    ON `posts`.`gebruiker_id` = `gebruikers`.`id`'; 
     
     // Prepare and return executed query
-    $statement  = $connection->prepare($query);
+    $statement = $connection->query($query);
     return $statement->fetchAll();
-
 };
