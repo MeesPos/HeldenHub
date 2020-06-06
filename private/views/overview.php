@@ -14,8 +14,9 @@
 <?php include '../private/includes/nav.php' ?>
 <div class="ov-wrapper">
     <div class="ov-wrapper-left">
-    <?php echo $cards['myfile']; ?>
-        <?php  foreach ($cards as $data): 
+        <?php  foreach ($cards as $row){
+                $row['voornaam'];
+        } 
             
         ?>
         <div class="ov-card">
@@ -44,7 +45,7 @@
                 </div>
             </div>
         </div>
-        <?php  endforeach; 
+        <?php  // endforeach; 
         ?>
     </div>
     <div class="ov-wrapper-right">
