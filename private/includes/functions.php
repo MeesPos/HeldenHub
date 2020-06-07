@@ -75,6 +75,16 @@ function isLoggedIn()
 		return false;
 	}
 }
+
+function isAdmin($data) {
+
+	if ($data['admin'] === '0') {
+		$redirectURL = url('home');
+		redirect($redirectURL);
+	}
+
+}
+
 function validatelogin($data)
 {
 	$errors = [];
@@ -111,7 +121,7 @@ function userNotRegistered($email)
 
 function getLoggedInVoornaam()
 {
-	$voornaam = 'Niet Ingelogd!!';
+	$voornaam = 'Niet Ingelogd!';
 	if (!isLoggedIn()) {
 		return $voornaam;
 	}

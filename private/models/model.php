@@ -98,4 +98,18 @@ function getUserData() {
     $redirectURL = url('/bap/Heldenhub/public');
 	redirect($redirectURL);
 }
+
+function adminPageConn() {
+    $connection = dbConnect();
+    $sql = 'SELECT * FROM `gebruikers` WHERE `id` = :id';
+    $statement  = $connection->prepare($sql);
+
+    $params = [
+        'id' => 1
+    ];
+
+    $statement->execute($params);
+
+    return $data = $statement->fetch();
+}
 }
