@@ -54,6 +54,20 @@ function getUsersById($id){
 return false;
 }
 
+
+function getUsersByCode($code){
+    $connection = dbConnect();
+	$sql =  'SELECT * FROM `gebruikers` WHERE `code`= :code';
+	$statement = $connection->prepare($sql);
+    $statement->execute(['code' => $code]);
+
+  if ($statement->rowCount() === 1);
+   return $statement->fetch();
+
+
+return false;
+}
+
 function alleDetailsContact()
 {
     $connection = dbConnect();
@@ -99,6 +113,7 @@ function getUserData() {
 	redirect($redirectURL);
 }
 
+
 function adminPageConn() {
     $connection = dbConnect();
     $sql = 'SELECT * FROM `gebruikers` WHERE `id` = :id';
@@ -112,4 +127,12 @@ function adminPageConn() {
 
     return $data = $statement->fetch();
 }
+ function showPost() {
+    $connection = dbConnect();
+	$query = "SELECT * from ` post` ";
+    $statement = $connection->query($query);
+    // $template_engine = get_template_engine();
+	// 	echo $template_engine->render('gebruikersPagina');	
+
 }
+}   
