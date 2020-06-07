@@ -42,6 +42,10 @@ function site_url($path = '')
 {
 	return get_config('BASE_URL') . $path;
 }
+function absolute_url($path = '')
+{
+	return get_config('BASE_HOST') . $path;
+}
 
 function get_config($name)
 {
@@ -266,7 +270,42 @@ function embedImage($message, $filename)
 		throw new \RuntimeException('Afbeelding bestaat niet: ' . $image_path);
 	}
 
-	$cid = $message->embed(\Swift_Image::fromPath($image_path));
+	if($message){
+	$cid = $message->embed( \Swift_Image::fromPath( $image_path ) );
 
 	return $cid;
 }
+return site_url('/images/email/' . $filename);
+	
+
+}
+/**
+ * confirms een account bij confirmer
+ *
+ * @param  $code
+ */
+function confirmAccount($code){
+	
+	$connection = dbConnect();
+	$sql =  'UPDATE  `gebruikers` SET `code` = NULL WHERE  `code`= :code';
+	$statement = $connection->prepare($sql);
+	$params = [
+		'code' => $code
+	];
+	$statement->execute($params);
+}
+function sendConfirmationEmail($email, $code){
+
+
+$url = url('bevestigenEmailCode', ['code' =>$code]);
+$absolute_url = absolute_url($url);
+
+$mailer = getSwiftMailer();
+$message = createEmailMessage($email, 'Bevestig je account', 'website', 'buneya2001@gmail.com');
+$email_text ='Hallo, bevestig nu je account: <a href="' . $absolute_url . '">Klik Hier </a>';
+$message->setBody($email_text, 'text/html');
+
+$mailer->send($message);
+
+}
+
