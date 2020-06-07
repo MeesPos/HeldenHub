@@ -93,16 +93,37 @@ function getUserData() {
 	redirect($redirectURL);
 }
 
-function getCardData() {
+function getTotalTracks($connection) {
+    $sql       = 'SELECT count(*) as `total` FROM `posts`';
+    $statement = $connection->query( $sql );
+
+    return (int) $statement->fetchColumn();
+
+}
+
+function getCardData($page, $pagesize = 5) {
     $connection = dbConnect();
+
+    // Amount of rows
+    $total = getTotalTracks($connection);
+    // Amount of pages
+    $num_pages = (int) round($total / $pagesize);
+    // Calculate offset
+    $offset = ( $page - 1 ) * $pagesize;
 
     // Inner join query to get all info needed and skip deleted users 
     $query      = 'SELECT * 
     FROM `gebruikers`
     INNER JOIN `posts` 
-    ON `posts`.`gebruiker_id` = `gebruikers`.`id`'; 
+    ON `posts`.`gebruiker_id` = `gebruikers`.`id`
+    LIMIT ' . $pagesize . ' OFFSET ' . $offset; 
     
     // Prepare and return executed query
     $statement = $connection->query($query);
-    return $statement->fetchAll();
+    return [
+        'statement' => $statement,
+        'total'     => $total,
+        'pages'     => $num_pages,
+        'page'      => $page 
+    ];
 };

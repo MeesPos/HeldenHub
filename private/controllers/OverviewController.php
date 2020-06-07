@@ -13,13 +13,10 @@ namespace Website\Controllers;
 class OverviewController {
 
 	public function displayOverview() {
+		$page = 1;
+		$cardData = getCardData($page, 5);
 
-		$cardData = getCardData();
 		
-		// echo print_r($cardData);
-		foreach ((array)$cardData as $row) {
-			echo $row;
-		}
 
 		$template_engine = get_template_engine();
 		echo $template_engine->render('overview', [	'cards' => $cardData ]);

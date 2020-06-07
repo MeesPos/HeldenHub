@@ -14,19 +14,19 @@
 <?php include '../private/includes/nav.php' ?>
 <div class="ov-wrapper">
     <div class="ov-wrapper-left">
-        <?php  foreach ($cards as $row){
-                $row['voornaam'];
-        } 
+        <?php  foreach ($cards['statement'] as $row):
             
         ?>
         <div class="ov-card">
             <div class="oranje-balk"></div>
             <div class="ov-post">
                 <div class="ov-post-user">
-                    <img src="<?php echo site_url('/img/vrouw-headshot.jpg') ?>" alt="Profielfoto" class="ov-profiel">
+                    <img src="<?php echo site_url() ?>img/ <?php echo $row['myfile']; ?>" alt="Profielfoto" class="ov-profiel">
                     <section class="ov-post-user-info">
-                        <p class="ov-post-naam"><?php echo $data['voornaam'] ?>Naam</p>
-                        <p class="ov-post-plaats">Amsterdam</p>
+                        <p class="ov-post-naam"><?php echo ucfirst($row['voornaam']) . ' ' . ucfirst($row['achternaam']); ?></p>
+                        <p class="ov-post-plaats"><?php 
+                                                    // Making first letter of place always uppercase
+                                                    echo ucfirst($row['plaats']); ?></p>
                     </section>
                 </div>
                 <div class="ov-post-punten">
@@ -34,8 +34,8 @@
                     <p class="punt-hoeveelheid">1</p>
                 </div>
                 <div class="ov-post-info">
-                    <h3 class="ov-post-info-title">Boodschappen doen</h3>
-                    <p class="ov-post-info-tekst">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo necessitatibus enim eveniet ipsum rem nesciunt ipsa consequuntur nisi? Delectus aut amet fugiat facere aspernatur possimus ab quidem unde et libero.</p>
+                    <h3 class="ov-post-info-title"><?php echo ucfirst($row['titel']); ?></h3>
+                    <p class="ov-post-info-tekst"><?php echo ucfirst($row['inhoud']); ?></p>
                 </div>
                 <div class="ov-post-knop">
                     <form action="#" method="POST" class="ov-post-form">
@@ -45,7 +45,7 @@
                 </div>
             </div>
         </div>
-        <?php  // endforeach; 
+        <?php  endforeach; 
         ?>
     </div>
     <div class="ov-wrapper-right">
