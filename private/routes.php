@@ -30,6 +30,11 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::get( '/aanmelden/registreren/bevestigenEmail/{code}', 'WebsiteController@bevestigenEmailCode' )->name( 'bevestigenEmailCode' );
 	SimpleRouter::get( '/testEmail', 'WebsiteController@bevestigenEmail' )->name( 'bevestigenEmail' );
 
+
+	// Overview routes
+	SimpleRouter::get( '/overview', 'OverviewController@displayOverview' )->name( 'overview' );
+
+
 	// STOP: Tot hier al je eigen URL's zetten
 
 	SimpleRouter::get( '/not-found', function () {

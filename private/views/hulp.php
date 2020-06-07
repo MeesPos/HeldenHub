@@ -25,20 +25,6 @@
         <h1 class="hulp-h1">Mijn vraag om hulp</h1>
     </div>
 
-    <div class="post-vlak main-post">
-        <div class="oranje-balk"></div>
-        <div class="mijn-post">
-            <div class="mijn-post-user">
-                <img src=" <?php echo site_url('img/vrouw-headshot.jpg') ?>" alt="Profielfoto van persoon die post" class="hulp-profielfoto">
-                <section class="post-user-info">
-                    <p class="hulp-naam">Voornaam achternaam</p>
-                    <p class="hulp-woonplaats">Amsterdam</p>
-                </section>
-            </div>
-            <div class="mijn-post-punten">
-                <i class="fas fa-coins"></i>
-                <p class="punt-hoeveelheid">1</p>
-
         <div class="post-vlak main-post">
             <div class="oranje-balk"></div>
             <div class="mijn-post">
@@ -63,13 +49,7 @@
                     </form>
                 </div>
             </div>
-            <div class="mijn-post-form-div">
-                <form action="" method="post" class="mijn-post-form">
-                    <input type="text" name="post-titel" id="post-titel" placeholder="Titel" class="post-text-input">
-                    <input type="textarea" name="post-hulp" id="post-hulp" placeholder="Waar heeft u hulp bij nodig?" class="post-text-input">
-                    <input type="submit" name="post-form-submit" id="post-form-submit">
-                </form>
-            </div>
+            
         </div>
 
 

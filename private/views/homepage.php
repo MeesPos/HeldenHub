@@ -45,7 +45,7 @@
                     est voluptate beatae!</p>
 
                 <div class="beginknop">
-                    <button class="begin">BEGIN TE SCOREN</button>
+                    <a href="<?php echo url('overview') ?>"><button class="begin">BEGIN TE SCOREN</button></a>
                 </div>
 
             </div>

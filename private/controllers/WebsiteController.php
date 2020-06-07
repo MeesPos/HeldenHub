@@ -151,6 +151,9 @@ class WebsiteController
 
 			if (password_verify($result['data']['wachtwoord'], $user['wachtwoord'])) {
 
+
+// Hulp vragen page
+	public function hulpVragen(){
 				$_SESSION['user_id'] = $user['id'];
 
 				redirect(url('ingelogd'));
@@ -185,6 +188,7 @@ class WebsiteController
 	public function hulpVragen()
 	{
 		isLoggedIn();
+
 		$userData = getUserData();
 		$template_engine = get_template_engine();
 		echo $template_engine->render('hulp', ['userData' => $userData]);
