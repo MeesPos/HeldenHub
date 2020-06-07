@@ -13,7 +13,7 @@
     padding-top: 1.5em;
     width: 300px;
     height: 300px;
-    margin-left: 5em;
+    margin-left: 15em;
     text-align: center;
     border-radius: 4px;
     resize: vertical;
@@ -34,13 +34,13 @@
     padding-top: 1.5em;
     width: 260px;
     height: 200px;
-    margin-left: 6.2em;
+    margin-left: 1.2em;
     text-align: left;
     border-radius: 4px;
     resize: vertical;
 }
 #mijnPunten h3 {
-    margin-left: 2em;
+    margin-left:-5em;
     font-size: 22px;
     padding: .5em;
 }
@@ -103,7 +103,24 @@
     margin-top: 3em;
     margin-left: 4.5em;
     font-size: 30px;
+    position: relative;
+	font-weight: 400;
     
+}
+h1#postTitel span:before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: calc(50% + 2px); left: -10px;
+	width: calc(100% + 20px); 
+	height: 25%;
+	transform: translateY(-50%);
+	
+	z-index: -1;
+    background-color: #FF8800;
+    margin-left: -.5em;
+    border-radius: 4px;
+    resize: vertical;
 }
 .hulpButton{
     width: 66%;

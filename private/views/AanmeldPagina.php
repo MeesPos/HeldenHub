@@ -21,14 +21,15 @@
             <div class="form">
                 <form action="<?php echo url("login")?>" method="POST" class="form1">
                     <div class="email">
-                        <input type="email" name="email" placeholder="E-mail adres">
+                        <input type="email" name="email" placeholder="E-mail adres"><br>
                         <?php if(isset($errors['email'])):?>
                            <span class="errors"> <?php echo $errors['email']?></span>
                            <?php endif; ?>
                     </div>
                     <div class="ww">
-                        <input type="password" name="wachtwoord" placeholder="Wachtwoord">
-                        <?php if(isset($errors['wachtwoord'])):?>
+                        <input type="password" name="wachtwoord" placeholder="Wachtwoord" id="password-field" >
+                        <i id="pass-status" class="fa fa-eye" aria-hidden="true" onClick="viewPassword()" required></i>
+                        <br> <?php if(isset($errors['wachtwoord'])):?>
                            <span class="errors"> <?php echo $errors['wachtwoord']?></span>
                            <?php endif; ?>
                     </div>
@@ -58,7 +59,7 @@
                             <input type="name" name="achternaam" required placeholder="Achternaam">
                         </div>
                         <div class="email">
-                            <input type="email" name="email" required placeholder="E-mail">
+                            <input type="email" name="email" required placeholder="E-mail"><br>
                             <?php if(isset($errors['email'])):?>
                            <span class="errors"> <?php echo $errors['email']?></span>
                            <?php endif; ?>
@@ -67,7 +68,7 @@
                             <input type="date" id="birthday" name="birthday">
                         </div>
                         <div class="ww">
-                            <input type="password" name="wachtwoord" required placeholder="Wachtwoord">
+                            <input type="password" name="wachtwoord" required placeholder="Wachtwoord"><br>
                             <?php if(isset($errors['wachtwoord'])):?>
                            <span class="errors"> <?php echo $errors['wachtwoord']?></span>
                            <?php endif; ?>
@@ -79,9 +80,12 @@
                             <input type="name" name="plaats" required placeholder="Plaats">
                         </div>
                         <div class="foto">
-                            <input type="file" id="myfile" name="myfile"><br><br></div>
+                            
+                      
+                       
+                            <input type="file" id="myfile" name="myfile[]" accept="image/*" multiple=""/><br><br></div>
                         <div class="buttons">
-                            <button type="submit" class="button">REGISTREER</button>
+                            <button type="submit" value="Upload" class="button">REGISTREER</button>
                         </div>
                         <div id="info" class="small">
                             <div><i class="fas fa-question-circle" style="font-size: 25px;"></i></div>
