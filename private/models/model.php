@@ -171,5 +171,5 @@ function adminPageConn() {
 	// 	echo $template_engine->render('gebruikersPagina');	
 
 }
-}   
+
 

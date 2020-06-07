@@ -149,28 +149,30 @@ class WebsiteController
 		if (is_null($user['code'])) {
 
 
-			if (password_verify($result['data']['wachtwoord'], $user['wachtwoord'])) {
+			if (password_verify($result['data']['wachtwoord'], $user['wachtwoord'])) { }
+		}
+	}
 
 
 // Hulp vragen page
-	public function hulpVragen(){
-				$_SESSION['user_id'] = $user['id'];
+	// public function hulpVragen(){
+				// $_SESSION['user_id'] = $user['id'];
 
-				redirect(url('ingelogd'));
-			} else {
-				$result['errors']['wachtwoord'] = 'wachtwoord is niet cottect';
-			}
-		} else {
-			$result['errors']['email'] = 'Dit account is nog niet actief!';
-		}
+		// 		redirect(url('ingelogd'));
+		// 	} else {
+		// 		$result['errors']['wachtwoord'] = 'wachtwoord is niet cottect';
+		// 	}
+		//  else {
+		// 	$result['errors']['email'] = 'Dit account is nog niet actief!';
+		// }
 
 
 
-		$template_engine = get_template_engine();
-		echo $template_engine->render('AanmeldPagina', ['errors' => $result['errors']]);
+		// $template_engine = get_template_engine();
+		// echo $template_engine->render('AanmeldPagina', ['errors' => $result['errors']]);
 
 		// echo 'hallo';
-	}
+	// }
 	public function ingelogd()
 	{
 		$template_engine = get_template_engine();
