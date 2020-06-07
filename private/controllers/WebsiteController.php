@@ -143,7 +143,8 @@ class WebsiteController
 		echo $template_engine->render('details', ['AlleDetails' => $details]);
 	}
 
-	public function bedanktContact() {
+	public function bedanktContact()
+	{
 
 		$template_engine = get_template_engine();
 		echo $template_engine->render('bedanktContact');
@@ -186,20 +187,42 @@ class WebsiteController
 		$mailer = getSwiftMailer();
 
 		$message = createEmailMessage($data['email'], $naam . ' wilt u helpen!', $naam, '29035@ma-web.nl');
-		
-		$message->setBody('<html>' .
-		' <body> ' .
-		' <p> U kunt niet reagen op deze email, die wordt niet gelezen.</p>' .
-		' <p> Contact opnemen met degene die u wilt helpen? Neem contact op met: ' . '<b>' . $email . '</b>' .
-		' <p> Zijn/Haar bericht was: ' . $bericht . '</p>' .
-		' <p> Email van ' . '<b>' . $naam . '</b>' . ' is ' . '<b>' . $email . '</b>' .
-		' </body> ' .
-		' </html>',
-		'text/html' );
+
+		$message->setBody(
+			'<html>' .
+				' <body> ' .
+				' <p> U kunt niet reagen op deze email, die wordt niet gelezen.</p>' .
+				' <p> Contact opnemen met degene die u wilt helpen? Neem contact op met: ' . '<b>' . $email . '</b>' .
+				' <p> Zijn/Haar bericht was: ' . $bericht . '</p>' .
+				' <p> Email van ' . '<b>' . $naam . '</b>' . ' is ' . '<b>' . $email . '</b>' .
+				' </body> ' .
+				' </html>',
+			'text/html'
+		);
 
 		$aantalVerstuurd = $mailer->send($message);
-		
+
 		$bedanktUrl = url("bedanktContact");
 		redirect($bedanktUrl);
+	}
+
+	public function adminPage()
+	{
+
+		$connection = dbConnect();
+		$sql = 'SELECT * FROM `gebruikers` WHERE `id` = :id';
+		$statement  = $connection->prepare($sql);
+
+		$params = [
+			'id' => 1
+		];
+
+		$statement->execute($params);
+		$data = $statement->fetch();
+
+		if(isAdmin($data));
+
+		$template_engine = get_template_engine();
+		echo $template_engine->render('adminPage');
 	}
 }
