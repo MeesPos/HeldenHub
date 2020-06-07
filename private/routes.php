@@ -3,6 +3,7 @@
 use Pecee\Http\Request;
 use Pecee\SimpleRouter\Exceptions\NotFoundHttpException;
 use Pecee\SimpleRouter\SimpleRouter;
+use Website\Controllers\WebsiteController;
 
 SimpleRouter::setDefaultNamespace( 'Website\Controllers' );
 
@@ -13,15 +14,21 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 
 	SimpleRouter::get( '/', 'WebsiteController@home' )->name( 'home' );
 	SimpleRouter::get( '/aanmelden', 'WebsiteController@aanmelden' )->name( 'aanmelden' );
+	SimpleRouter::get( '/admin', 'WebsiteController@adminPage')->name('adminPage');
 	SimpleRouter::get( '/hulp-vragen', 'WebsiteController@hulpVragen' )->name( 'hulp-vragen' );
 	SimpleRouter::get( '/details', 'WebsiteController@details' )->name( 'details' );
 	SimpleRouter::get( '/overzicht', 'WebsiteController@overzicht' )->name( 'overzicht' );
 	SimpleRouter::post('/hulp-vragen/post-opslaan', 'WebsiteController@postOpslaan' )->name( 'post-opslaan' );
 	SimpleRouter::post( '/details/contact', 'WebsiteController@detailsContact' )->name ( 'detailsContact' );
 	SimpleRouter::post('/aanmelden/registreren','WebsiteController@registreer')->name('registreer');
+	SimpleRouter::post('/MijnAccount/MijnInfoWijzigen','WebsiteController@infoWijzigen')->name('infoWijzigen');
 	SimpleRouter::post('/aanmelden/login','WebsiteController@login')->name('login');
 	SimpleRouter::get( '/MijnAccount', 'WebsiteController@ingelogd' )->name( 'ingelogd' );
 	SimpleRouter::get( '/Uitloggen', 'WebsiteController@loguit' )->name( 'loguit' );
+	SimpleRouter::get( '/details/contact/bedankt', 'WebsiteController@bedanktContact')->name('bedanktContact');
+	SimpleRouter::get( '/aanmelden/registreren/bevestigenEmail', 'WebsiteController@viewsEmail' )->name( 'viewsEmail' );
+	SimpleRouter::get( '/aanmelden/registreren/bevestigenEmail/{code}', 'WebsiteController@bevestigenEmailCode' )->name( 'bevestigenEmailCode' );
+	SimpleRouter::get( '/testEmail', 'WebsiteController@bevestigenEmail' )->name( 'bevestigenEmail' );
 
 
 	// Overview routes

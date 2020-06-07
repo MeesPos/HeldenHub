@@ -10,13 +10,20 @@ function getUsers(){
 
 function alleDetails()
 {
+    // $id = $_POST['postId'];
+    $id = 1;
+
     $connection = dbConnect();
     $sql = 'SELECT * 
-    FROM `gebruikers`
-    INNER JOIN `posts` 
-    ON `posts`.`gebruiker_id` = `gebruikers`.`id`
-    WHERE `posts`.`gebruiker_id` = 1';
-    $statement = $connection->query($sql);
+        FROM `gebruikers`
+        INNER JOIN `posts` 
+        ON `posts`.`gebruiker_id` = `gebruikers`.`id`
+        WHERE `posts`.`id` = :id';
+    $statement = $connection->prepare($sql);
+    $idQuery = [
+        'id' => $id
+    ];
+    $statement->execute($idQuery);
 
     return $statement->fetchAll();
 }
@@ -39,6 +46,20 @@ function getUsersById($id){
 	$sql =  'SELECT * FROM `gebruikers` WHERE `id`= :id';
 	$statement = $connection->prepare($sql);
     $statement->execute(['id' => $id]);
+
+  if ($statement->rowCount() === 1);
+   return $statement->fetch();
+
+
+return false;
+}
+
+
+function getUsersByCode($code){
+    $connection = dbConnect();
+	$sql =  'SELECT * FROM `gebruikers` WHERE `code`= :code';
+	$statement = $connection->prepare($sql);
+    $statement->execute(['code' => $code]);
 
   if ($statement->rowCount() === 1);
    return $statement->fetch();
@@ -127,3 +148,28 @@ function getCardData($page, $pagesize = 5) {
         'page'      => $page 
     ];
 };
+
+
+function adminPageConn() {
+    $connection = dbConnect();
+    $sql = 'SELECT * FROM `gebruikers` WHERE `id` = :id';
+    $statement  = $connection->prepare($sql);
+
+    $params = [
+        'id' => 1
+    ];
+
+    $statement->execute($params);
+
+    return $data = $statement->fetch();
+}
+ function showPost() {
+    $connection = dbConnect();
+	$query = "SELECT * from ` post` ";
+    $statement = $connection->query($query);
+    // $template_engine = get_template_engine();
+	// 	echo $template_engine->render('gebruikersPagina');	
+
+}
+}   
+

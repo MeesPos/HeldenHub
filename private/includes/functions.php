@@ -42,6 +42,10 @@ function site_url($path = '')
 {
 	return get_config('BASE_URL') . $path;
 }
+function absolute_url($path = '')
+{
+	return get_config('BASE_HOST') . $path;
+}
 
 function get_config($name)
 {
@@ -75,6 +79,16 @@ function isLoggedIn()
 		return false;
 	}
 }
+
+function isAdmin($data) {
+
+	if ($data['admin'] === '0') {
+		$redirectURL = url('home');
+		redirect($redirectURL);
+	}
+
+}
+
 function validatelogin($data)
 {
 	$errors = [];
@@ -109,90 +123,189 @@ function userNotRegistered($email)
 	return ($statement->rowCount() === 0);
 }
 
-function getLoggedInVoornaam(){
-	$voornaam ='Niet Ingelogd!!';
-	if (!isLoggedIn()){
+function getLoggedInVoornaam()
+{
+	$voornaam = 'Niet Ingelogd!';
+	if (!isLoggedIn()) {
 		return $voornaam;
 	}
-	
-	$user_id = $_SESSION['user_id'];
-	$user = getUsersById($user_id) ;
 
-	if($user){
-		$voornaam =$user['voornaam'];
+	$user_id = $_SESSION['user_id'];
+	$user = getUsersById($user_id);
+
+	if ($user) {
+		$voornaam = $user['voornaam'];
 	}
 	return $voornaam;
 }
-function getLoggedInAchternaam(){
-	$achternaam ='Niet Ingelogd!!';
-	if (!isLoggedIn()){
+function getLoggedInAchternaam()
+{
+	$achternaam = 'Niet Ingelogd!!';
+	if (!isLoggedIn()) {
 		return $achternaam;
 	}
-	
-	$user_id = $_SESSION['user_id'];
-	$user = getUsersById($user_id) ;
 
-	if($user){
-		$achternaam =$user['achternaam'];
+	$user_id = $_SESSION['user_id'];
+	$user = getUsersById($user_id);
+
+	if ($user) {
+		$achternaam = $user['achternaam'];
 	}
 	return $achternaam;
 }
-function getLoggedInPlaats(){
-	$plaats ='Niet Ingelogd!!';
-	if (!isLoggedIn()){
+function getLoggedInPlaats()
+{
+	$plaats = 'Niet Ingelogd!!';
+	if (!isLoggedIn()) {
 		return $plaats;
 	}
-	
-	$user_id = $_SESSION['user_id'];
-	$user = getUsersById($user_id) ;
 
-	if($user){
-		$plaats =$user['plaats'];
+	$user_id = $_SESSION['user_id'];
+	$user = getUsersById($user_id);
+
+	if ($user) {
+		$plaats = $user['plaats'];
 	}
 	return $plaats;
 }
-function getLoggedInMyfile(){
-	$myfile ='Niet Ingelogd!!';
-	if (!isLoggedIn()){
+function getLoggedInMyfile()
+{
+	$myfile = 'Niet Ingelogd!!';
+	if (!isLoggedIn()) {
 		return $myfile;
 	}
-	
-	$user_id = $_SESSION['user_id'];
-	$user = getUsersById($user_id) ;
 
-	if($user){
-		$myfile =$user['myfile'];
+	$user_id = $_SESSION['user_id'];
+	$user = getUsersById($user_id);
+
+	if ($user) {
+		$myfile = $user['myfile'];
 	}
 	return $myfile;
-} 
-function getLoggedInBirthday(){
-	$birthday ='Niet Ingelogd!!';
-	if (!isLoggedIn()){
+}
+function getLoggedInBirthday()
+{
+	$birthday = 'Niet Ingelogd!!';
+	if (!isLoggedIn()) {
 		return $birthday;
 	}
-	
-	$user_id = $_SESSION['user_id'];
-	$user = getUsersById($user_id) ;
 
-	if($user){
-		$birthday =$user['birthday'];
+	$user_id = $_SESSION['user_id'];
+	$user = getUsersById($user_id);
+
+	if ($user) {
+		$birthday = $user['birthday'];
 	}
 	return $birthday;
 }
-function getLoggedInEmail(){
-	$email ='Niet Ingelogd!!';
-	if (!isLoggedIn()){
+function getLoggedInEmail()
+{
+	$email = 'Niet Ingelogd!!';
+	if (!isLoggedIn()) {
 		return $email;
 	}
-	
-	$user_id = $_SESSION['user_id'];
-	$user = getUsersById($user_id) ;
 
-	if($user){
-		$email =$user['email'];
+	$user_id = $_SESSION['user_id'];
+	$user = getUsersById($user_id);
+
+	if ($user) {
+		$email = $user['email'];
 	}
 	return $email;
 }
 
+/**
+ * Maak de SwiftMailer aan en stet hem op de juiste manier in
+ *
+ * @return Swift_Mailer
+ */
+function getSwiftMailer()
+{
+	$mail_config = get_config('MAIL');
+	$transport   = new \Swift_SmtpTransport($mail_config['SMTP_HOST'], $mail_config['SMTP_PORT']);
 
+	if (!empty($mail_config['SMTP_USER'])) {
+		$transport->setUsername($mail_config['SMTP_USER']);
+		$transport->setPassword($mail_config['SMTP_PASSWORD']);
+	}
+
+	$mailer = new \Swift_Mailer($transport);
+
+	return $mailer;
+}
+
+/**
+ * Maak een Swift_Message met de opgegeven subject, afzender en ontvanger
+ *
+ * @param $to
+ * @param $subject
+ * @param $from_name
+ * @param $from_email
+ *
+ * @return Swift_Message
+ */
+function createEmailMessage($to, $subject, $from_name, $from_email)
+{
+
+	// Create a message
+	$message = new \Swift_Message($subject);
+	$message->setFrom([$from_email => $from_email]);
+	$message->setTo($to);
+
+	// Send the message
+	return $message;
+}
+
+/**
+ *
+ * @param $message \Swift_Message De Swift Message waarin de afbeelding ge-embed moet worden
+ * @param $filename string Bestandsnaam van de afbeelding (wordt automatisch uit juiste folder gehaald)
+ *
+ * @return mixed
+ */
+function embedImage($message, $filename)
+{
+	$image_path = get_config('WEBROOT') . '/images/email/' . $filename;
+	if (!file_exists($image_path)) {
+		throw new \RuntimeException('Afbeelding bestaat niet: ' . $image_path);
+	}
+
+	if($message){
+	$cid = $message->embed( \Swift_Image::fromPath( $image_path ) );
+
+	return $cid;
+}
+return site_url('/images/email/' . $filename);
+	
+
+}
+/**
+ * confirms een account bij confirmer
+ *
+ * @param  $code
+ */
+function confirmAccount($code){
+	
+	$connection = dbConnect();
+	$sql =  'UPDATE  `gebruikers` SET `code` = NULL WHERE  `code`= :code';
+	$statement = $connection->prepare($sql);
+	$params = [
+		'code' => $code
+	];
+	$statement->execute($params);
+}
+function sendConfirmationEmail($email, $code){
+
+
+$url = url('bevestigenEmailCode', ['code' =>$code]);
+$absolute_url = absolute_url($url);
+
+$mailer = getSwiftMailer();
+$message = createEmailMessage($email, 'Bevestig je account', 'website', 'buneya2001@gmail.com');
+$email_text ='Hallo, bevestig nu je account: <a href="' . $absolute_url . '">Klik Hier </a>';
+$message->setBody($email_text, 'text/html');
+
+$mailer->send($message);
+
+}
 
