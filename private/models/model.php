@@ -173,6 +173,29 @@ function adminPageConn() {
 }
 
 
+
+
+
+// OVERIGE FUNCTIES
+
+function logUserIn($email) {
+    $connection = dbConnect();
+    // Get userId via email
+    $getIdQuery = 'SELECT * FROM `gebruikers` WHERE `email` = :email ';
+    $statement = $connection->prepare($getIdQuery);
+
+    $param = [
+        'email' => $email 
+    ];
+    $statement->execute($param);
+
+    // Create session
+    $userInfo = $statement->fetch();
+    $_SESSION['user_id']    = $userInfo['id'];
+
+   
+}
+
 // AANMELDPAGINA
 
 function userRegisteredCheck($email) {

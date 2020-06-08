@@ -321,9 +321,7 @@ function sendConfirmationEmail($email, $code)
 
 // OVERIGE FUNCTIES
 
-function logUserIn() {
 
-}
 
 // AANMELDPAGINA 
 

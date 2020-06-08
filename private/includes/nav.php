@@ -1,4 +1,5 @@
 <body>
+    <?php session_start(); ?>
     <nav>
         <header id="nav">
             <section id="navbar">
