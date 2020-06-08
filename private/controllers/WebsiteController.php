@@ -50,15 +50,13 @@ class WebsiteController
 	{
 		session_destroy();
 		$template_engine = get_template_engine();
-		echo $template_engine->render('AanmeldPagina');
+		echo $template_engine->render('homePage');
 	}
 
 
 	// Hulp vragen page
 	public function hulpVragen()
 	{
-		isLoggedIn();
-
 		$userData = getUserData();
 		$template_engine = get_template_engine();
 		echo $template_engine->render('hulp', ['userData' => $userData]);

@@ -86,7 +86,7 @@ function getUserData() {
     $statement  = $connection->prepare($query);
 
     $params = [
-        'gebruiker_id' => 1
+        'gebruiker_id' => $_SESSION['user_id']
     ];
     
     $statement->execute($params);
@@ -105,7 +105,7 @@ function getUserData() {
     $params = [
         'titel'         => $_POST['titel'],
         'inhoud'        => $_POST['inhoud'],
-        'gebruiker_id'  => 1,
+        'gebruiker_id'  => $_SESSION['user_id'],
     ];
 
     $statement->execute($params);

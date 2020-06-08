@@ -46,7 +46,7 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::get( '/overzicht', 'WebsiteController@overzicht' )->name( 'overzicht' );
 
 	// Overige routes
-	SimpleRouter::get( '/Uitloggen', 'WebsiteController@loguit' )->name( 'loguit' );
+	SimpleRouter::get( '/uitloggen', 'WebsiteController@loguit' )->name( 'loguit' );
 
 	// STOP: Tot hier al je eigen URL's zetten
 

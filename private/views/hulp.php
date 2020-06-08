@@ -13,7 +13,6 @@
 <!-- Body wordt geopend in nav.php -->
 <?php include '../private/includes/nav.php' ?>
 <div class="content-wrapper">
-    <!-- style="background-image: linear-gradient(rgba(123, 123, 123, 0.4), rgba(123, 123, 123, 0.4)), url( <?php echo site_url('/img/stad.png') ?> )" >  -->
 
     <div class="over-hulp">
         <i class="fas fa-question-circle"></i>
@@ -29,7 +28,7 @@
             <div class="oranje-balk"></div>
             <div class="mijn-post">
                 <div class="mijn-post-user">
-                    <img src=" <?php echo $userData['myfile'] ?>" alt="Profielfoto van persoon die post" class="hulp-profielfoto">
+                    <img src=" <?php echo site_url() . 'uploads/' .  $userData['myfile']  ?>" alt="Profielfoto van persoon die post" class="hulp-profielfoto">
                     <section class="post-user-info">
                         <p class="hulp-naam"><?php echo ucfirst($userData['voornaam']) . ' ' . ucfirst($userData['achternaam']); ?></p>
                         <p class="hulp-woonplaats"><?php 

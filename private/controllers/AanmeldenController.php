@@ -33,7 +33,10 @@ class AanmeldenController
 
                 // Als email nog niet in db staat -> Nieuwe user aanmaken
                 createUser($result['data']);
-                
+
+                // Inloggen door sessie te maken
+                logUserIn($result['data']['email']);
+
                 $template_engine = get_template_engine();
                 echo $template_engine->render('bedanktPagina');
                 exit;
@@ -71,23 +74,32 @@ class AanmeldenController
 
     }
 
+
     public function login()
     {
+        $result = validateLoginForm($_POST);
 
-        $result = validatelogin($_POST);
+        if (count( $result['errors'] ) === 0) {
+            // Check if email exists
+            if ( ! userRegisteredCheck($result['data']['email'] ) ) {
+                
+            } else {
 
-        if (userNotRegistered($result['data']['email'])) {
-
-
-            $result['errors']['email'] = 'Deze gebruikers is niet bekend';
-        } else {
-            $user = getUsersByEmail($result['data']['email']);
-        }
-        if (is_null($user['code'])) {
-
-
-            if (password_verify($result['data']['wachtwoord'], $user['wachtwoord'])) {
             }
+            
+
+
+
         }
+
+        
+        else {
+            $result['errors']['wrong'] = 'Fout wachtwoord of onbekend email adres!';
+        }
+
+        $template_engine = get_template_engine();
+        echo $template_engine->render('bedanktPagina', ['errors' => $result['errors']]);
     }
+
+    
 }

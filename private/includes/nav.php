@@ -1,11 +1,11 @@
 <body>
-    <?php session_start(); ?>
+    <?php sessionStarter() ?>
     <nav>
         <header id="nav">
             <section id="navbar">
                 <div class="nav boven">
                     <div class="menu sticky bovennav">
-                        <?php if (!isLoggedIn()) : ?>
+                        <?php if (!isset($_SESSION['user_id'])) : ?>
                             <a class="nav-items" href="<?php echo url('aanmelden') ?> ">Aanmelden</a>
                         <?php else : ?>
                             <a class="nav-items" href="<?php echo url("ingelogd")?>">Mijn Account</a>
