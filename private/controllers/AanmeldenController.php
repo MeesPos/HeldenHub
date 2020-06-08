@@ -77,29 +77,26 @@ class AanmeldenController
 
     public function login()
     {
-        $result = validateLoginForm($_POST);
+        $result = validate($_POST);
 
-        if (count( $result['errors'] ) === 0) {
+        if (count($result['errors']) === 0) {
             // Check if email exists
-            if ( ! userRegisteredCheck($result['data']['email'] ) ) {
-                
+            if (!userRegisteredCheck($result['data']['email'])) {
+                // Uitvoeren wanneer email al bekend is
+                $userInfo = getLoginUserInfo($result['data']['email']);
+                if (password_verify($_POST['wachtwoord'], $userInfo['wachtwoord'])) {
+                    $_SESSION['user_id'] = $userInfo['id'];
+                } else {
+                    $result['errors']['wachtwoord'] = 'Onjuist wachtwoord, probeer overnieuw.';
+                }
             } else {
-
+                $result['errors']['email'] = 'Onbekend email adres. Meld u eerst aan a.u.b.';
             }
-            
-
-
-
-        }
-
-        
-        else {
+        } else {
             $result['errors']['wrong'] = 'Fout wachtwoord of onbekend email adres!';
         }
 
         $template_engine = get_template_engine();
         echo $template_engine->render('bedanktPagina', ['errors' => $result['errors']]);
     }
-
-    
 }

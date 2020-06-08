@@ -288,11 +288,11 @@ function sendConfirmationEmail($email, $code)
 
 
 // OVERIGE FUNCTIES
-function sessionStarter() {
-	if ( ! isset($_SESSION['user_id']) ) {
-		session_start();
-	} 
-}
+// function sessionStarter() {
+// 	if ( ! isset($_SESSION['user_id']) ) {
+// 		session_start();
+// 	} 
+// }
 
 function loggedInCheck() {
 	// Niet ingelogd? Terug naar log in pagina
@@ -406,8 +406,8 @@ function verwerkFotoUpload($myfile, $errors)
 
 		return $new_filename;
 	}
-
-	function validateLoginForm($data)
+}
+	function validate($data)
 {
 	$errors = [];
 
@@ -431,4 +431,4 @@ function verwerkFotoUpload($myfile, $errors)
 		'errors' => $errors
 	];
 }
-}
+

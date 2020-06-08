@@ -176,6 +176,8 @@ function adminPageConn() {
 
 
 
+
+
 // OVERIGE FUNCTIES
 
 function logUserIn($email) {
@@ -231,5 +233,15 @@ function createUser($data) {
 
     $statement->execute($params);
 
+}
+
+function getLoginUserInfo($email) {
+
+    $connection = dbConnect();
+    $sql =  'SELECT * FROM `gebruikers` WHERE `email`= :email';
+    $statement = $connection->prepare( $sql );
+    $statement->execute( ['email' => $email] );
+    
+    return ( $statement->fetch() );
 }
 
