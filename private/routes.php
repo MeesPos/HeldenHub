@@ -12,28 +12,41 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	// START: Zet hier al eigen routes
 	// Lees de docs, daar zie je hoe je routes kunt maken: https://github.com/skipperbent/simple-php-router#routes
 
+	// Home
 	SimpleRouter::get( '/', 'WebsiteController@home' )->name( 'home' );
-	SimpleRouter::get( '/aanmelden', 'WebsiteController@aanmelden' )->name( 'aanmelden' );
-	SimpleRouter::get( '/admin', 'WebsiteController@adminPage')->name('adminPage');
-	SimpleRouter::get( '/hulp-vragen', 'WebsiteController@hulpVragen' )->name( 'hulp-vragen' );
-	SimpleRouter::get( '/details', 'WebsiteController@details' )->name( 'details' );
-	SimpleRouter::get( '/overzicht', 'WebsiteController@overzicht' )->name( 'overzicht' );
-	SimpleRouter::post('/hulp-vragen/post-opslaan', 'WebsiteController@postOpslaan' )->name( 'post-opslaan' );
-	SimpleRouter::post( '/details/contact', 'WebsiteController@detailsContact' )->name ( 'detailsContact' );
-	SimpleRouter::post('/aanmelden/registreren','WebsiteController@registreer')->name('registreer');
-	SimpleRouter::post('/MijnAccount/MijnInfoWijzigen','WebsiteController@infoWijzigen')->name('infoWijzigen');
-	SimpleRouter::post('/aanmelden/login','WebsiteController@login')->name('login');
-	SimpleRouter::get( '/MijnAccount', 'WebsiteController@ingelogd' )->name( 'ingelogd' );
-	SimpleRouter::get( '/Uitloggen', 'WebsiteController@loguit' )->name( 'loguit' );
-	SimpleRouter::get( '/details/contact/bedankt', 'WebsiteController@bedanktContact')->name('bedanktContact');
+
+	// Aanmeldpagina
+	SimpleRouter::get( '/aanmelden', 'AanmeldenController@aanmelden' )->name( 'aanmelden' );
+	SimpleRouter::post('/aanmelden/registreren','AanmeldenController@registreer')->name('registreer');
+	SimpleRouter::post('/aanmelden/login','AanmeldenController@login')->name('login');
+
+	// Emails
 	SimpleRouter::get( '/aanmelden/registreren/bevestigenEmail', 'WebsiteController@viewsEmail' )->name( 'viewsEmail' );
 	SimpleRouter::get( '/aanmelden/registreren/bevestigenEmail/{code}', 'WebsiteController@bevestigenEmailCode' )->name( 'bevestigenEmailCode' );
 	SimpleRouter::get( '/testEmail', 'WebsiteController@bevestigenEmail' )->name( 'bevestigenEmail' );
 
+	// Hulp vragen
+	SimpleRouter::get( '/hulp-vragen', 'WebsiteController@hulpVragen' )->name( 'hulp-vragen' );
+	SimpleRouter::post('/hulp-vragen/post-opslaan', 'WebsiteController@postOpslaan' )->name( 'post-opslaan' );
 
+	// Detail page
+	SimpleRouter::get( '/details', 'WebsiteController@details' )->name( 'details' );
+	SimpleRouter::get( '/details/contact/bedankt', 'WebsiteController@bedanktContact')->name('bedanktContact');
+	SimpleRouter::post( '/details/contact', 'WebsiteController@detailsContact' )->name ( 'detailsContact' );
+	
+	// Gebruikers page
+	SimpleRouter::get( '/MijnAccount', 'WebsiteController@ingelogd' )->name( 'ingelogd' );
+	SimpleRouter::post('/MijnAccount/MijnInfoWijzigen','WebsiteController@infoWijzigen')->name('infoWijzigen');
+	
+	// Admin page
+	SimpleRouter::get( '/admin', 'WebsiteController@adminPage')->name('adminPage');
+	
 	// Overview routes
 	SimpleRouter::get( '/overview', 'OverviewController@displayOverview' )->name( 'overview' );
+	SimpleRouter::get( '/overzicht', 'WebsiteController@overzicht' )->name( 'overzicht' );
 
+	// Overige routes
+	SimpleRouter::get( '/uitloggen', 'WebsiteController@loguit' )->name( 'loguit' );
 
 	// STOP: Tot hier al je eigen URL's zetten
 

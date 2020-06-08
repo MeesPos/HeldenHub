@@ -86,7 +86,7 @@ function getUserData() {
     $statement  = $connection->prepare($query);
 
     $params = [
-        'gebruiker_id' => 1
+        'gebruiker_id' => $_SESSION['user_id']
     ];
     
     $statement->execute($params);
@@ -105,7 +105,7 @@ function getUserData() {
     $params = [
         'titel'         => $_POST['titel'],
         'inhoud'        => $_POST['inhoud'],
-        'gebruiker_id'  => 1,
+        'gebruiker_id'  => $_SESSION['user_id'],
     ];
 
     $statement->execute($params);
@@ -172,4 +172,76 @@ function adminPageConn() {
 
 }
 
+
+
+
+
+
+
+// OVERIGE FUNCTIES
+
+function logUserIn($email) {
+    $connection = dbConnect();
+    // Get userId via email
+    $getIdQuery = 'SELECT * FROM `gebruikers` WHERE `email` = :email ';
+    $statement = $connection->prepare($getIdQuery);
+
+    $param = [
+        'email' => $email 
+    ];
+    $statement->execute($param);
+
+    // Create session
+    $userInfo = $statement->fetch();
+    $_SESSION['user_id']    = $userInfo['id'];
+
+   
+}
+
+// AANMELDPAGINA
+
+function userRegisteredCheck($email) {
+            // Als email al in db staat -> error
+			$connection = dbConnect();
+			$sql =  'SELECT * FROM `gebruikers` WHERE `email`= :email';
+			$statement = $connection->prepare( $sql );
+            $statement->execute( ['email' => $email] );
+            
+            return ( $statement->rowCount() === 0 );
+}
+
+function createUser($data) {
+
+    $connection = dbConnect();
+
+    
+    $sql =  'INSERT INTO `gebruikers` ( `email`, `voornaam`, `achternaam`, `plaats`, `birthday`, `myfile`, `wachtwoord`)
+             VALUE (:email, :voornaam, :achternaam, :plaats, :birthday, :profielfoto, :wachtwoord)';
+    $statement = $connection->prepare($sql);
+    
+    $safe_wachtwoord = password_hash($data['wachtwoord'], PASSWORD_DEFAULT);
+
+    $params = [
+        'email' => $data['email'],
+        'voornaam' => $data['voornaam'],
+        'achternaam' => $data['achternaam'],
+        'plaats' => $data['plaats'],
+        'birthday' => $data['birthday'],
+        'profielfoto' => $data['profielfoto'],
+        'wachtwoord' => $safe_wachtwoord,
+    ];
+
+    $statement->execute($params);
+
+}
+
+function getLoginUserInfo($email) {
+
+    $connection = dbConnect();
+    $sql =  'SELECT * FROM `gebruikers` WHERE `email`= :email';
+    $statement = $connection->prepare( $sql );
+    $statement->execute( ['email' => $email] );
+    
+    return ( $statement->fetch() );
+}
 
