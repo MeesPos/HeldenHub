@@ -39,7 +39,7 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::post('/MijnAccount/MijnInfoWijzigen','WebsiteController@infoWijzigen')->name('infoWijzigen');
 	
 	// Admin page
-	SimpleRouter::get( '/admin', 'WebsiteController@adminPage')->name('adminPage');
+	SimpleRouter::get( '/admin', 'AdminController@adminPage')->name('adminPage');
 	
 	// Overview routes
 	SimpleRouter::get( '/overview', 'OverviewController@displayOverview' )->name( 'overview' );

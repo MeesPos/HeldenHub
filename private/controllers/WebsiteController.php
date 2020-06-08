@@ -182,24 +182,4 @@ class WebsiteController
 
 		$statement->execute($gegevens);
 	}
-
-	public function adminPage()
-	{
-
-		$connection = dbConnect();
-		$sql = 'SELECT * FROM `gebruikers` WHERE `id` = :id';
-		$statement  = $connection->prepare($sql);
-
-		$params = [
-			'id' => 1
-		];
-
-		$statement->execute($params);
-		$data = $statement->fetch();
-
-		if(isAdmin($data));
-
-		$template_engine = get_template_engine();
-		echo $template_engine->render('adminPage');
-	}
 }

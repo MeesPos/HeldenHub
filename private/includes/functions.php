@@ -294,18 +294,19 @@ function sendConfirmationEmail($email, $code)
 // 	} 
 // }
 
-function loggedInCheck() {
+function loggedInCheck()
+{
 	// Niet ingelogd? Terug naar log in pagina
 	// ALLEEN TE GEBRUIKEN VOOR LOG IN REQUIRED PAGES
-	if ( ! isset($_SESSION['user_id']) ) {
+	if (!isset($_SESSION['user_id'])) {
 		session_start();
-	} 
+	}
 }
 
 
 // AANMELDPAGINA 
 
-function validateRegistrationForm($data, $myfile ,$errors)
+function validateRegistrationForm($data, $myfile, $errors)
 {
 
 	// Informatie uit post ophalen
@@ -407,7 +408,7 @@ function verwerkFotoUpload($myfile, $errors)
 		return $new_filename;
 	}
 }
-	function validate($data)
+function validate($data)
 {
 	$errors = [];
 
@@ -432,3 +433,14 @@ function verwerkFotoUpload($myfile, $errors)
 	];
 }
 
+function gebruikersOphalen($connection){
+	$gebruikersVinden = 'SELECT * FROM `gebruikers`';
+	$statement = $connection->prepare($gebruikersVinden);
+	$statement->execute();
+
+	$gebruikersData = $statement->fetch();
+
+	$gebruikers = [ $gebruikersData ];
+
+	echo json_encode(array_values($gebruikers));
+}
