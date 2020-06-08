@@ -80,13 +80,13 @@ function isLoggedIn()
 	}
 }
 
-function isAdmin($data) {
+function isAdmin($data)
+{
 
 	if ($data['admin'] === '0') {
 		$redirectURL = url('home');
 		redirect($redirectURL);
 	}
-
 }
 
 function validatelogin($data)
@@ -270,22 +270,21 @@ function embedImage($message, $filename)
 		throw new \RuntimeException('Afbeelding bestaat niet: ' . $image_path);
 	}
 
-	if($message){
-	$cid = $message->embed( \Swift_Image::fromPath( $image_path ) );
+	if ($message) {
+		$cid = $message->embed(\Swift_Image::fromPath($image_path));
 
-	return $cid;
-}
-return site_url('/images/email/' . $filename);
-	
-
+		return $cid;
+	}
+	return site_url('/images/email/' . $filename);
 }
 /**
  * confirms een account bij confirmer
  *
  * @param  $code
  */
-function confirmAccount($code){
-	
+function confirmAccount($code)
+{
+
 	$connection = dbConnect();
 	$sql =  'UPDATE  `gebruikers` SET `code` = NULL WHERE  `code`= :code';
 	$statement = $connection->prepare($sql);
@@ -294,18 +293,139 @@ function confirmAccount($code){
 	];
 	$statement->execute($params);
 }
-function sendConfirmationEmail($email, $code){
+function sendConfirmationEmail($email, $code)
+{
 
 
-$url = url('bevestigenEmailCode', ['code' =>$code]);
-$absolute_url = absolute_url($url);
+	$url = url('bevestigenEmailCode', ['code' => $code]);
+	$absolute_url = absolute_url($url);
 
-$mailer = getSwiftMailer();
-$message = createEmailMessage($email, 'Bevestig je account', 'website', 'buneya2001@gmail.com');
-$email_text ='Hallo, bevestig nu je account: <a href="' . $absolute_url . '">Klik Hier </a>';
-$message->setBody($email_text, 'text/html');
+	$mailer = getSwiftMailer();
+	$message = createEmailMessage($email, 'Bevestig je account', 'website', 'buneya2001@gmail.com');
+	$email_text = 'Hallo, bevestig nu je account: <a href="' . $absolute_url . '">Klik Hier </a>';
+	$message->setBody($email_text, 'text/html');
 
-$mailer->send($message);
+	$mailer->send($message);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// OVERIGE FUNCTIES
+
+function logUserIn() {
 
 }
 
+// AANMELDPAGINA 
+
+function validateRegistrationForm($data, $myfile ,$errors)
+{
+
+	// Informatie uit post ophalen
+	$email      = filter_var($data['email'], FILTER_VALIDATE_EMAIL);
+	$wachtwoord = trim($data['wachtwoord']);
+
+	// Overige post info ophalen voor duidelijke storage in data variabele
+	$voornaam = $data['voornaam'];
+	$achternaam = $data['achternaam'];
+	$plaats = $data['plaats'];
+	$birthday = $data['birthday'];
+
+	// Check of email al bestaat 	
+	if ($email === false) {
+		$errors['email'] = 'Geen geldig email ingevuld';
+	}
+
+	// Check of wachtwoord 6 tekens bevat
+	if (empty($wachtwoord) || strlen($wachtwoord) < 6) {
+		$errors['wachtwoord'] = 'Geen geldig wachtwoord!';
+	}
+
+	// Resultaat array aanmaken
+	$data = [
+		'email' 	 => $email,
+		'wachtwoord' =>	$wachtwoord,
+		'voornaam'	 => $voornaam,
+		'achternaam' => $achternaam,
+		'plaats'     => $plaats,
+		'birthday'	 => $birthday,
+		'profielfoto' => $myfile
+	];
+
+	// Return POST data & eventuele errors
+	return [
+		'data'	=> $data,
+		'errors' => $errors
+	];
+}
+
+function verwerkFotoUpload($myfile, $errors)
+{
+
+	// Check of er uberhaupt een file is geupload
+	if (!isset($_FILES['myfile'])) {
+		echo 'Geen bestand geupload!';
+		exit;
+	}
+
+	//  Checken van upload fouten
+	$file_error = $myfile['myfile']['error'];
+	switch ($file_error) {
+		case UPLOAD_ERR_OK:
+			break;
+		case UPLOAD_ERR_NO_FILE:
+			$errors['myfile'] = 'Er is geen bestand geupload';
+			break;
+		case UPLOAD_ERR_CANT_WRITE:
+			$errors['myfile'] = 'Kan niet schrijven naar disk';
+			break;
+		case UPLOAD_ERR_INI_SIZE:
+		case UPLOAD_ERR_FORM_SIZE:
+			$errors['myfile'] = 'Dit bestand is te groot, pas php.ini aan';
+			break;
+		default:
+			$errors['myfile'] = 'Onbekeden fout';
+	}
+
+	if (count($errors) === 0) {
+
+		$file_name = $myfile['myfile']['name'];
+		$file_size = $myfile['myfile']['size'];
+		$file_tmp = $myfile['myfile']['tmp_name'];
+		$file_type = $myfile['myfile']['type'];
+
+		// Is het een afbeelding check  
+		$valid_image_types = [
+			2 => 'jpg',
+			3 => 'png'
+		];
+		$image_type        = exif_imagetype($file_tmp);
+		if ($image_type !== false) {
+			// Juiste extensie opzoeken, die gaan we zo gebruiken bij het maken van de nieuwe bestandsnaam
+			$file_extension = $valid_image_types[$image_type];
+		} else {
+			$errors['myfile'] = 'Dit is geen afbeelding!';
+		}
+	}
+
+	if (count($errors) === 0) {
+
+		// Bestandsnaam genereren
+		$new_filename   = sha1_file($file_tmp) . '.' . $file_extension;
+		$final_filename = 'uploads/' . $new_filename;
+
+		// met move_uploaded_file verplaats je het tijdelijke bestand naar de uiteindelijke plek
+		move_uploaded_file($file_tmp, $final_filename); // dus van tijdelijke bestandsnaam naar de originele naam (in de huidige map);
+
+		return $new_filename;
+	}
+}

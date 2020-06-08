@@ -51,7 +51,7 @@
             <div class="grid">
 
                 <div class="form">
-                    <form action="<?php echo url("registreer")?>" method="POST" class="form2">
+                    <form action="<?php echo url("registreer")?>" method="POST" class="form2" enctype="multipart/form-data">
                         <div class="voornaam">
                             <input type="name" name="voornaam" required placeholder="Voornaam">
                         </div>
@@ -83,7 +83,7 @@
                             
                       
                        
-                            <input type="file" id="myfile" name="myfile[]" accept="image/*" multiple=""/><br><br></div>
+                            <input type="file" id="myfile" name="myfile" accept="image/*" /><br><br></div>
                         <div class="buttons">
                             <button type="submit" value="Upload" class="button">REGISTREER</button>
                         </div>
@@ -93,7 +93,7 @@
                         </div>
                         <div class="big">
                             <h2 id="infoTitel">wat gebeurt met mijn gegevens?</h2>
-                            <p id="infoP">djjjjjjjjjjfhgnnjyfkdykhfv</p>
+                            <p id="infoP">We slaan deze gegevens op in onze beveiligde database.</p>
                         </div>
                     </form>
                 </div>

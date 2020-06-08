@@ -173,3 +173,40 @@ function adminPageConn() {
 }
 
 
+// AANMELDPAGINA
+
+function userRegisteredCheck($email) {
+            // Als email al in db staat -> error
+			$connection = dbConnect();
+			$sql =  'SELECT * FROM `gebruikers` WHERE `email`= :email';
+			$statement = $connection->prepare( $sql );
+            $statement->execute( ['email' => $email] );
+            
+            return ( $statement->rowCount() === 0 );
+}
+
+function createUser($data) {
+
+    $connection = dbConnect();
+
+    
+    $sql =  'INSERT INTO `gebruikers` ( `email`, `voornaam`, `achternaam`, `plaats`, `birthday`, `myfile`, `wachtwoord`)
+             VALUE (:email, :voornaam, :achternaam, :plaats, :birthday, :profielfoto, :wachtwoord)';
+    $statement = $connection->prepare($sql);
+    
+    $safe_wachtwoord = password_hash($data['wachtwoord'], PASSWORD_DEFAULT);
+
+    $params = [
+        'email' => $data['email'],
+        'voornaam' => $data['voornaam'],
+        'achternaam' => $data['achternaam'],
+        'plaats' => $data['plaats'],
+        'birthday' => $data['birthday'],
+        'profielfoto' => $data['profielfoto'],
+        'wachtwoord' => $safe_wachtwoord,
+    ];
+
+    $statement->execute($params);
+
+}
+

@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/a82e000026.js"></script>
 </head>
 
-<body>
+
     <?php include '../private/includes/nav.php' ?>
 
     <section id="bedankt">
