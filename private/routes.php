@@ -26,8 +26,8 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::get( '/testEmail', 'WebsiteController@bevestigenEmail' )->name( 'bevestigenEmail' );
 
 	// Hulp vragen
-	SimpleRouter::get( '/hulp-vragen', 'WebsiteController@hulpVragen' )->name( 'hulp-vragen' );
-	SimpleRouter::post('/hulp-vragen/post-opslaan', 'WebsiteController@postOpslaan' )->name( 'post-opslaan' );
+	SimpleRouter::get( '/hulp-vragen', 'HulpController@hulpVragen' )->name( 'hulp-vragen' );
+	SimpleRouter::post('/hulp-vragen/post-opslaan', 'HulpController@postOpslaan' )->name( 'post-opslaan' );
 
 	// Detail page
 	SimpleRouter::get( '/details', 'WebsiteController@details' )->name( 'details' );
