@@ -339,6 +339,8 @@ function validate($data)
 	];
 }
 
+// ADMIN PAGE
+
 function gebruikersOphalen($connection){
 	$gebruikersVinden = 'SELECT * FROM `gebruikers`';
 	$statement = $connection->prepare($gebruikersVinden);

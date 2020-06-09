@@ -80,19 +80,7 @@ function alleDetailsContact()
 
     return $statement->fetchAll();
 }
-function getUserData() {
-    $connection = dbConnect();
-    $query      = 'SELECT * FROM `gebruikers` WHERE `id` = :gebruiker_id';
-    $statement  = $connection->prepare($query);
 
-    $params = [
-        'gebruiker_id' => $_SESSION['user_id']
-    ];
-    
-    $statement->execute($params);
-    
-    return $statement->fetch();
-}
 
 
 
@@ -105,33 +93,6 @@ function getTotalTracks($connection) {
     return (int) $statement->fetchColumn();
 
 }
-
-function getCardData($page, $pagesize = 5) {
-    $connection = dbConnect();
-
-    // Amount of rows
-    $total = getTotalTracks($connection);
-    // Amount of pages
-    $num_pages = (int) round($total / $pagesize);
-    // Calculate offset
-    $offset = ( $page - 1 ) * $pagesize;
-
-    // Inner join query to get all info needed and skip deleted users 
-    $query      = 'SELECT * 
-    FROM `gebruikers`
-    INNER JOIN `posts` 
-    ON `posts`.`gebruiker_id` = `gebruikers`.`id`
-    LIMIT ' . $pagesize . ' OFFSET ' . $offset; 
-    
-    // Prepare and return executed query
-    $statement = $connection->query($query);
-    return [
-        'statement' => $statement,
-        'total'     => $total,
-        'pages'     => $num_pages,
-        'page'      => $page 
-    ];
-};
 
 
 function adminPageConn() {
@@ -163,6 +124,20 @@ function adminPageConn() {
 
 
 // OVERIGE FUNCTIES
+
+function getUserData() {
+    $connection = dbConnect();
+    $query      = 'SELECT * FROM `gebruikers` WHERE `id` = :gebruiker_id';
+    $statement  = $connection->prepare($query);
+
+    $params = [
+        'gebruiker_id' => $_SESSION['user_id']
+    ];
+    
+    $statement->execute($params);
+    
+    return $statement->fetch();
+}
 
 function logUserIn($email) {
     $connection = dbConnect();
@@ -248,3 +223,66 @@ function savePost() {
     $redirectURL = url('home');
 	redirect($redirectURL);
 }
+
+// OVERVIEW
+
+function getCardData($page, $pagesize = 5) {
+    $connection = dbConnect();
+
+    // Amount of rows
+    $total = getTotalTracks($connection);
+    // Amount of pages
+    $num_pages = (int) round($total / $pagesize);
+    // Calculate offset
+    $offset = ( $page - 1 ) * $pagesize;
+
+    // Inner join query to get all info needed and skip deleted users 
+    $query      = 'SELECT * 
+    FROM `gebruikers`
+    INNER JOIN `posts` 
+    ON `posts`.`gebruiker_id` = `gebruikers`.`id`
+    LIMIT ' . $pagesize . ' OFFSET ' . $offset ; 
+    
+    // Prepare and return executed query
+    $statement = $connection->query($query);
+    return [
+        'statement' => $statement,
+        'total'     => $total,
+        'pages'     => $num_pages,
+        'page'      => $page 
+    ];
+};
+
+// GEBRUIKERS PAGINA
+
+function getUserCardData($page, $pagesize = 5) {
+    $connection = dbConnect();
+
+    // Amount of rows
+    $total = getTotalTracks($connection);
+    // Amount of pages
+    $num_pages = (int) round($total / $pagesize);
+    // Calculate offset
+    $offset = ( $page - 1 ) * $pagesize;
+
+    // Inner join query to get all info needed and skip deleted users 
+    $query      = 'SELECT * 
+    FROM `gebruikers`
+    INNER JOIN `posts` 
+    ON `posts`.`gebruiker_id` = `gebruikers`.`id`
+    WHERE `gebruikers` . `id` =  ' . $_SESSION['user_id'] . '
+    LIMIT ' . $pagesize . ' OFFSET ' . $offset ; 
+    
+    // $param = [
+    //     'gebruiker_id' => $_SESSION['user_id']
+    // ];
+
+    // Prepare and return executed query
+    $statement = $connection->query($query);
+    return [
+        'statement' => $statement,
+        'total'     => $total,
+        'pages'     => $num_pages,
+        'page'      => $page 
+    ];
+};
