@@ -40,6 +40,8 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	
 	// Admin page
 	SimpleRouter::get( '/admin', 'AdminController@adminPage')->name('adminPage');
+	SimpleRouter::get( '/admin/json', 'AdminController@adminJson')->name('admin.json');
+	SimpleRouter::get( '/admin/banUser', 'AdminController@adminBan' )->name('admin.ban');
 	
 	// Overview routes
 	SimpleRouter::get( '/overview', 'OverviewController@displayOverview' )->name( 'overview' );

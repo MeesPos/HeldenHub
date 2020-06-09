@@ -28,8 +28,9 @@
         </div>
 
         <div class="bannen">
-            <label for="invoer">Kies een gebruiker</label>
+            <label for="invoer" class="kieseen">Kies een gebruiker</label><br>
             <input type="text" id="invoer" list="lijst" placeholder="Zoek">
+            <input type="submit" value="BAN GEBRUIKER" class="inputdatatype">
             <datalist id="lijst"></datalist>
         </div>
     </div>
@@ -41,22 +42,23 @@
         let request = new XMLHttpRequest();
         request.onreadystatechange = function(response) {
             if (request.readyState === 4 && request.status === 200) {
-                let steden = JSON.parse(request.responseText);
+                let gebruikers = JSON.parse(request.responseText);
 
-                steden.forEach(function(item) {
+                gebruikers.forEach(function(item) {
                     let option = document.createElement('option');
-                    option.value = item;
+                    option.innerText = item.voornaam;
+                    option.data = item.id;
                     dataList.appendChild(option);
                 });
 
-                input.placeholder = "Gebruikers";
+                input.placeholder = "Zoek de juiste Gebruiker...";
             } else {
                 input.placeholder = "Gebruikerlijst kan niet geladen worden";
             }
         };
         input.placeholder = "Laden van de gebruikers...";
 
-        request.open('GET', '<?php gebruikersOphalen(); ?>', true);
+        request.open('GET', '<?php echo url('admin.json'); ?>', true);
         request.send();
     </script>
 </body>

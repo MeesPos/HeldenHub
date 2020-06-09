@@ -294,16 +294,6 @@ function sendConfirmationEmail($email, $code)
 // 	} 
 // }
 
-function loggedInCheck()
-{
-	// Niet ingelogd? Terug naar log in pagina
-	// ALLEEN TE GEBRUIKEN VOOR LOG IN REQUIRED PAGES
-	if (!isset($_SESSION['user_id'])) {
-		session_start();
-	}
-}
-
-
 // AANMELDPAGINA 
 
 function validateRegistrationForm($data, $myfile, $errors)
@@ -433,13 +423,30 @@ function validate($data)
 	];
 }
 
-function gebruikersOphalen(){
+function gebruikersOphalen()
+{
 	$connection = dbConnect();
-	$gebruikersVinden = 'SELECT `voornaam` FROM `gebruikers`';
+	$gebruikersVinden = 'SELECT `voornaam`, `id` FROM `gebruikers`';
 	$statementBan = $connection->prepare($gebruikersVinden);
 	$statementBan->execute();
 
 	$gebruikersData = $statementBan->fetchAll();
 
-	echo json_encode(array_values($gebruikersData));
+	return json_encode(array_values($gebruikersData));
+}
+
+function loggedInCheck()
+{
+	// Niet ingelogd? Terug naar log in pagina
+	// ALLEEN TE GEBRUIKEN VOOR LOG IN REQUIRED PAGES
+	if (!isset($_SESSION['user_id'])) {
+		session_start();
+	}
+}
+
+function adminLoginCheck() {
+	if(!isset($_SESSION['user_id'])) {
+		$bedanktUrl = url("home");
+		redirect($bedanktUrl);
+	}
 }

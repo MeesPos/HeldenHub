@@ -15,6 +15,8 @@ class AdminController
     public function adminPage()
     {
 
+        adminLoginCheck();
+
         $connection = dbConnect();
         $sql = 'SELECT * FROM `gebruikers` WHERE `id` = :id';
         $statement  = $connection->prepare($sql);
@@ -50,5 +52,11 @@ class AdminController
 
         $template_engine = get_template_engine();
         echo $template_engine->render('adminPage', ['data' => $data, 'gebruikers' => $gebruikerCount, 'postCount' => $postCount, 'gebruikersOphalen' => $gebruikersOphalen]);
+    }
+
+    public function adminJson() {
+        
+        echo gebruikersOphalen();
+        
     }
 }
