@@ -54,13 +54,7 @@ class WebsiteController
 	}
 
 
-	// Hulp vragen page
-	public function hulpVragen()
-	{
-		$userData = getUserData();
-		$template_engine = get_template_engine();
-		echo $template_engine->render('hulp', ['userData' => $userData]);
-	}
+	
 
 	public function details()
 	{

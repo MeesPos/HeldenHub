@@ -96,23 +96,7 @@ function getUserData() {
 
 
 
-	function savePost() {
-    $connection = dbConnect();
-    $query      = 'INSERT INTO `posts` (`id`, `titel`, `inhoud`, `gebruiker_id`) VALUES (NULL, :titel, :inhoud,  :gebruiker_id)';
- 
-    $statement  = $connection->prepare($query);
-
-    $params = [
-        'titel'         => $_POST['titel'],
-        'inhoud'        => $_POST['inhoud'],
-        'gebruiker_id'  => $_SESSION['user_id'],
-    ];
-
-    $statement->execute($params);
-
-    $redirectURL = url('home');
-	redirect($redirectURL);
-}
+	
 
 function getTotalTracks($connection) {
     $sql       = 'SELECT count(*) as `total` FROM `posts`';
@@ -245,3 +229,22 @@ function getLoginUserInfo($email) {
     return ( $statement->fetch() );
 }
 
+//  HULP VRAGEN
+
+function savePost() {
+    $connection = dbConnect();
+    $query      = 'INSERT INTO `posts` (`id`, `titel`, `inhoud`, `gebruiker_id`) VALUES (NULL, :titel, :inhoud,  :gebruiker_id)';
+ 
+    $statement  = $connection->prepare($query);
+
+    $params = [
+        'titel'         => $_POST['titel'],
+        'inhoud'        => $_POST['inhoud'],
+        'gebruiker_id'  => $_SESSION['user_id'],
+    ];
+
+    $statement->execute($params);
+
+    $redirectURL = url('home');
+	redirect($redirectURL);
+}
