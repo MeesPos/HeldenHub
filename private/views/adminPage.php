@@ -28,10 +28,13 @@
         </div>
 
         <div class="bannen">
-            <label for="invoer" class="kieseen">Kies een gebruiker</label><br>
-            <input type="text" id="invoer" list="lijst" placeholder="Zoek">
-            <input type="submit" value="BAN GEBRUIKER" class="inputdatatype">
-            <datalist id="lijst"></datalist>
+            <form method="GET" action="<?php echo url('admin.ban') ?>">
+                <label for="invoer" class="kieseen">Kies een gebruiker</label><br>
+                <input type="text" id="invoer" list="lijst" placeholder="Zoek">
+                <datalist id="lijst"></datalist>
+                <input type="hidden" name="option" id="optionHidden">
+                <input type="submit" value="BAN GEBRUIKER" class="inputdatatype">
+            </form>
         </div>
     </div>
 

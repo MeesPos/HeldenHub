@@ -59,4 +59,8 @@ class AdminController
         echo gebruikersOphalen();
         
     }
+
+    public function adminBan() {
+
+    }
 }
