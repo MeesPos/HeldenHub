@@ -433,14 +433,13 @@ function validate($data)
 	];
 }
 
-function gebruikersOphalen($connection){
-	$gebruikersVinden = 'SELECT * FROM `gebruikers`';
-	$statement = $connection->prepare($gebruikersVinden);
-	$statement->execute();
+function gebruikersOphalen(){
+	$connection = dbConnect();
+	$gebruikersVinden = 'SELECT `voornaam` FROM `gebruikers`';
+	$statementBan = $connection->prepare($gebruikersVinden);
+	$statementBan->execute();
 
-	$gebruikersData = $statement->fetch();
+	$gebruikersData = $statementBan->fetchAll();
 
-	$gebruikers = [ $gebruikersData ];
-
-	echo json_encode(array_values($gebruikers));
+	echo json_encode(array_values($gebruikersData));
 }
