@@ -61,4 +61,17 @@ class GebruikerController
 
 		$statement->execute($gegevens);
 	}
+
+	function hulpGehad() {
+
+		$template_engine = get_template_engine();
+		echo $template_engine->render('hulpGehad');
+
+	}
+
+	function hulpJson() {
+
+		echo JSONemailOphalen();
+
+	}
 }

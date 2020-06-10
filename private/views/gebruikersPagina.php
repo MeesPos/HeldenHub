@@ -24,43 +24,43 @@
                 <img src=" <?php echo site_url() . 'uploads/' . $user_data['myfile'] ?>  " class="myFile">
 
                 <h2><?php echo ucfirst($user_data['voornaam']) . ' ' . ucfirst($user_data['achternaam']); ?></h3>
-                <p class="gebruiker-plaats"><?php echo ucfirst($user_data['plaats']); ?></p>
-                <div class="small">
-                    <a href="#" id="veranderenInfo"><i class="fas fa-pencil-alt"></i> Gegevens wijzigen </a>
-                </div>
-                <div class="big">
-                    <h1 class="infoTitel"> Mijn gegevens wijzigen</h1>
-                    <div class="form">
-                        <form action="<?php // echo url("infoWijzigen", ['id']) 
-                                        ?>" method="POST" class="form2">
-                            <div class="voornaam">
-                                <input type="name" class="form-control" name="voornaam" required placeholder="<?php // echo getLoggedInVoornaam(); 
-                                                                                                                ?>">
-                            </div>
-                            <div class="achternaam">
-                                <input type="name" class="form-control" name="achternaam" required placeholder="<?php // echo getLoggedInAchternaam(); 
-                                                                                                                ?>">
-                            </div>
-                            <div class="email">
-                                <input type="email" class="form-control" name="email" required placeholder=" <?php //  echo getLoggedInEmail(); 
-                                                                                                                ?>"><br>
-                            </div>
-                            <div class="datum">
-                                <input type="date" class="form-control" id="birthday" name="<?php // echo getLoggedInBirthday(); 
-                                                                                            ?></h3>">
-                            </div>
-                            <div class="plaats">
-                                <input type="name" class="form-control" name="plaats" required placeholder=" <?php // echo getLoggedInPlaats(); 
-                                                                                                                ?>">
-                            </div>
-                            <div class="foto">
-                                <input type="file" class="form-control" id="myfile" name="myfile[]" accept="image/*" multiple="" /><br><br></div>
-                            <div class="buttons">
-                                <button type="submit" value="upload" class="button">Wijzigen</button>
-                            </div>
+                    <p class="gebruiker-plaats"><?php echo ucfirst($user_data['plaats']); ?></p>
+                    <div class="small">
+                        <a href="#" id="veranderenInfo"><i class="fas fa-pencil-alt"></i> Gegevens wijzigen </a>
                     </div>
+                    <div class="big">
+                        <h1 class="infoTitel"> Mijn gegevens wijzigen</h1>
+                        <div class="form">
+                            <form action="<?php // echo url("infoWijzigen", ['id']) 
+                                            ?>" method="POST" class="form2">
+                                <div class="voornaam">
+                                    <input type="name" class="form-control" name="voornaam" required placeholder="<?php // echo getLoggedInVoornaam(); 
+                                                                                                                    ?>">
+                                </div>
+                                <div class="achternaam">
+                                    <input type="name" class="form-control" name="achternaam" required placeholder="<?php // echo getLoggedInAchternaam(); 
+                                                                                                                    ?>">
+                                </div>
+                                <div class="email">
+                                    <input type="email" class="form-control" name="email" required placeholder=" <?php //  echo getLoggedInEmail(); 
+                                                                                                                    ?>"><br>
+                                </div>
+                                <div class="datum">
+                                    <input type="date" class="form-control" id="birthday" name="<?php // echo getLoggedInBirthday(); 
+                                                                                                ?></h3>">
+                                </div>
+                                <div class="plaats">
+                                    <input type="name" class="form-control" name="plaats" required placeholder=" <?php // echo getLoggedInPlaats(); 
+                                                                                                                    ?>">
+                                </div>
+                                <div class="foto">
+                                    <input type="file" class="form-control" id="myfile" name="myfile[]" accept="image/*" multiple="" /><br><br></div>
+                                <div class="buttons">
+                                    <button type="submit" value="upload" class="button">Wijzigen</button>
+                                </div>
+                        </div>
 
-                </div>
+                    </div>
             </div>
             <div class="user-held-info">
                 <div class="oranje-balk"></div>
@@ -94,11 +94,20 @@
                             <h3 class="ov-post-info-title"><?php echo ucfirst($row['titel']); ?></h3>
                             <p class="ov-post-info-tekst"><?php echo ucfirst($row['inhoud']); ?></p>
                         </div>
-                        <div class="ov-post-knop">
-                            <form action="#" method="POST" class="ov-post-form">
-                                <input type="hidden" name="postId" value="1">
-                                <input type="submit" name="post-detail" id="ov-form-submit" value="Details">
-                            </form>
+                        <div class="ov-buttons">
+                            <div class="ov-post-knop">
+                                <form action="#" method="POST" class="ov-post-form">
+                                    <input type="hidden" name="postId" value="1">
+                                    <input type="submit" name="post-detail" id="ov-form-submit" value="Details">
+                                </form>
+                            </div>
+
+                            <div class="ov-geholpen-knop">
+                                <form action="<?php echo url('hulp-gehad') ?>" method="POST">
+                                    <input type="hidden" name="geefIDMee">
+                                    <input type="submit" name="hulpgehad" id="ov-geholpen-submit" value="Ik ben geholpen">
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
