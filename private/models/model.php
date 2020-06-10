@@ -127,7 +127,11 @@ function adminPageConn() {
 
 function getUserData() {
     $connection = dbConnect();
-    $query      = 'SELECT * FROM `gebruikers` WHERE `id` = :gebruiker_id';
+    $query      = 'SELECT * 
+                   FROM `gebruikers`
+                   INNER JOIN `punten` 
+                   ON `punten`.`gebruiker_id` = `gebruikers`.`id`
+                   WHERE `gebruikers`.`id` = :gebruiker_id ';
     $statement  = $connection->prepare($query);
 
     $params = [
@@ -154,7 +158,6 @@ function logUserIn($email) {
     $userInfo = $statement->fetch();
     $_SESSION['user_id']    = $userInfo['id'];
 
-   
 }
 
 // AANMELDPAGINA
@@ -236,7 +239,7 @@ function savePost() {
 
     $statement->execute($params);
 
-    $redirectURL = url('home');
+    $redirectURL = url('overview');
 	redirect($redirectURL);
 }
 

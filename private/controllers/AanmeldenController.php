@@ -87,6 +87,8 @@ class AanmeldenController
                 $userInfo = getLoginUserInfo($result['data']['email']);
                 if (password_verify($_POST['wachtwoord'], $userInfo['wachtwoord'])) {
                     $_SESSION['user_id'] = $userInfo['id'];
+                    $overviewURL = url('overview');
+                    redirect($overviewURL);
                 } else {
                     $result['errors']['wachtwoord'] = 'Onjuist wachtwoord, probeer overnieuw.';
                 }
