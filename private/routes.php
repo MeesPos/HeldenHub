@@ -30,7 +30,7 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::post('/hulp-vragen/post-opslaan', 'HulpController@postOpslaan' )->name( 'post-opslaan' );
 
 	// Detail page
-	SimpleRouter::get( '/details', 'WebsiteController@details' )->name( 'details' );
+	SimpleRouter::post( '/details', 'WebsiteController@details' )->name( 'details' );
 	SimpleRouter::get( '/details/contact/bedankt', 'WebsiteController@bedanktContact')->name('bedanktContact');
 	SimpleRouter::post( '/details/contact', 'WebsiteController@detailsContact' )->name ( 'detailsContact' );
 	

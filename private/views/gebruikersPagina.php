@@ -20,6 +20,7 @@
         <div class="ov-wrapper-left">
             <div class="user-account">
                 <div class="oranje-balk"></div>
+                <h1 class="user-title">Beginnende Held</h1>
                 <img src=" <?php echo site_url() . 'uploads/' . $user_data['myfile'] ?>  " class="myFile">
 
                 <h2><?php echo ucfirst($user_data['voornaam']) . ' ' . ucfirst($user_data['achternaam']); ?></h3>
@@ -62,10 +63,10 @@
                 </div>
             </div>
             <div class="user-held-info">
-                <h3><i class="fas fa-donate"></i> 5</h3>
-                <h3><i class="fas fa-coins"></i> 130</h3>
-                <h3><i class="fas fa-trophy"></i> #2</h3>
-                <h3 id="titel">Titel: Beginnende held</h3>
+                <div class="oranje-balk"></div>
+                <h3 class="user-punten-info"><i class="fas fa-donate"></i> 5</h3>
+                <h3 class="user-punten-info "><i class="fas fa-coins gebruiker-credits"></i> 130</h3>
+                <h3 class="user-punten-info"><i class="fas fa-trophy"></i> #2</h3>
             </div>
 
         </div>
