@@ -38,8 +38,8 @@
                     <p class="ov-post-info-tekst"><?php echo ucfirst($row['inhoud']); ?></p>
                 </div>
                 <div class="ov-post-knop">
-                    <form action="#" method="POST" class="ov-post-form">
-                        <input type="hidden" name="postId" value="1">
+                    <form action="<?php echo url('details') ?>" method="POST" class="ov-post-form">
+                        <input type="hidden" name="postId" value="<?php echo $row['gebruiker_id'] ?>">
                         <input type="submit" name="post-detail" id="ov-form-submit" value="Details">
                     </form>
                 </div>

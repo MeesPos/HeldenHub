@@ -14,35 +14,44 @@
 </header>
 
 <body style="background-image: linear-gradient(rgba(123, 123, 123, 0.4), rgba(123, 123, 123, 0.4)), url( <?php echo site_url('/img/stad.png') ?> )">
-    <main class="mijnAccount">
-        <section class="mijnInfo">
-            <div id="mijnGegevens" class="small">
-                <h1>Mij profile</h1>
-                <img src=" " class="myFile">
 
-                <h3>Cornell van der Straaten</h3>
-                <h3>Boskoop</h3>
+
+    <div class="ov-wrapper-gebruiker">
+        <div class="ov-wrapper-left">
+            <div class="user-account">
+                <div class="oranje-balk"></div>
+                <h1 class="user-title">Beginnende Held</h1>
+                <img src=" <?php echo site_url() . 'uploads/' . $user_data['myfile'] ?>  " class="myFile">
+
+                <h2><?php echo ucfirst($user_data['voornaam']) . ' ' . ucfirst($user_data['achternaam']); ?></h3>
+                <p class="gebruiker-plaats"><?php echo ucfirst($user_data['plaats']); ?></p>
                 <div class="small">
                     <a href="#" id="veranderenInfo"><i class="fas fa-pencil-alt"></i> Gegevens wijzigen </a>
                 </div>
                 <div class="big">
                     <h1 class="infoTitel"> Mijn gegevens wijzigen</h1>
                     <div class="form">
-                        <form action="<?php echo url("infoWijzigen", ['id']) ?>" method="POST" class="form2">
+                        <form action="<?php // echo url("infoWijzigen", ['id']) 
+                                        ?>" method="POST" class="form2">
                             <div class="voornaam">
-                                <input type="name" class="form-control" name="voornaam" required placeholder="<?php // echo getLoggedInVoornaam(); ?>">
+                                <input type="name" class="form-control" name="voornaam" required placeholder="<?php // echo getLoggedInVoornaam(); 
+                                                                                                                ?>">
                             </div>
                             <div class="achternaam">
-                                <input type="name" class="form-control" name="achternaam" required placeholder="<?php // echo getLoggedInAchternaam(); ?>">
+                                <input type="name" class="form-control" name="achternaam" required placeholder="<?php // echo getLoggedInAchternaam(); 
+                                                                                                                ?>">
                             </div>
                             <div class="email">
-                                <input type="email" class="form-control" name="email" required placeholder=" <?php //  echo getLoggedInEmail(); ?>"><br>
+                                <input type="email" class="form-control" name="email" required placeholder=" <?php //  echo getLoggedInEmail(); 
+                                                                                                                ?>"><br>
                             </div>
                             <div class="datum">
-                                <input type="date" class="form-control" id="birthday" name="<?php // echo getLoggedInBirthday(); ?></h3>">
+                                <input type="date" class="form-control" id="birthday" name="<?php // echo getLoggedInBirthday(); 
+                                                                                            ?></h3>">
                             </div>
                             <div class="plaats">
-                                <input type="name" class="form-control" name="plaats" required placeholder=" <?php // echo getLoggedInPlaats(); ?>">
+                                <input type="name" class="form-control" name="plaats" required placeholder=" <?php // echo getLoggedInPlaats(); 
+                                                                                                                ?>">
                             </div>
                             <div class="foto">
                                 <input type="file" class="form-control" id="myfile" name="myfile[]" accept="image/*" multiple="" /><br><br></div>
@@ -52,29 +61,53 @@
                     </div>
 
                 </div>
-                <div id="mijnPunten">
-                    <h3><i class="fas fa-donate"></i> 5</h3>
-                    <h3><i class="fas fa-coins"></i> 130</h3>
-                    <h3><i class="fas fa-trophy"></i> #2</h3>
-                    <h3 id="titel">Titel:</h3>
+            </div>
+            <div class="user-held-info">
+                <div class="oranje-balk"></div>
+                <h3 class="user-punten-info"><i class="fas fa-donate"></i> 5</h3>
+                <h3 class="user-punten-info "><i class="fas fa-coins gebruiker-credits"></i> 130</h3>
+                <h3 class="user-punten-info"><i class="fas fa-trophy"></i> #2</h3>
+            </div>
+
+        </div>
+        <div class="ov-wrapper-right">
+            <?php foreach ($cards['statement'] as $row) :
+
+            ?>
+                <div class="ov-card-gebruiker">
+                    <div class="oranje-balk"></div>
+                    <div class="ov-post">
+                        <div class="ov-post-user">
+                            <img src="<?php echo site_url() ?>uploads/<?php echo $row['myfile']; ?>" alt="Profielfoto" class="ov-profiel">
+                            <section class="ov-post-user-info">
+                                <p class="ov-post-naam"><?php echo ucfirst($row['voornaam']) . ' ' . ucfirst($row['achternaam']); ?></p>
+                                <p class="ov-post-plaats"><?php
+                                                            // Making first letter of place always uppercase
+                                                            echo ucfirst($row['plaats']); ?></p>
+                            </section>
+                        </div>
+                        <div class="ov-post-punten">
+                            <i class="fas fa-coins"></i>
+                            <p class="punt-hoeveelheid">1</p>
+                        </div>
+                        <div class="ov-post-info">
+                            <h3 class="ov-post-info-title"><?php echo ucfirst($row['titel']); ?></h3>
+                            <p class="ov-post-info-tekst"><?php echo ucfirst($row['inhoud']); ?></p>
+                        </div>
+                        <div class="ov-post-knop">
+                            <form action="#" method="POST" class="ov-post-form">
+                                <input type="hidden" name="postId" value="1">
+                                <input type="submit" name="post-detail" id="ov-form-submit" value="Details">
+                            </form>
+                        </div>
+                    </div>
                 </div>
-        </section>
-        <?php $connection = dbConnect();
+            <?php endforeach;
+            ?>
+        </div>
 
-        ?>
-        <?php foreach ($statement  as $row) { ?>
-            <section>
 
-                <h1 id="postTitel"><span>LAATSTE POSTS</span></h1>
-                <div class="mijnPost">
-                    <h2><?php echo $row['titel'] ?></h2>
-                    <p><?php echo $row['inhoud'] ?></p>
-                    <button class="hulpButton">Hulp gehad?</button>
-                </div>
-
-            </section>
-        <?php } ?>
-    </main>
+    </div>
 
     <script src="<?php echo site_url('/js/lightbox.js') ?>"></script>
 </body>
