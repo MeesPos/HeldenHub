@@ -16,7 +16,7 @@ class GebruikerController
 	{
         $page = 1;
         $cardData = getUserCardData($page, 5);
-        $user_info = getUserData();
+		$user_info = getUserData();
         
 
 		$template_engine = get_template_engine();
