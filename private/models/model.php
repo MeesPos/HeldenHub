@@ -194,6 +194,22 @@ function createUser($data) {
 
 }
 
+function createPuntenRow($user_id) {
+    $connection = dbConnect();
+
+    
+    $sql =  'INSERT INTO `punten` ( `punten`, `credits`, `gebruiker_id` )
+             VALUE (0, 0, :id)';
+    $statement = $connection->prepare($sql);
+    
+    $params = [
+        'id' => $user_id
+    ];
+
+    $statement->execute($params);
+
+}
+
 function getLoginUserInfo($email) {
 
     $connection = dbConnect();

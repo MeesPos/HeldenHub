@@ -33,12 +33,13 @@ class AanmeldenController
 
                 // Als email nog niet in db staat -> Nieuwe user aanmaken
                 createUser($result['data']);
-
+                $user_info = getLoginUserInfo($result['data']['email']);
+                createPuntenRow($user_info['id']);
                 // Inloggen door sessie te maken
                 logUserIn($result['data']['email']);
 
-                $template_engine = get_template_engine();
-                echo $template_engine->render('overview');
+                $overviewURL = url('overview');
+                redirect($overviewURL);
                 exit;
             } else {
                 $result['errors']['email'] = 'Dit account bestaat al!';

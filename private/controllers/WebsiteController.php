@@ -45,8 +45,9 @@ class WebsiteController
 	public function loguit()
 	{
 		session_destroy();
-		$template_engine = get_template_engine();
-		echo $template_engine->render('homePage');
+
+		$homeUrl = url("home");
+		redirect($homeUrl);
 	}
 
 
