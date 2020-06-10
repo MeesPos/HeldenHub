@@ -356,3 +356,14 @@ function adminLoginCheck() {
 		redirect($bedanktUrl);
 	}
 }
+
+function JSONemailOphalen() {
+	$connection = dbConnect();
+	$sql = 'SELECT `email` FROM `gebruikers`';
+	$statement = $connection->prepare($sql);
+	$statement->execute();
+
+	$gebruikersEmail = $statement->fetchAll();
+
+	return json_encode(array_values($gebruikersEmail));
+}
