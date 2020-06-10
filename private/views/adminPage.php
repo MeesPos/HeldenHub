@@ -28,12 +28,11 @@
         </div>
 
         <div class="bannen">
-            <form method="GET" action="<?php echo url('admin.ban') ?>">
+            <form method="POST" action="<?php echo url('admin.ban') ?>">
                 <label for="invoer" class="kieseen">Kies een gebruiker</label><br>
-                <input type="text" id="invoer" list="lijst" placeholder="Zoek">
+                <input type="text" id="invoer" name="invoer" list="lijst" placeholder="Zoek">
                 <datalist id="lijst"></datalist>
-                <input type="hidden" name="option" id="optionHidden">
-                <input type="submit" value="BAN GEBRUIKER" class="inputdatatype">
+                <button type="submit" class="submitAdmin">Submit</button>
             </form>
         </div>
     </div>
@@ -50,7 +49,7 @@
                 gebruikers.forEach(function(item) {
                     let option = document.createElement('option');
                     option.innerText = item.voornaam;
-                    option.data = item.id;
+                    option.value = item.id;
                     dataList.appendChild(option);
                 });
 
@@ -63,6 +62,16 @@
 
         request.open('GET', '<?php echo url('admin.json'); ?>', true);
         request.send();
+
+        form.addEventListener('submit', function(event) {
+
+            const invoer = document.forms["form"]["invoer"].value;
+            let keuze = document.getElementById('keuze');
+
+            keuze.innerText = 'Je hebt gekozen voor ' + invoer;
+            event.preventDefault();
+
+        });
     </script>
 </body>
 

@@ -4,7 +4,7 @@
         <header id="nav">
             <section id="navbar">
                 <div class="nav boven">
-                    <div class="menu sticky bovennav">
+                    <div class="menu sticky bovennav navitems">
                         <?php if (!isset($_SESSION['user_id'])) : ?>
                             <a class="nav-items" href="<?php echo url('aanmelden') ?> ">Aanmelden</a>
                         <?php else : ?>
@@ -12,7 +12,7 @@
                             <a class="nav-items" href="<?php echo url("loguit")?>">Uitloggen</a>
                         <?php endif; ?>
                         <a class="nav-items" href="#">Shop</a>
-                        <a class="nav-items" href="#">Leaderbord</a>
+                        <a class="nav-items mobielfix" href="#">Leaderbord</a>
                     </div>
                 </div>
             </section>

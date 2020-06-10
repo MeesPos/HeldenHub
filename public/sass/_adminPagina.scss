@@ -25,3 +25,31 @@
     font-weight: 600;
     font-size: 20px;
 }
+
+.submitAdmin{
+    width: 63.5%;
+    margin-top: 2%;
+}
+
+@media screen and (max-width: 800px) {
+    .submitAdmin{
+        width: 90%;
+    }
+
+    #invoer{
+        width: 75%;
+    }
+
+    .stats > h2{
+        font-size: 16px;
+    }
+
+    .kieseen{
+        font-size: 15px;
+    }
+
+    .datum{
+        font-size: 16px;
+        display: inline-block;
+    }
+}
