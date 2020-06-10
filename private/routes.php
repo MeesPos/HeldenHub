@@ -26,17 +26,17 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::get( '/testEmail', 'WebsiteController@bevestigenEmail' )->name( 'bevestigenEmail' );
 
 	// Hulp vragen
-	SimpleRouter::get( '/hulp-vragen', 'WebsiteController@hulpVragen' )->name( 'hulp-vragen' );
-	SimpleRouter::post('/hulp-vragen/post-opslaan', 'WebsiteController@postOpslaan' )->name( 'post-opslaan' );
+	SimpleRouter::get( '/hulp-vragen', 'HulpController@hulpVragen' )->name( 'hulp-vragen' );
+	SimpleRouter::post('/hulp-vragen/post-opslaan', 'HulpController@postOpslaan' )->name( 'post-opslaan' );
 
 	// Detail page
-	SimpleRouter::get( '/details', 'WebsiteController@details' )->name( 'details' );
+	SimpleRouter::post( '/details', 'WebsiteController@details' )->name( 'details' );
 	SimpleRouter::get( '/details/contact/bedankt', 'WebsiteController@bedanktContact')->name('bedanktContact');
 	SimpleRouter::post( '/details/contact', 'WebsiteController@detailsContact' )->name ( 'detailsContact' );
 	
 	// Gebruikers page
-	SimpleRouter::get( '/MijnAccount', 'WebsiteController@ingelogd' )->name( 'ingelogd' );
-	SimpleRouter::post('/MijnAccount/MijnInfoWijzigen','WebsiteController@infoWijzigen')->name('infoWijzigen');
+	SimpleRouter::get( '/mijnAccount', 'GebruikerController@gebruikersPagina' )->name( 'gebruiker' );
+	SimpleRouter::post('/mijnAccount/MijnInfoWijzigen','GebruikerController@infoWijzigen')->name('infoWijzigen');
 	
 	// Admin page
 	SimpleRouter::get( '/admin', 'AdminController@adminPage')->name('adminPage');

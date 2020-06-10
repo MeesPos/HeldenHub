@@ -38,7 +38,7 @@ class AanmeldenController
                 logUserIn($result['data']['email']);
 
                 $template_engine = get_template_engine();
-                echo $template_engine->render('bedanktPagina');
+                echo $template_engine->render('overview');
                 exit;
             } else {
                 $result['errors']['email'] = 'Dit account bestaat al!';

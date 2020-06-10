@@ -21,7 +21,7 @@
             <div class="oranje-balk"></div>
             <div class="ov-post">
                 <div class="ov-post-user">
-                    <img src="<?php echo site_url() ?>img/ <?php echo $row['myfile']; ?>" alt="Profielfoto" class="ov-profiel">
+                    <img src="<?php echo site_url() ?>uploads/<?php echo $row['myfile']; ?>" alt="Profielfoto" class="ov-profiel">
                     <section class="ov-post-user-info">
                         <p class="ov-post-naam"><?php echo ucfirst($row['voornaam']) . ' ' . ucfirst($row['achternaam']); ?></p>
                         <p class="ov-post-plaats"><?php 
@@ -38,8 +38,8 @@
                     <p class="ov-post-info-tekst"><?php echo ucfirst($row['inhoud']); ?></p>
                 </div>
                 <div class="ov-post-knop">
-                    <form action="#" method="POST" class="ov-post-form">
-                        <input type="hidden" name="postId" value="1">
+                    <form action="<?php echo url('details') ?>" method="POST" class="ov-post-form">
+                        <input type="hidden" name="postId" value="<?php echo $row['gebruiker_id'] ?>">
                         <input type="submit" name="post-detail" id="ov-form-submit" value="Details">
                     </form>
                 </div>

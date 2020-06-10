@@ -41,11 +41,7 @@ class WebsiteController
 
 		// echo 'hallo';
 	// }
-	public function ingelogd()
-	{
-		$template_engine = get_template_engine();
-		echo $template_engine->render('gebruikersPagina');
-	}
+	
 	public function loguit()
 	{
 		session_destroy();
@@ -54,13 +50,7 @@ class WebsiteController
 	}
 
 
-	// Hulp vragen page
-	public function hulpVragen()
-	{
-		$userData = getUserData();
-		$template_engine = get_template_engine();
-		echo $template_engine->render('hulp', ['userData' => $userData]);
-	}
+	
 
 	public function details()
 	{
@@ -144,42 +134,5 @@ class WebsiteController
 		echo $template_engine->render('bedanktPagina');	
 	}
 
-	public function infoWijzigen()
-	{
-		$connection = dbConnect();
-
-		$id = (int) $_POST['id'];
-		$email = $_POST['email'];
-		$voornaam  = $_POST['voornaam'];
-		$achternaam = $_POST['achternaam'];
-		$plaats = $_POST['plaats'];
-		$birthday = $_POST['birthday'];
-		$myfile = $_POST['myfile'];
-
-		$statement = "SELECT id, email, voornaam, achternaam, plaats, birthday, myfile FROM `gebruikers`";
-
-		$sql = 'UPDATE `gebruikers` SET
-            `email` = :email,
-            `voornaam` = :voornaam,
-            `achternaam` = :achternaam,
-            `plaats` = :plaats,
-            `birthday` = :birthday,
-			`myfile` = :myfile,
-			WHERE  `id` = :id ';
-			
-		$gegevens = [
-			'id' => $id,
-			'email' => $email,
-			'voornaam' => $voornaam,
-			'achternaam' => $achternaam,
-			'plaats' => $plaats,
-			'birthday' => $birthday,
-			'myfile' => $myfile
-		];
-
-		
-		$statement = $connection->prepare($sql);
-
-		$statement->execute($gegevens);
-	}
+	
 }

@@ -91,96 +91,6 @@ function userNotRegistered($email)
 	return ($statement->rowCount() === 0);
 }
 
-// function getLoggedInVoornaam()
-// {
-// 	$voornaam = 'Niet Ingelogd!';
-// 	if (!isLoggedIn()) {
-// 		return $voornaam;
-// 	}
-
-// 	$user_id = $_SESSION['user_id'];
-// 	$user = getUsersById($user_id);
-
-// 	if ($user) {
-// 		$voornaam = $user['voornaam'];
-// 	}
-// 	return $voornaam;
-// }
-// function getLoggedInAchternaam()
-// {
-// 	$achternaam = 'Niet Ingelogd!!';
-// 	if (!isLoggedIn()) {
-// 		return $achternaam;
-// 	}
-
-// 	$user_id = $_SESSION['user_id'];
-// 	$user = getUsersById($user_id);
-
-// 	if ($user) {
-// 		$achternaam = $user['achternaam'];
-// 	}
-// 	return $achternaam;
-// }
-// function getLoggedInPlaats()
-// {
-// 	$plaats = 'Niet Ingelogd!!';
-// 	if (!isLoggedIn()) {
-// 		return $plaats;
-// 	}
-
-// 	$user_id = $_SESSION['user_id'];
-// 	$user = getUsersById($user_id);
-
-// 	if ($user) {
-// 		$plaats = $user['plaats'];
-// 	}
-// 	return $plaats;
-// }
-// function getLoggedInMyfile()
-// {
-// 	$myfile = 'Niet Ingelogd!!';
-// 	if (!isLoggedIn()) {
-// 		return $myfile;
-// 	}
-
-// 	$user_id = $_SESSION['user_id'];
-// 	$user = getUsersById($user_id);
-
-// 	if ($user) {
-// 		$myfile = $user['myfile'];
-// 	}
-// 	return $myfile;
-// }
-// function getLoggedInBirthday()
-// {
-// 	$birthday = 'Niet Ingelogd!!';
-// 	if (!isLoggedIn()) {
-// 		return $birthday;
-// 	}
-
-// 	$user_id = $_SESSION['user_id'];
-// 	$user = getUsersById($user_id);
-
-// 	if ($user) {
-// 		$birthday = $user['birthday'];
-// 	}
-// 	return $birthday;
-// }
-// function getLoggedInEmail()
-// {
-// 	$email = 'Niet Ingelogd!!';
-// 	if (!isLoggedIn()) {
-// 		return $email;
-// 	}
-
-// 	$user_id = $_SESSION['user_id'];
-// 	$user = getUsersById($user_id);
-
-// 	if ($user) {
-// 		$email = $user['email'];
-// 	}
-// 	return $email;
-// }
 
 /**
  * Maak de SwiftMailer aan en stet hem op de juiste manier in
@@ -288,11 +198,7 @@ function sendConfirmationEmail($email, $code)
 
 
 // OVERIGE FUNCTIES
-// function sessionStarter() {
-// 	if ( ! isset($_SESSION['user_id']) ) {
-// 		session_start();
-// 	} 
-// }
+
 
 // AANMELDPAGINA 
 
