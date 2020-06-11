@@ -52,6 +52,9 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::get( '/overview', 'OverviewController@displayOverview' )->name( 'overview' );
 	SimpleRouter::get( '/overzicht', 'WebsiteController@overzicht' )->name( 'overzicht' );
 
+	// Leaderbord routes
+	SimpleRouter::get( '/leaderbord', 'LeaderbordController@Leaderbord')->name( 'leaderbord' );
+
 	// Overige routes
 	SimpleRouter::get( '/uitloggen', 'WebsiteController@loguit' )->name( 'loguit' );
 
