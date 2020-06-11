@@ -10,8 +10,6 @@ function getUsers(){
 
 function alleDetails()
 {
-    // $id = $_POST['postId'];
-    $id = 1;
 
     $connection = dbConnect();
     $sql = 'SELECT * 
@@ -21,11 +19,11 @@ function alleDetails()
         WHERE `posts`.`id` = :id';
     $statement = $connection->prepare($sql);
     $idQuery = [
-        'id' => $id
+        'id' => $_POST['postId']
     ];
     $statement->execute($idQuery);
 
-    return $statement->fetchAll();
+    return $statement->fetch();
 }
 
 function getUsersByEmail($email){

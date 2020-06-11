@@ -30,9 +30,9 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::post('/hulp-vragen/post-opslaan', 'HulpController@postOpslaan' )->name( 'post-opslaan' );
 
 	// Detail page
-	SimpleRouter::post( '/details', 'WebsiteController@details' )->name( 'details' );
-	SimpleRouter::get( '/details/contact/bedankt', 'WebsiteController@bedanktContact')->name('bedanktContact');
-	SimpleRouter::post( '/details/contact', 'WebsiteController@detailsContact' )->name ( 'detailsContact' );
+	SimpleRouter::post( '/details', 'DetailsController@details' )->name( 'details' );
+	SimpleRouter::get( '/details/contact/bedankt', 'DetailsController@bedanktContact')->name('bedanktContact');
+	SimpleRouter::post( '/details/contact', 'DetailsController@detailsContact' )->name ( 'detailsContact' );
 	
 	// Gebruikers page
 	SimpleRouter::get( '/mijnAccount', 'GebruikerController@gebruikersPagina' )->name( 'gebruiker' );

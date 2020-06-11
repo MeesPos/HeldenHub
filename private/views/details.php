@@ -1,5 +1,6 @@
-<?php $connection = dbConnect(); ?>
-<?php foreach ($AlleDetails as $row) { ?>
+<?php $connection = dbConnect();
+print_r($alleDetails)?>
+<?php // foreach ($alleDetails as $row) { ?>
     <!doctype html>
     <html lang="en">
 
@@ -41,6 +42,6 @@
             </div>
         </section>
     </body>
-<?php } ?>
+<?php //} ?>
 
     </html>
