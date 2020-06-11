@@ -303,3 +303,19 @@ function getUserCardData($page, $pagesize = 5) {
         'page'      => $page 
     ];
 };
+
+// LEADERBORD PAGINA
+
+function puntenOphalen() {
+
+    $connection = dbConnect();
+    $sql = 'SELECT * FROM `punten`
+    INNER JOIN `gebruikers` 
+    ON `punten`.`gebruiker_id` = `gebruikers`.`id`
+    WHERE `gebruikers`.`id` = `punten`.`gebruiker_id` 
+    ORDER BY punten.punten DESC LIMIT 5 ';
+    $statement = $connection->query($sql);
+
+    return $statement->fetchAll();
+
+}
