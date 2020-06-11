@@ -282,14 +282,15 @@ function getUserCardData($page, $pagesize = 5) {
     // Calculate offset
     $offset = ( $page - 1 ) * $pagesize;
 
+    $user_id_ophalen = $_SESSION['user_id'];
+
     // Inner join query to get all info needed and skip deleted users 
-    $query      = 'SELECT * 
-    FROM `gebruikers`
+    $query      = 'SELECT * FROM `gebruikers`
     INNER JOIN `posts` 
     ON `posts`.`gebruiker_id` = `gebruikers`.`id`
-    WHERE `gebruikers` . `id` =  ' . $_SESSION['user_id'] . '
-    LIMIT ' . $pagesize .  'OFFSET'  . $offset ; 
-    
+    WHERE `gebruikers` . `id` = ' .  $user_id_ophalen . '
+    LIMIT ' . $pagesize .  'OFFSET'  . $offset; 
+
     // $param = [
     //     'gebruiker_id' => $_SESSION['user_id']
     // ];

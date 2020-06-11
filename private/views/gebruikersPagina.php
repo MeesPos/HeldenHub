@@ -69,7 +69,7 @@
                         <td class="gebruiker-table-data"><i class="fas fa-donate"></i></td>
                         <td><?php echo $user_data['punten'] ?></td>
                     </tr>
-                    <tr class="gebruiker-table-row" title="Gebruike deze credits om items uit de shop te kopen!">
+                    <tr class="gebruiker-table-row" title="Gebruik deze credits om items uit de shop te kopen!">
                         <td class="gebruiker-table-data"><i class="fas fa-coins gebruiker-credits"></i></td>
                         <td><?php echo $user_data['credits'] ?></td>
                     </tr>

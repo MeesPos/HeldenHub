@@ -4,8 +4,8 @@
 }
 
 .leftLB{
-    margin-left: 3.1%;
-    margin-top: 2%;
+    margin-left: 7%;
+    margin-top: 10%;
 }
 
 .nummers{
@@ -18,7 +18,7 @@
 .ranking{
     grid-template-rows: 1fr 1fr 1fr;
     margin-bottom: 50px;
-    // border-bottom: 4px solid #efefef;
+    border-bottom: 4px solid #efefef;
     width: 200px;
 }
 
@@ -28,6 +28,12 @@
 
 .naamLB{
     font-size: 40px;
+}
+
+.leaderbordrechts{
+    margin-top: -8.5%;
+    margin-left: 50%;
+    width: 100%;
 }
 
 .huidigtop3{
@@ -40,4 +46,74 @@
     width: 600px;
     margin-top: 10%;
     margin-left: 50%;
+}
+
+.tableLB{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    height: 60px;
+    width: 98%;
+}
+
+.puntjesLB{
+    font-size: 40px;
+    color: $oranje;
+    font-weight: bold;
+}
+
+.puntenLBR{
+    margin-left: 32%!important;
+    margin-top: 2%;
+}
+
+.tableLB:nth-child(2n) {
+    background-color: #efefef!important;
+}
+
+@media screen and (max-width: 1150px) {
+    .vlagleader{
+        width: 400px!important;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #leaderbordLB{
+        grid-template-columns: 1fr;
+    }
+    
+    .informatie > p{
+        width: 80%;
+        margin-left: 3%;
+        text-align: center;
+    }
+
+    .leftLB{
+        margin-left: 0;
+    }
+    
+    .huidigtop3{
+        margin-left: 10vw;
+    }
+
+    .ranking{
+        margin-left: 20vw;
+    }
+
+    .tableLB{
+        margin-left: 0;
+    }
+
+    .vlagleader{
+        margin-left: 0;
+        width: 100vw!important;
+    }
+
+    .leaderbordrechts{
+        margin-left: 0;
+    }
+
+    .ranks{
+        margin-left: 2vw;
+    }
 }

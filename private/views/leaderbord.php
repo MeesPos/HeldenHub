@@ -18,19 +18,17 @@
     <section id="leaderbordLB">
         <section class="leftLB">
             <div class="informatie">
-                <p>Op deze pagina kan je zien wie de <br>meeste HeldenPunten heeft behaald!
-                    <br><br>Ga meer mensen helpen om zo in rang te stijgen!</p>
+                <p>Op deze pagina kan je zien wie de meeste HeldenPunten heeft behaald!
+                <br>Ga meer mensen helpen om zo in rang te stijgen!</p>
             </div>
-
-            <div class="top3">
-
                 <div class="top3">
                     <h2 class="huidigtop3">Onze huidige top 3!</h2>
                     <?php $counterLB = 0; ?>
                     <?php foreach ($top3 as $row) : ?>
-                    <?php $counterLB += 1 ?>
+                        <?php $counterLB += 1 ?>
                         <div class="ranking">
-                            <h2> <span class="nummers"><?php echo $counterLB; ?></span> <span class="naamLB"> <?php echo $row['voornaam'] ?></span>
+                            <h2> <span class="nummers"><?php echo $counterLB; ?></span>
+                                <span class="naamLB"> <?php echo $row['voornaam'] ?></span>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -39,14 +37,24 @@
 
         <section class="right">
             <div class="top5">
-            <img class="vlagleader" src="<?php echo site_url('/img/vlagleader.png') ?>" alt="Leaderbord vlag">
-            <?php $counterLB2 = 0; ?>
-            <?php foreach ($leaderbord as $row) : ?>
-            <?php $counterLB2 += 1 ?>
-                <div class="ranks">
-                    <h2> <span class="nummers"><?php echo $counterLB2 ?></span> <span class="naamLB"> <?php echo $row['voornaam'] ?></span></h2>
+                <img class="vlagleader" src="<?php echo site_url('/img/vlagleader.png') ?>" alt="Leaderbord vlag">
+                <div class="leaderbordrechts">
+                    <?php $counterLB2 = 0; ?>
+                    <?php foreach ($leaderbord as $row) : ?>
+                        <?php $counterLB2 += 1 ?>
+                        <div class="tableLB">
+                            <div class="ranks">
+                                <h2> <span class="nummers"><?php echo $counterLB2 ?></span>
+                                    <span class="naamLB"> <?php echo $row['voornaam'] ?></span></h2>
+                            </div>
+
+                            <div class="puntenLBR">
+                                <i class="fas fa-donate"></i> <span class="puntjesLB"> <?php echo $row['punten'] ?> </span>
+                            </div>
+                        </div>
+
+                    <?php endforeach; ?>
                 </div>
-            <?php endforeach; ?>
             </div>
         </section>
     </section>
