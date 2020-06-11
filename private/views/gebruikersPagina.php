@@ -64,9 +64,20 @@
             </div>
             <div class="user-held-info">
                 <div class="oranje-balk"></div>
-                <h3 class="user-punten-info"><i class="fas fa-donate"></i> 5</h3>
-                <h3 class="user-punten-info "><i class="fas fa-coins gebruiker-credits"></i> 130</h3>
-                <h3 class="user-punten-info"><i class="fas fa-trophy"></i> #2</h3>
+                <table class="gebruiker-table">
+                    <tr class="gebruiker-table-row" title="Deze punten houden bij hoevaak jij iemand hebt geholpen. Hiermee wordt jouw plaats op het leaderbord bepaalt!">
+                        <td class="gebruiker-table-data"><i class="fas fa-donate"></i></td>
+                        <td><?php echo $user_data['punten'] ?></td>
+                    </tr>
+                    <tr class="gebruiker-table-row" title="Gebruike deze credits om items uit de shop te kopen!">
+                        <td class="gebruiker-table-data"><i class="fas fa-coins gebruiker-credits"></i></td>
+                        <td><?php echo $user_data['credits'] ?></td>
+                    </tr>
+                    <tr class="disable-leaderbord-score gebruiker-table-row">
+                        <td class="gebruiker-table-data"><i class="fas fa-trophy" ></i></td>
+                        <td>#1</td>
+                    </tr>
+                </table>
             </div>
 
         </div>

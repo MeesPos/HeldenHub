@@ -695,12 +695,12 @@ input[type=comment] {
 
 .fa-donate, .fa-trophy, .gebruiker-credits {
   display: inline-block;
-  font-size: 25px !important;
+  font-size: 35px !important;
   color: #FF8800;
 }
 
 .fa-donate, .fa-trophy {
-  margin-right: 9%;
+  font-size: 35px;
 }
 
 .user-punten-info {
@@ -730,6 +730,24 @@ input[type=comment] {
   transform: scale(1.05);
   transition: 0.5s;
 }
+
+
+.gebruiker-table {
+  margin: 0 auto;
+  margin-top: 15px;
+  font-size: 25px;
+}
+
+.gebruiker-table-data {
+  padding-right: 20px;
+}
+
+.gebruiker-table-row td {
+  font-size: 35px;
+}
+
+.disable-leaderbord-score {
+  display: none;
 
 #ov-geholpen-submit {
   color: white;

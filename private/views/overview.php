@@ -39,7 +39,7 @@
                 </div>
                 <div class="ov-post-knop">
                     <form action="<?php echo url('details') ?>" method="POST" class="ov-post-form">
-                        <input type="hidden" name="postId" value="<?php echo $row['gebruiker_id'] ?>">
+                        <input type="hidden" name="postId" value="<?php echo $row['id'] ?>">
                         <input type="submit" name="post-detail" id="ov-form-submit" value="Details">
                     </form>
                 </div>
