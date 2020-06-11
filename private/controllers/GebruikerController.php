@@ -62,16 +62,35 @@ class GebruikerController
 		$statement->execute($gegevens);
 	}
 
-	function hulpGehad() {
+	public function hulpGehad() {
 
 		$template_engine = get_template_engine();
 		echo $template_engine->render('hulpGehad');
 
 	}
 
-	function hulpJson() {
+	public function hulpJson() {
 
 		echo JSONemailOphalen();
 
+	}
+
+	public function puntenGeven() {
+		$errors = [];
+		// Get user id from POST email & Check if user gave points to him or herself
+		$receiver = getLoginUserInfo($_POST['invoer']);
+
+		if (! $receiver['id'] == $_SESSION['user_id']) {
+			// Give certain user id points
+			givePoint($receiver['id']);
+			// Delete post
+
+			// Redirect 
+		} else {
+			$errors['greedy'] = "Je kan geen punten aan jezelf geven.";
+		}
+
+		$template_engine = get_template_engine();
+        echo $template_engine->render('hulpGehad', ['errors' => $errors]);
 	}
 }

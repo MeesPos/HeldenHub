@@ -731,7 +731,6 @@ input[type=comment] {
   transition: 0.5s;
 }
 
-
 .gebruiker-table {
   margin: 0 auto;
   margin-top: 15px;
@@ -748,6 +747,7 @@ input[type=comment] {
 
 .disable-leaderbord-score {
   display: none;
+}
 
 #ov-geholpen-submit {
   color: white;

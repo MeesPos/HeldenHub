@@ -241,6 +241,7 @@ function savePost() {
 	redirect($redirectURL);
 }
 
+
 // OVERVIEW
 
 function getCardData($page, $pagesize = 5) {
@@ -303,3 +304,13 @@ function getUserCardData($page, $pagesize = 5) {
         'page'      => $page 
     ];
 };
+
+// Punten geven
+
+function givePoint($receiver) {
+    $connection = dbConnect();
+    $sql = 'UPDATE `punten` SET `punten` = `punten` + 1 , '
+
+    
+};
+
