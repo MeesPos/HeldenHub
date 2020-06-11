@@ -16,6 +16,7 @@ class DetailsController {
 	{
 
 		$details = alleDetails();
+		
 
 		$template_engine = get_template_engine();
 		echo $template_engine->render('details', ['alleDetails' => $details]);

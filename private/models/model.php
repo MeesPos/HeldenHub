@@ -22,7 +22,7 @@ function alleDetails()
         'id' => $_POST['postId']
     ];
     $statement->execute($idQuery);
-
+    
     return $statement->fetch();
 }
 
