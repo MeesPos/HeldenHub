@@ -288,7 +288,7 @@ function getUserCardData($page, $pagesize = 5) {
     INNER JOIN `posts` 
     ON `posts`.`gebruiker_id` = `gebruikers`.`id`
     WHERE `gebruikers` . `id` =  ' . $_SESSION['user_id'] . '
-    LIMIT ' . $pagesize . ' OFFSET ' . $offset ; 
+    LIMIT ' . $pagesize .  'OFFSET'  . $offset ; 
     
     // $param = [
     //     'gebruiker_id' => $_SESSION['user_id']
@@ -306,15 +306,21 @@ function getUserCardData($page, $pagesize = 5) {
 
 // LEADERBORD PAGINA
 
-function puntenOphalen() {
+function puntenOphalen($limit) {
+
+    
 
     $connection = dbConnect();
     $sql = 'SELECT * FROM `punten`
     INNER JOIN `gebruikers` 
     ON `punten`.`gebruiker_id` = `gebruikers`.`id`
     WHERE `gebruikers`.`id` = `punten`.`gebruiker_id` 
-    ORDER BY punten.punten DESC LIMIT 5 ';
-    $statement = $connection->query($sql);
+    ORDER BY punten.punten DESC LIMIT ' . $limit .' ';
+    $statement = $connection->prepare($sql);
+    $param = [
+        'leadLimit' => $limit
+    ];
+    $statement->execute($param);
 
     return $statement->fetchAll();
 

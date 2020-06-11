@@ -15,10 +15,11 @@ class LeaderbordController {
 
     public function Leaderbord() {
 
-        $punten = puntenOphalen();
+        $puntenLeaderbord = puntenOphalen(5);
+        $puntenTop3 = puntenOphalen(3);
 
         $template_engine = get_template_engine();
-        echo $template_engine->render('leaderbord', [ 'puntenLeaderbord' => $punten ]);
+        echo $template_engine->render('leaderbord', [ 'top3' => $puntenTop3, 'leaderbord' => $puntenLeaderbord ]);
         
     }
 
