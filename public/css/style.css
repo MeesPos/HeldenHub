@@ -78,9 +78,9 @@ html, body {
 
 @media only screen and (max-width: 800px) and (orientation: portrait) {
   .bovennav > a {
-    margin-left: 20px !important;
-    margin-top: -15px !important;
-    font-size: 18px;
+    margin-left: 20px;
+    margin-top: -15px;
+    font-size: 16px;
   }
 
   .bovennav {
@@ -105,6 +105,15 @@ html, body {
 
   .ondernav {
     height: 50px;
+  }
+
+  .navitems {
+    margin-left: -40px;
+    display: inline-block;
+  }
+
+  .mobielfix {
+    margin-right: -100vw !important;
   }
 }
 /* Home */
@@ -722,6 +731,7 @@ input[type=comment] {
   transition: 0.5s;
 }
 
+
 .gebruiker-table {
   margin: 0 auto;
   margin-top: 15px;
@@ -738,6 +748,25 @@ input[type=comment] {
 
 .disable-leaderbord-score {
   display: none;
+
+#ov-geholpen-submit {
+  color: white;
+  background-color: #FF8800;
+  font-size: 25px;
+  border: none;
+  padding: 10px;
+  margin-top: 20px;
+  width: 220px;
+  margin-left: 50px;
+}
+
+.ov-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+  margin: 0 auto;
+  margin-left: 45%;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1000em) and (orientation: portrait) {
@@ -839,19 +868,12 @@ input[type=comment] {
   margin-top: 10px;
 }
 
-.ov-post-knop {
-  grid-column: 1/3;
-  grid-row: 3/4;
-  margin: 0 auto;
-}
-
 #ov-form-submit {
   color: white;
   background-color: #FF8800;
   font-size: 25px;
   border: none;
   padding: 10px;
-  margin: 0 auto;
   margin-bottom: 20px;
   margin-top: 20px;
   width: 130px;
@@ -949,6 +971,89 @@ input[type=comment] {
   grid-template-columns: 1fr 1fr;
   text-align: center;
   margin-top: 2%;
+}
+
+.kieseen {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.submitAdmin {
+  width: 63.5%;
+  margin-top: 2%;
+}
+
+@media screen and (max-width: 800px) {
+  .submitAdmin {
+    width: 90%;
+  }
+
+  #invoer {
+    width: 75%;
+  }
+
+  .stats > h2 {
+    font-size: 16px;
+  }
+
+  .kieseen {
+    font-size: 15px;
+  }
+
+  .datum {
+    font-size: 16px;
+    display: inline-block;
+  }
+}
+.introductieHG {
+  margin-bottom: 40px;
+  margin-top: 40px;
+  text-align: center;
+  padding: 0 25vw;
+}
+
+.introductieHG > h1 {
+  margin-left: 3vw;
+}
+
+.formHG {
+  text-align: center;
+}
+
+.zoekbalkHG {
+  width: 28.5vw;
+  margin: 20px 0;
+}
+
+.submitHG {
+  width: 30vw;
+}
+
+.labelkies {
+  font-size: 20px;
+}
+
+#geholpen {
+  margin-top: 10vh;
+}
+
+.fa-hands-helping {
+  font-size: 150px;
+  color: #FF8800;
+}
+
+.geholpenIcon {
+  margin-left: 46%;
+}
+
+@media screen and (max-width: 800px) {
+  .introductieHG {
+    padding: 0 5vw;
+  }
+
+  .geholpenIcon {
+    margin-left: 27%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

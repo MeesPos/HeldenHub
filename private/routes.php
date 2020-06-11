@@ -3,6 +3,7 @@
 use Pecee\Http\Request;
 use Pecee\SimpleRouter\Exceptions\NotFoundHttpException;
 use Pecee\SimpleRouter\SimpleRouter;
+use Website\Controllers\GebruikerController;
 use Website\Controllers\WebsiteController;
 
 SimpleRouter::setDefaultNamespace( 'Website\Controllers' );
@@ -37,9 +38,15 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	// Gebruikers page
 	SimpleRouter::get( '/mijnAccount', 'GebruikerController@gebruikersPagina' )->name( 'gebruiker' );
 	SimpleRouter::post('/mijnAccount/MijnInfoWijzigen','GebruikerController@infoWijzigen')->name('infoWijzigen');
+	SimpleRouter::post( '/mijnAccount/hulp-gehad', 'GebruikerController@hulpGehad')->name('hulp-gehad');
+	SimpleRouter::get( '/mijnAccount/json', 'GebruikerController@hulpJson')->name('hulp.json');
+	SimpleRouter::post( '/mijnAccount/puntenGeven', 'GebruikerController@puntenGeven')->name('punten.geven');
 	
 	// Admin page
 	SimpleRouter::get( '/admin', 'AdminController@adminPage')->name('adminPage');
+	SimpleRouter::get( '/admin/json', 'AdminController@adminJson')->name('admin.json');
+	SimpleRouter::post( '/admin/banUser', 'AdminController@adminBan' )->name('admin.ban');
+	SimpleRouter::get( '/admin/gelukt', 'AdminController@adminGelukt' )->name('admin.gelukt');
 	
 	// Overview routes
 	SimpleRouter::get( '/overview', 'OverviewController@displayOverview' )->name( 'overview' );

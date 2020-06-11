@@ -200,16 +200,6 @@ function sendConfirmationEmail($email, $code)
 // OVERIGE FUNCTIES
 
 
-function loggedInCheck()
-{
-	// Niet ingelogd? Terug naar log in pagina
-	// ALLEEN TE GEBRUIKEN VOOR LOG IN REQUIRED PAGES
-	if (!isset($_SESSION['user_id'])) {
-		session_start();
-	}
-}
-
-
 // AANMELDPAGINA 
 
 function validateRegistrationForm($data, $myfile, $errors)
@@ -339,16 +329,41 @@ function validate($data)
 	];
 }
 
-// ADMIN PAGE
+function gebruikersOphalen()
+{
+	$connection = dbConnect();
+	$gebruikersVinden = 'SELECT `voornaam`, `id` FROM `gebruikers`';
+	$statementBan = $connection->prepare($gebruikersVinden);
+	$statementBan->execute();
 
-function gebruikersOphalen($connection){
-	$gebruikersVinden = 'SELECT * FROM `gebruikers`';
-	$statement = $connection->prepare($gebruikersVinden);
+	$gebruikersData = $statementBan->fetchAll();
+
+	return json_encode(array_values($gebruikersData));
+}
+
+function loggedInCheck()
+{
+	// Niet ingelogd? Terug naar log in pagina
+	// ALLEEN TE GEBRUIKEN VOOR LOG IN REQUIRED PAGES
+	if (!isset($_SESSION['user_id'])) {
+		session_start();
+	}
+}
+
+function adminLoginCheck() {
+	if(!isset($_SESSION['user_id'])) {
+		$bedanktUrl = url("home");
+		redirect($bedanktUrl);
+	}
+}
+
+function JSONemailOphalen() {
+	$connection = dbConnect();
+	$sql = 'SELECT `email` FROM `gebruikers`';
+	$statement = $connection->prepare($sql);
 	$statement->execute();
 
-	$gebruikersData = $statement->fetch();
+	$gebruikersEmail = $statement->fetchAll();
 
-	$gebruikers = [ $gebruikersData ];
-
-	echo json_encode(array_values($gebruikers));
+	return json_encode(array_values($gebruikersEmail));
 }

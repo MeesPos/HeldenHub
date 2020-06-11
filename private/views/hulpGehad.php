@@ -3,39 +3,39 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Pagina</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hulp vragen</title>
     <link rel="stylesheet" href="<?php echo site_url('/css/style.css') ?>" media="all">
+    <script src="https://kit.fontawesome.com/1eb7c10cba.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <?php include '../private/includes/nav.php' ?>
 
-    <div class="welkom">
-        <h1 class="welkomadmin">Welkom <?php echo $data['voornaam'] ?></h1>
-        <?php setlocale(LC_ALL, "Nld_Nld"); ?>
-        <p class="datum">Het is vandaag: <?php echo strftime("%A %e %B %G") ?></p>
-    </div>
+    <header>
+        <?php include '../private/includes/nav.php' ?>
+    </header>
 
-    <div class="stats">
-        <h2><?php echo $gebruikers; ?> Gebruikers</h2>
-        <h2><?php echo $postCount; ?> mensen zoeken Hulp!</h2>
-    </div>
+    <section id="geholpen">
 
-    <div class="functies">
-        <div class="leaderbord">
-
+        <div class="geholpenIcon">
+            <i class="fas fa-hands-helping"></i>
+        </div>
+        
+        <div class="introductieHG">
+            <h1>BENT U GEHOLPEN?</h1>
+            <p>Wat fijn dat u bent geholpen. Om diegene die u geholpen heeft te bedanken, hebben wij een puntenprogramma.
+                Hier kunt de email van de juiste persoon zoeken om hem zijn punten te geven!</p>
         </div>
 
-        <div class="bannen">
-            <form method="POST" action="<?php echo url('admin.ban') ?>">
-                <label for="invoer" class="kieseen">Kies een gebruiker</label><br>
-                <input type="text" id="invoer" name="invoer" list="lijst" placeholder="Zoek">
-                <datalist id="lijst"></datalist>
-                <button type="submit" class="submitAdmin">Submit</button>
-            </form>
-        </div>
-    </div>
+        <form method="POST" action="<?php echo url('punten.geven') ?>" class="formHG">
+            <label for="invoer" class="labelkies">Kies een gebruiker</label><br>
+            <input type="text" id="invoer" name="invoer" list="lijst" class="zoekbalkHG" placeholder="Zoek"><br>
+            <datalist id="lijst"></datalist>
+            <button type="submit" class="submitHG">Submit</button>
+        </form>
+    </section>
+
 
     <script type="text/javascript">
         let dataList = document.getElementById('lijst');
@@ -48,8 +48,7 @@
 
                 gebruikers.forEach(function(item) {
                     let option = document.createElement('option');
-                    option.innerText = item.voornaam;
-                    option.value = item.id;
+                    option.innerText = item.email;
                     dataList.appendChild(option);
                 });
 
@@ -60,7 +59,7 @@
         };
         input.placeholder = "Laden van de gebruikers...";
 
-        request.open('GET', '<?php echo url('admin.json'); ?>', true);
+        request.open('GET', '<?php echo url('hulp.json'); ?>', true);
         request.send();
 
         form.addEventListener('submit', function(event) {

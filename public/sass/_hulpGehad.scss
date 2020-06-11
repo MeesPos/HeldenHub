@@ -1,0 +1,50 @@
+.introductieHG{    
+    margin-bottom: 40px;
+    margin-top: 40px;
+    text-align: center;
+    padding: 0 25vw;
+}
+
+.introductieHG > h1{
+    margin-left: 3vw;
+}
+
+.formHG{
+    text-align: center;
+}
+
+.zoekbalkHG{
+    width: 28.5vw;
+    margin: 20px 0;
+}
+
+.submitHG{
+    width: 30vw;
+}
+
+.labelkies{
+    font-size: 20px;
+}
+
+#geholpen{
+    margin-top: 10vh;
+}
+
+.fa-hands-helping{
+    font-size: 150px;
+    color: $oranje;
+}
+
+.geholpenIcon{
+    margin-left: 46%;
+}
+
+@media screen and (max-width: 800px) {
+    .introductieHG{
+        padding: 0 5vw
+    }
+
+    .geholpenIcon{
+        margin-left: 27%;
+    }
+}
