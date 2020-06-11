@@ -1100,7 +1100,7 @@ input[type=comment] {
 }
 
 .vlagleader {
-  width: 600px;
+  width: 100%;
   margin-top: 10%;
   margin-left: 50%;
 }
