@@ -15,6 +15,7 @@ class AdminController
     public function adminPage()
     {
 
+        $puntenLeaderbord = puntenOphalen(5);
         adminLoginCheck();
 
         $connection = dbConnect();
@@ -51,7 +52,7 @@ class AdminController
         $statement4->execute();
 
         $template_engine = get_template_engine();
-        echo $template_engine->render('adminPage', ['data' => $data, 'gebruikers' => $gebruikerCount, 'postCount' => $postCount, 'gebruikersOphalen' => $gebruikersOphalen]);
+        echo $template_engine->render('adminPage', ['data' => $data, 'gebruikers' => $gebruikerCount, 'postCount' => $postCount, 'gebruikersOphalen' => $gebruikersOphalen, 'leaderbord' => $puntenLeaderbord]);
     }
 
     public function adminJson() {
