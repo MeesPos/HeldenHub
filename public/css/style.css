@@ -638,6 +638,16 @@ input[type=comment] {
   cursor: pointer;
 }
 
+.fa-times-circle{
+  color: #FF8800;
+  font-size: 100px;
+}
+
+.echomooi{
+  font-size: 20px;
+  margin-bottom: -3vh;
+}
+
 @media screen and (max-width: 800px) {
   #hulpdetail {
     grid-template-columns: 1fr;
