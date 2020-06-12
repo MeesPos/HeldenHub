@@ -34,9 +34,9 @@ function getUsersByEmail($email){
 	$statement = $connection->prepare($sql);
     $statement->execute(['email' => $email]);
 
-  if ($statement->rowCount() === 1);
+  if ($statement->rowCount() === 1){
    return $statement->fetch();
-
+  }
 return false;
 
 }
@@ -47,9 +47,9 @@ function getUsersById($id){
 	$statement = $connection->prepare($sql);
     $statement->execute(['id' => $id]);
 
-  if ($statement->rowCount() === 1);
+  if ($statement->rowCount() === 1){
    return $statement->fetch();
-
+  }
 
 return false;
 }
@@ -194,13 +194,13 @@ function userRegisteredCheck($email) {
             return ( $statement->rowCount() === 0 );
 }
 
-function createUser($data) {
+function createUser($data, $code) {
 
     $connection = dbConnect();
 
     
-    $sql =  'INSERT INTO `gebruikers` ( `email`, `voornaam`, `achternaam`, `plaats`, `birthday`, `myfile`, `wachtwoord`)
-             VALUE (:email, :voornaam, :achternaam, :plaats, :birthday, :profielfoto, :wachtwoord)';
+    $sql =  'INSERT INTO `gebruikers` ( `email`, `voornaam`, `achternaam`, `plaats`, `birthday`, `myfile`, `wachtwoord`, `code`)
+             VALUE (:email, :voornaam, :achternaam, :plaats, :birthday, :profielfoto, :wachtwoord, :code)';
     $statement = $connection->prepare($sql);
     
     $safe_wachtwoord = password_hash($data['wachtwoord'], PASSWORD_DEFAULT);
@@ -213,6 +213,7 @@ function createUser($data) {
         'birthday' => $data['birthday'],
         'profielfoto' => $data['profielfoto'],
         'wachtwoord' => $safe_wachtwoord,
+        'code' => $code
     ];
 
     $statement->execute($params);
@@ -225,8 +226,10 @@ function getLoginUserInfo($email) {
     $sql =  'SELECT * FROM `gebruikers` WHERE `email`= :email';
     $statement = $connection->prepare( $sql );
     $statement->execute( ['email' => $email] );
-    
-    return ( $statement->fetch() );
+    if($statement->rowCount() === 1){
+    return  $statement->fetch() ;
+}
+return false;
 }
 
 //  HULP VRAGEN

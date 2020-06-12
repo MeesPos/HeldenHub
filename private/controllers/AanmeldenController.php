@@ -29,11 +29,13 @@ class AanmeldenController
 
         if (count($result['errors']) === 0) {
 
-            if (userRegisteredCheck($result['data']['email'])) {
-
+            if (userRegisteredCheck($result['data']['email'] )) {
+                //verificatie code bv(ece3d94aa2df1ae03df9f24d5f9eba25)
+                  $code =md5(uniqid( rand(), true ) );
                 // Als email nog niet in db staat -> Nieuwe user aanmaken
-                createUser($result['data']);
-
+                createUser($result['data'], $code);
+                // send een email 
+                sendConfirmationEmail($result['data'], $code);
                 // Inloggen door sessie te maken
                 logUserIn($result['data']['email']);
 
@@ -84,19 +86,31 @@ class AanmeldenController
             if (!userRegisteredCheck($result['data']['email'])) {
                 // Uitvoeren wanneer email al bekend is
                 $userInfo = getLoginUserInfo($result['data']['email']);
-                if (password_verify($_POST['wachtwoord'], $userInfo['wachtwoord'])) {
+                      if($userInfo['code']=== null){
+                if (password_verify($result['data']['wachtwoord'], $userInfo['wachtwoord'])) {
                     $_SESSION['user_id'] = $userInfo['id'];
+                    redirect(url('ingelogd'));
                 } else {
                     $result['errors']['wachtwoord'] = 'Onjuist wachtwoord, probeer overnieuw.';
                 }
             } else {
                 $result['errors']['email'] = 'Onbekend email adres. Meld u eerst aan a.u.b.';
             }
+        }
         } else {
             $result['errors']['wrong'] = 'Fout wachtwoord of onbekend email adres!';
         }
 
         $template_engine = get_template_engine();
-        echo $template_engine->render('bedanktPagina', ['errors' => $result['errors']]);
+		echo $template_engine->render('AanmeldPagina', ['errors' => $result['errors']]);
     }
+    public function ingelogd()
+	{
+        $page = 1;
+        $cardData = getCardData($page, 5);
+        $userData = getUserData();
+		$template_engine = get_template_engine();
+		echo $template_engine->render('gebruikersPagina', ['userData' => $userData], [	'cards' => $cardData ]);
+    }
+    
 }

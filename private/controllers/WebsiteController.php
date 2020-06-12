@@ -106,74 +106,59 @@ class WebsiteController
 		redirect($bedanktUrl);
 	}
 
-	public function bevestigenEmail()
+	
+
+	public function update()
 	{
-
-		$mailer = getSwiftMailer();
-		$connection = dbConnect();
-		$email      = filter_var($_POST['email']);
-		$sql =  'SELECT * FROM `gebruikers` WHERE `email`= :email';
-		$statement = $connection->prepare($sql);
-		$message = createEmailMessage($email , 'dit is een test email', 'Duneya', '29269@ma-web.nl');
-		$template_engine = get_template_engine();
-		echo $template_engine->render('email', ['message' => null]);	
-
-
-	}
-	public function viewsEmail()
-	{
-		$mailer = getSwiftMailer();
-		$connection = dbConnect();
-		$email      = filter_var($_POST['email']);
-		$sql =  'SELECT * FROM `gebruikers` WHERE `email`= :email';
-		$statement = $connection->prepare($sql);
-
-		$statement->execute(['email' => $email]);
-		$message = createEmailMessage($email, 'dit is een test email', 'Duneya', '29269@ma-web.nl');
-		$template_engine = get_template_engine();
-		$html =  $template_engine->render('email', ['message' => $message]);
-		$aantal_verstuurd = $mailer->send($message);
-		$message->setBody($html, 'text/html');
-		$template_engine = get_template_engine();
-		echo $template_engine->render('bedanktPagina');	
-	}
-
-	public function infoWijzigen()
-	{
-		$connection = dbConnect();
-
-		$id = (int) $_POST['id'];
+		$id = (int) $_SESSION['user_id'];
 		$email = $_POST['email'];
 		$voornaam  = $_POST['voornaam'];
 		$achternaam = $_POST['achternaam'];
 		$plaats = $_POST['plaats'];
-		$birthday = $_POST['birthday'];
-		$myfile = $_POST['myfile'];
-
-		$statement = "SELECT id, email, voornaam, achternaam, plaats, birthday, myfile FROM `gebruikers`";
-
+		// $birthday = $_POST['birthday'];
+		$myfile = $_FILES['myfile'];
+		$connection = dbConnect();
+	
 		$sql = 'UPDATE `gebruikers` SET
             `email` = :email,
             `voornaam` = :voornaam,
             `achternaam` = :achternaam,
             `plaats` = :plaats,
-            `birthday` = :birthday,
-			`myfile` = :myfile,
+            -- `birthday` = :birthday,
+			`myfile` = :myfile
+
 			WHERE  `id` = :id ';
-			
+		
+		$statement = $connection->prepare($sql);
 		$gegevens = [
 			'id' => $id,
 			'email' => $email,
 			'voornaam' => $voornaam,
 			'achternaam' => $achternaam,
 			'plaats' => $plaats,
-			'birthday' => $birthday,
-			'myfile' => $myfile
+			// 'birthday' => $birthday,
+			'myfile' =>  $myfile
 		];
-
-		
-		$statement = $connection->prepare($sql);
-
 		$statement->execute($gegevens);
+       redirect(url('ingelogd'));
 	}
-}
+	public function infoWijzigen()
+	{
+		
+		$id = (int)$_SESSION['user_id'];
+
+		$connection = dbConnect();
+	
+		$sql = 'SELECT * FROM `gebruikers` WHERE `id` = :id';
+		$statement = $connection->prepare($sql);
+		$parameters =[
+			'id' => $id
+		 ];
+		$statement->execute($parameters);
+		$userData = $statement->fetch();
+
+		$template_engine = get_template_engine();
+		echo $template_engine->render('gebruikersPagina', ['userData'=>$userData]);
+		
+	}}
+

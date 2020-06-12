@@ -21,9 +21,9 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::post('/aanmelden/login','AanmeldenController@login')->name('login');
 
 	// Emails
-	SimpleRouter::get( '/aanmelden/registreren/bevestigenEmail', 'WebsiteController@viewsEmail' )->name( 'viewsEmail' );
-	SimpleRouter::get( '/aanmelden/registreren/bevestigenEmail/{code}', 'WebsiteController@bevestigenEmailCode' )->name( 'bevestigenEmailCode' );
-	SimpleRouter::get( '/testEmail', 'WebsiteController@bevestigenEmail' )->name( 'bevestigenEmail' );
+	SimpleRouter::get( '/aanmelden/registreren/bevestigenEmail', 'EmailController@viewsEmail' )->name( 'viewsEmail' );
+	SimpleRouter::get( '/aanmelden/registreren/bevestigenEmail/{code}', 'EmailController@bevestigenEmailCode' )->name( 'bevestigenEmailCode' );
+	SimpleRouter::get( '/testEmail', 'EmailController@bevestigenEmail' )->name( 'bevestigenEmail' );
 
 	// Hulp vragen
 	SimpleRouter::get( '/hulp-vragen', 'HulpController@hulpVragen' )->name( 'hulp-vragen' );
@@ -35,8 +35,9 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::post( '/details/contact', 'WebsiteController@detailsContact' )->name ( 'detailsContact' );
 	
 	// Gebruikers page
-	SimpleRouter::get( '/MijnAccount', 'WebsiteController@ingelogd' )->name( 'ingelogd' );
-	SimpleRouter::post('/MijnAccount/MijnInfoWijzigen','WebsiteController@infoWijzigen')->name('infoWijzigen');
+	SimpleRouter::get( '/MijnAccount', 'AanmeldenController@ingelogd' )->name( 'ingelogd' );
+	SimpleRouter::post('/MijnAccount/MijnInfoWijzigen','WebsiteController@update')->name('update');
+	SimpleRouter::get('MijnAccount/MijnInfoWijzigen/gegevenswijzigen', "WebsiteController@infoWijzigen")->name('infoWijzigen');
 	
 	// Admin page
 	SimpleRouter::get( '/admin', 'AdminController@adminPage')->name('adminPage');

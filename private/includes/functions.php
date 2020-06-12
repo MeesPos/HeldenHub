@@ -91,7 +91,7 @@ function userNotRegistered($email)
 	return ($statement->rowCount() === 0);
 }
 
-
+////////////////////////////////////////////////////email 
 /**
  * Maak de SwiftMailer aan en stet hem op de juiste manier in
  *
@@ -179,7 +179,7 @@ function sendConfirmationEmail($email, $code)
 	$absolute_url = absolute_url($url);
 
 	$mailer = getSwiftMailer();
-	$message = createEmailMessage($email, 'Bevestig je account', 'website', 'buneya2001@gmail.com');
+	$message = createEmailMessage($email, 'Bevestig je account', 'HeldenHub', 'buneya2001@gmail.com');
 	$email_text = 'Hallo, bevestig nu je account: <a href="' . $absolute_url . '">Klik Hier </a>';
 	$message->setBody($email_text, 'text/html');
 
@@ -194,7 +194,7 @@ function sendConfirmationEmail($email, $code)
 
 
 
-
+////////////////////////////////////////////////////email stopt hier 
 
 
 // OVERIGE FUNCTIES
