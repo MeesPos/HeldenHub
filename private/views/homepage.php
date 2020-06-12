@@ -24,8 +24,8 @@
             hond uitlaten of de tuin doen! Als je wilt helpen kan je reageren op deze aanvragen. Wees er voorelkaar!</p>
 
             <div class="knoppenhelpen">
-                <button class="wilhelpen">IK WIL HELPEN</button>
-                <a href="hulp-vragen"><button class="hulpnodig">HULP NODIG</button></a>
+                <a href="<?php echo url("overview") ?>"><button class="wilhelpen">IK WIL HELPEN</button></a>
+                <a href="<?php echo url("hulp-vragen") ?>"><button class="hulpnodig">HULP NODIG</button></a>
             </div>
         </section>
 
