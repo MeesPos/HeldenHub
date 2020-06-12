@@ -326,3 +326,31 @@ function puntenOphalen($limit) {
     return $statement->fetchAll();
 
 }
+
+// WACHTWOORD VERGETEN PAGINA
+
+function getUsersByResetCode($reset_code){
+    $connection = dbConnect();
+	$sql =  'SELECT * FROM `gebruikers` WHERE `password_reset`= :code';
+	$statement = $connection->prepare($sql);
+    $statement->execute(['code' => $reset_code]);
+
+  if ($statement->rowCount() === 1) {
+   return $statement->fetch();
+  }
+
+return false;
+}
+
+function updatePassword($user_id, $new_password) {
+    $safe_new_password = password_hash($new_password, PASSWORD_DEFAULT);
+    $sql = 'UPDATE `gebruikers` SET `wachtwoord` = :wachtwoord, `password_reset` = NULL WHERE id = :id';
+    $connection = dbConnect();
+    $statement = $connection->prepare($sql);
+    $params = [
+        'wachtwoord' => $safe_new_password,
+        'id' => $user_id
+    ];
+
+    return $statement->execute($params);
+}

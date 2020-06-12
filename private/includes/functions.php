@@ -179,7 +179,7 @@ function sendConfirmationEmail($email, $code)
 	$absolute_url = absolute_url($url);
 
 	$mailer = getSwiftMailer();
-	$message = createEmailMessage($email, 'Bevestig je account', 'website', 'buneya2001@gmail.com');
+	$message = createEmailMessage($email, 'Bevestig je account', 'HeldenHub', 'buneya2001@gmail.com');
 	$email_text = 'Hallo, bevestig nu je account: <a href="' . $absolute_url . '">Klik Hier </a>';
 	$message->setBody($email_text, 'text/html');
 
@@ -366,4 +366,32 @@ function JSONemailOphalen() {
 	$gebruikersEmail = $statement->fetchAll();
 
 	return json_encode(array_values($gebruikersEmail));
+}
+
+function sendPasswordResetEmail($email) {
+
+	// Code genereren en opslaan bij dit email adres (gebruiker)
+	$reset_code = md5( uniqid( rand(), true) );
+	$connection = dbConnect();
+	$sql 		= 'UPDATE `gebruikers` SET `password_reset` = :code WHERE `email` = :email';
+	$statement	= $connection->prepare($sql);
+	$params 	= [
+		'code'  => $reset_code,
+		'email' => $email
+	];
+	$statement->execute($params);
+
+
+	// Link genereren met code
+	$url = url('wachtwoord.reset', ['reset_code' => $reset_code]);
+	$absolute_url = absolute_url($url);
+
+
+	// Mail opstellen en versturen
+	$mailer = getSwiftMailer();
+	$message = createEmailMessage($email, 'Wachtwoord resetten', 'HeldenHub', '29035@ma-web.nl');
+	$email_text = 'Hallo, klik hier om je wachtwoord te resetten: <a href="' . $absolute_url . '">Wachtwoord resetten </a>';
+
+	$message->setBody($email_text, 'text/html');
+	$mailer->send($message);
 }

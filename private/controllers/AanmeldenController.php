@@ -102,4 +102,84 @@ class AanmeldenController
         $template_engine = get_template_engine();
         echo $template_engine->render('bedanktPagina', ['errors' => $result['errors']]);
     }
+
+    public function wachtwoordvergeten() {
+
+        $errors = [];
+        $mail_sent = false;
+
+        if ( request()->getMethod() === 'post' ) {
+            // Formulier afhandelen
+
+            // Email checks
+            $email = filter_var( $_POST['email'], FILTER_VALIDATE_EMAIL);
+            if ( $email === false ) {
+                $errors['email'] = 'Geen geldig email adres opgegeven';
+            }
+
+            if ( count( $errors ) === 0 ) {
+                // Kijken of email in de database staat
+                $user = getUsersByEmail($email);
+                if ( $user === false ) {
+                    $errors['email'] = 'Onbekend account';
+                }
+            }
+
+            // Als er geen fouten zijn, reset mail versturen
+            if(count($errors) === 0){
+                sendPasswordResetEmail($email);
+                $mail_sent = true;
+            }
+        }
+
+        $template_engine = get_template_engine();
+        echo $template_engine->render('wachtwoord-vergeten', ['errors' => $errors, 'mail_sent' => $mail_sent]);
+    }
+
+    public function wachtwoordReset($reset_code) {
+
+        $errors = [];
+
+        // Gebruiker ophalen die bij de resetcode hoort
+        $user = getUsersByResetCode($reset_code);
+        if ( $user === false ) {
+            echo "Ongeldige code";
+            exit;
+        }
+
+        // Is het formulier opgetuurd met POST?
+        if ( request()->getMethod() === 'post' ) {
+            $password = $_POST['password'];
+            $password_confirm = $_POST['password_confirm'];
+
+            if(strlen($password) < 6) {
+                $errors['password'] = 'Wachtwoord moet minstens 6 karakters lang zijn.';
+            }
+
+            if(count($errors) === 0) {
+                if($password !== $password_confirm) {
+                    $errors['password'] = 'De wachtwoorden zijn niet gelijk.';
+                }
+            }
+
+            if(count($errors) === 0 ) {
+                $result = updatePassword($user['id'], $password);
+                if($result === true) {
+                    redirect(url('aanmelden'));
+                    // Script stopt
+                } else {
+                    $errors['password'] = 'Er ging iets fout bij het opslaan van het wachtwoord.';
+                }
+            }
+        }
+
+        // Formulier cheken (wachtwoord validatie)
+
+        // Het nieuwe Wachtwoord opslaan
+        
+        // Gebruiker doorsturen naar de login
+
+        $template_engine = get_template_engine();
+        echo $template_engine->render('wachtwoord-reset', ['errors' => $errors, 'reset_code' => $reset_code]);
+    }
 }

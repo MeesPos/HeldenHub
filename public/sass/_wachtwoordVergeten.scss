@@ -1,0 +1,34 @@
+#inloggen{
+    margin-top: 5vh;
+    margin-left: 2vw;
+}
+
+#inloggen > h1{
+    margin-bottom: 2vh;
+}
+
+#inloggen > P{
+    margin-bottom: 2vh;
+}
+.WVEmail{
+    width: 600px;
+}
+
+.WVReset{
+    width: 624px;
+    margin-top: 2vh;
+}
+
+@media screen and (max-width: 800px) {
+    .WVEmail{
+        width: 300px;
+    }
+    
+    .WVReset{
+        width: 324px;
+    }
+
+    #inloggen{
+        text-align: center;
+    }
+}
