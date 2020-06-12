@@ -29,6 +29,7 @@
         </div>
 
         <form method="POST" action="<?php echo url('punten.geven') ?>" class="formHG">
+        <input type="hidden" name="postId" value="<?php echo $_POST['postId'] ?>">
             <label for="invoer" class="labelkies">Kies een gebruiker</label><br>
             <input type="text" id="invoer" name="invoer" list="lijst" class="zoekbalkHG" placeholder="Zoek"><br>
             <datalist id="lijst"></datalist>

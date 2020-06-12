@@ -80,12 +80,14 @@ class GebruikerController
 		// Get user id from POST email & Check if user gave points to him or herself
 		$receiver = getLoginUserInfo($_POST['invoer']);
 
-		if (! $receiver['id'] == $_SESSION['user_id']) {
+		if ($receiver['id'] !== $_SESSION['user_id']) {
 			// Give certain user id points
 			givePoint($receiver['id']);
 			// Delete post
-
+			deletePost($_POST['postId']);
 			// Redirect 
+			$redirectURL = url('gebruiker');
+			redirect($redirectURL);
 		} else {
 			$errors['greedy'] = "Je kan geen punten aan jezelf geven.";
 		}
