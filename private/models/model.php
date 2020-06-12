@@ -241,6 +241,7 @@ function savePost() {
 	redirect($redirectURL);
 }
 
+
 // OVERVIEW
 
 function getCardData($page, $pagesize = 5) {
@@ -305,6 +306,27 @@ function getUserCardData($page, $pagesize = 5) {
     ];
 };
 
+
+// Punten geven
+
+function givePoint($receiver) {
+    $connection = dbConnect();
+    $sql = 'UPDATE `punten` SET `punten` = `punten` + "1" , `credits` = `credits` + "1" WHERE `punten` . `gebruiker_id` = :id';
+    
+    $statement = $connection->prepare($sql);
+    $statement->execute( ['id' => $receiver] );
+
+};
+
+function deletePost($postId) {
+    $connection = dbConnect();
+    $sql = 'DELETE FROM `posts` WHERE `id` = :id ';
+
+    $statement = $connection->prepare($sql);
+    $statement->execute( ['id' => $postId] );
+}
+
+
 // LEADERBORD PAGINA
 
 function puntenOphalen($limit) {
@@ -354,3 +376,4 @@ function updatePassword($user_id, $new_password) {
 
     return $statement->execute($params);
 }
+

@@ -15,7 +15,10 @@
 
 <body style="background-image: linear-gradient(rgba(123, 123, 123, 0.4), rgba(123, 123, 123, 0.4)), url( <?php echo site_url('/img/stad.png') ?> )">
 
+<?php 
 
+
+?>
     <div class="ov-wrapper-gebruiker">
         <div class="ov-wrapper-left">
             <div class="user-account">
@@ -74,7 +77,7 @@
                         <td><?php echo $user_data['credits'] ?></td>
                     </tr>
                     <tr class="disable-leaderbord-score gebruiker-table-row">
-                        <td class="gebruiker-table-data"><i class="fas fa-trophy" ></i></td>
+                        <td class="gebruiker-table-data"><i class="fas fa-trophy"></i></td>
                         <td>#1</td>
                     </tr>
                 </table>
@@ -107,15 +110,15 @@
                         </div>
                         <div class="ov-buttons">
                             <div class="ov-post-knop">
-                                <form action="#" method="POST" class="ov-post-form">
-                                    <input type="hidden" name="postId" value="1">
+                                <form action="<?php echo url('details') ?>" method="POST" class="ov-post-form">
+                                    <input type="hidden" name="postId" value="<?php echo $row['id'] ?>">
                                     <input type="submit" name="post-detail" id="ov-form-submit" value="Details">
                                 </form>
                             </div>
 
                             <div class="ov-geholpen-knop">
                                 <form action="<?php echo url('hulp-gehad') ?>" method="POST">
-                                    <input type="hidden" name="geefIDMee">
+                                    <input type="hidden" name="postId" value="<?php echo $row['id'] ?>">
                                     <input type="submit" name="hulpgehad" id="ov-geholpen-submit" value="Ik ben geholpen">
                                 </form>
                             </div>
@@ -124,6 +127,23 @@
                 </div>
             <?php endforeach;
             ?>
+            <div class="pagination">
+            <div class="pagination-links">
+                <?php for ($i = 1; $i <= $cards['pages']; $i++) : ?>
+                    <a href="<?php echo site_url() . "mijnAccount/" . $i ?>" <?php
+                                                                            if ($i == $cards['page']) {
+                                                                                echo 'class="actieve-pagina pagination-buttons"';
+                                                                            } else {
+                                                                                echo 'class="pagination-buttons" ';
+                                                                            }
+
+
+
+                                                                            ?>><?php echo $i ?></a>
+                <?php endfor; ?>
+            </div>
+
+        </div>
         </div>
 
 

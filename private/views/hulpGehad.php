@@ -21,19 +21,26 @@
         <div class="geholpenIcon">
             <i class="fas fa-hands-helping"></i>
         </div>
-        
+
         <div class="introductieHG">
             <h1>BENT U GEHOLPEN?</h1>
             <p>Wat fijn dat u bent geholpen. Om diegene die u geholpen heeft te bedanken, hebben wij een puntenprogramma.
-                Hier kunt de email van de juiste persoon zoeken om hem zijn punten te geven!</p>
+                Hier kunt de email van de juiste persoon zoeken om aan hem of haar punten te geven!</p>
         </div>
 
         <form method="POST" action="<?php echo url('punten.geven') ?>" class="formHG">
+        <input type="hidden" name="postId" value="<?php echo $_POST['postId'] ?>">
             <label for="invoer" class="labelkies">Kies een gebruiker</label><br>
             <input type="text" id="invoer" name="invoer" list="lijst" class="zoekbalkHG" placeholder="Zoek"><br>
             <datalist id="lijst"></datalist>
             <button type="submit" class="submitHG">Submit</button>
         </form>
+        <?php if (isset($errors)) {
+            foreach ($errors as $row) {
+                echo $row;
+            };
+        }
+        ?>
     </section>
 
 

@@ -70,3 +70,26 @@
     margin-top: 20px;
     width: 130px;
 }
+.pagination {
+    margin-bottom: 60px;
+}
+.pagination-links {
+    margin: 0 auto;
+    width: fit-content;
+}
+.pagination-buttons {
+    text-decoration: none;
+    padding: 10px 20px 10px 20px;
+    border-radius: 35px;
+    margin: 10px;
+    background-color: rgb(160, 160, 160);
+    color: white;
+    font-size: 20px;
+}
+.pagination-buttons:hover {
+    background-color: lighten($color: $oranje, $amount: 35);
+}
+.actieve-pagina {
+    background-color: $oranje;
+    color: black;
+}

@@ -879,6 +879,34 @@ input[type=comment] {
   width: 130px;
 }
 
+.pagination {
+  margin-bottom: 60px;
+}
+
+.pagination-links {
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.pagination-buttons {
+  text-decoration: none;
+  padding: 10px 20px 10px 20px;
+  border-radius: 35px;
+  margin: 10px;
+  background-color: #a0a0a0;
+  color: white;
+  font-size: 20px;
+}
+
+.pagination-buttons:hover {
+  background-color: #ffdbb3;
+}
+
+.actieve-pagina {
+  background-color: #FF8800;
+  color: black;
+}
+
 .fa-check-circle {
   color: #FF8800;
   font-size: 100px;
