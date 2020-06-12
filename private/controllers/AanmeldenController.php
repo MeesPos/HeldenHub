@@ -42,7 +42,7 @@ class AanmeldenController
                 redirect($overviewURL);
                 exit;
             } else {
-                $result['errors']['email'] = 'Dit account bestaat al!';
+                $result['errors']['email'] = 'Dit account bestaat al!'; 
             }
         }
 
