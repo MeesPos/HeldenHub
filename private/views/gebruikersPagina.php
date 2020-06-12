@@ -127,6 +127,23 @@
                 </div>
             <?php endforeach;
             ?>
+            <div class="pagination">
+            <div class="pagination-links">
+                <?php for ($i = 1; $i <= $cards['pages']; $i++) : ?>
+                    <a href="<?php echo site_url() . "mijnAccount/" . $i ?>" <?php
+                                                                            if ($i == $cards['page']) {
+                                                                                echo 'class="actieve-pagina pagination-buttons"';
+                                                                            } else {
+                                                                                echo 'class="pagination-buttons" ';
+                                                                            }
+
+
+
+                                                                            ?>><?php echo $i ?></a>
+                <?php endfor; ?>
+            </div>
+
+        </div>
         </div>
 
 
