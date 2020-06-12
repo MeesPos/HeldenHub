@@ -283,14 +283,15 @@ function getUserCardData($page, $pagesize = 5) {
     // Calculate offset
     $offset = ( $page - 1 ) * $pagesize;
 
+    $user_id_ophalen = $_SESSION['user_id'];
+
     // Inner join query to get all info needed and skip deleted users 
-    $query      = 'SELECT * 
-    FROM `gebruikers`
+    $query      = 'SELECT * FROM `gebruikers`
     INNER JOIN `posts` 
     ON `posts`.`gebruiker_id` = `gebruikers`.`id`
-    WHERE `gebruikers` . `id` =  ' . $_SESSION['user_id'] . '
-    LIMIT ' . $pagesize . ' OFFSET ' . $offset ; 
-    
+    WHERE `gebruikers` . `id` = ' .  $user_id_ophalen . '
+    LIMIT ' . $pagesize .  'OFFSET'  . $offset; 
+
     // $param = [
     //     'gebruiker_id' => $_SESSION['user_id']
     // ];
@@ -304,6 +305,7 @@ function getUserCardData($page, $pagesize = 5) {
         'page'      => $page 
     ];
 };
+
 
 // Punten geven
 
@@ -322,5 +324,56 @@ function deletePost($postId) {
 
     $statement = $connection->prepare($sql);
     $statement->execute( ['id' => $postId] );
+}
+
+
+// LEADERBORD PAGINA
+
+function puntenOphalen($limit) {
+
+    
+
+    $connection = dbConnect();
+    $sql = 'SELECT * FROM `punten`
+    INNER JOIN `gebruikers` 
+    ON `punten`.`gebruiker_id` = `gebruikers`.`id`
+    WHERE `gebruikers`.`id` = `punten`.`gebruiker_id` 
+    ORDER BY punten.punten DESC LIMIT ' . $limit .' ';
+    $statement = $connection->prepare($sql);
+    $param = [
+        'leadLimit' => $limit
+    ];
+    $statement->execute($param);
+
+    return $statement->fetchAll();
+
+}
+
+// WACHTWOORD VERGETEN PAGINA
+
+function getUsersByResetCode($reset_code){
+    $connection = dbConnect();
+	$sql =  'SELECT * FROM `gebruikers` WHERE `password_reset`= :code';
+	$statement = $connection->prepare($sql);
+    $statement->execute(['code' => $reset_code]);
+
+  if ($statement->rowCount() === 1) {
+   return $statement->fetch();
+  }
+
+return false;
+}
+
+function updatePassword($user_id, $new_password) {
+    $safe_new_password = password_hash($new_password, PASSWORD_DEFAULT);
+    $sql = 'UPDATE `gebruikers` SET `wachtwoord` = :wachtwoord, `password_reset` = NULL WHERE id = :id';
+    $connection = dbConnect();
+    $statement = $connection->prepare($sql);
+    $params = [
+        'wachtwoord' => $safe_new_password,
+        'id' => $user_id
+    ];
+
+    return $statement->execute($params);
 }
 

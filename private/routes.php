@@ -20,7 +20,8 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::get( '/aanmelden', 'AanmeldenController@aanmelden' )->name( 'aanmelden' );
 	SimpleRouter::post('/aanmelden/registreren','AanmeldenController@registreer')->name('registreer');
 	SimpleRouter::post('/aanmelden/login','AanmeldenController@login')->name('login');
-
+	SimpleRouter::match(['get','post'], '/aanmelden/wachtwoord-vergeten', 'AanmeldenController@wachtwoordvergeten')->name( 'wachtwoord.vergeten' );
+	SimpleRouter::match(['get','post'], '/aanmelden/wachtwoord-vergeten/{reset_code}', 'AanmeldenController@wachtwoordReset')->name( 'wachtwoord.reset' );
 	// Emails
 	SimpleRouter::get( '/aanmelden/registreren/bevestigenEmail', 'WebsiteController@viewsEmail' )->name( 'viewsEmail' );
 	SimpleRouter::get( '/aanmelden/registreren/bevestigenEmail/{code}', 'WebsiteController@bevestigenEmailCode' )->name( 'bevestigenEmailCode' );
@@ -52,6 +53,9 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	// Overview routes
 	SimpleRouter::get( '/overview', 'OverviewController@displayOverview' )->name( 'overview' );
 	SimpleRouter::get( '/overview/{page}', 'OverviewController@displayOverviewPages' )->name( 'overview' );
+
+	// Leaderbord routes
+	SimpleRouter::get( '/leaderbord', 'LeaderbordController@Leaderbord')->name( 'leaderbord' );
 
 	// Overige routes
 	SimpleRouter::get( '/uitloggen', 'WebsiteController@loguit' )->name( 'loguit' );

@@ -12,7 +12,7 @@
                             <a class="nav-items" href="<?php echo url("loguit")?>">Uitloggen</a>
                         <?php endif; ?>
                         <a class="nav-items" href="#">Shop</a>
-                        <a class="nav-items mobielfix" href="#">Leaderbord</a>
+                        <a class="nav-items mobielfix" href="<?php echo url("leaderbord") ?>">Leaderbord</a>
                     </div>
                 </div>
             </section>
