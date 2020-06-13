@@ -200,16 +200,6 @@ function sendConfirmationEmail($email, $code)
 // OVERIGE FUNCTIES
 
 
-function loggedInCheck()
-{
-	// Niet ingelogd? Terug naar log in pagina
-	// ALLEEN TE GEBRUIKEN VOOR LOG IN REQUIRED PAGES
-	if (!isset($_SESSION['user_id'])) {
-		session_start();
-	}
-}
-
-
 // AANMELDPAGINA 
 
 function validateRegistrationForm($data, $myfile, $errors)
@@ -340,14 +330,69 @@ function validate($data)
 	];
 }
 
-function gebruikersOphalen($connection){
-	$gebruikersVinden = 'SELECT * FROM `gebruikers`';
-	$statement = $connection->prepare($gebruikersVinden);
+function gebruikersOphalen()
+{
+	$connection = dbConnect();
+	$gebruikersVinden = 'SELECT `voornaam`, `id` FROM `gebruikers`';
+	$statementBan = $connection->prepare($gebruikersVinden);
+	$statementBan->execute();
+
+	$gebruikersData = $statementBan->fetchAll();
+
+	return json_encode(array_values($gebruikersData));
+}
+
+function loggedInCheck()
+{
+	// Niet ingelogd? Terug naar log in pagina
+	// ALLEEN TE GEBRUIKEN VOOR LOG IN REQUIRED PAGES
+	if (!isset($_SESSION['user_id'])) {
+		session_start();
+	}
+}
+
+function adminLoginCheck() {
+	if(!isset($_SESSION['user_id'])) {
+		$bedanktUrl = url("home");
+		redirect($bedanktUrl);
+	}
+}
+
+function JSONemailOphalen() {
+	$connection = dbConnect();
+	$sql = 'SELECT `email` FROM `gebruikers`';
+	$statement = $connection->prepare($sql);
 	$statement->execute();
 
-	$gebruikersData = $statement->fetch();
+	$gebruikersEmail = $statement->fetchAll();
 
-	$gebruikers = [ $gebruikersData ];
+	return json_encode(array_values($gebruikersEmail));
+}
 
-	echo json_encode(array_values($gebruikers));
+function sendPasswordResetEmail($email) {
+
+	// Code genereren en opslaan bij dit email adres (gebruiker)
+	$reset_code = md5( uniqid( rand(), true) );
+	$connection = dbConnect();
+	$sql 		= 'UPDATE `gebruikers` SET `password_reset` = :code WHERE `email` = :email';
+	$statement	= $connection->prepare($sql);
+	$params 	= [
+		'code'  => $reset_code,
+		'email' => $email
+	];
+	$statement->execute($params);
+
+
+	// Link genereren met code
+	$url = url('wachtwoord.reset', ['reset_code' => $reset_code]);
+	$absolute_url = absolute_url($url);
+
+
+	// Mail opstellen en versturen
+	$mailer = getSwiftMailer();
+	$message = createEmailMessage($email, 'Wachtwoord resetten', 'HeldenHub', '29035@ma-web.nl');
+	$email_text = 'Hallo, klik hier om je wachtwoord te resetten: <a href="' . $absolute_url . '">Wachtwoord resetten </a>';
+
+	$message->setBody($email_text, 'text/html');
+	$mailer->send($message);
 }

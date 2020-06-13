@@ -22,6 +22,15 @@ class OverviewController {
 		echo $template_engine->render('overview', [	'cards' => $cardData ]);
 	}
 
+	public function displayOverviewPages($page) {
+		$cardData = getCardData($page, 5);
+
+		
+
+		$template_engine = get_template_engine();
+		echo $template_engine->render('overview', [	'cards' => $cardData ]);
+	}
+
 
 	
 }

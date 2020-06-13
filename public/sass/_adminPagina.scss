@@ -1,3 +1,7 @@
+#admin-page{
+    overflow: hidden;
+}
+
 .stats{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -10,6 +14,10 @@
     margin-top: 1%;
 }
 
+.datum{
+    margin-left: 27%;
+}
+
 .welkom > p{
     margin-top: .4%;
 }
@@ -19,4 +27,135 @@
     grid-template-columns: 1fr 1fr;
     text-align: center;
     margin-top: 2%;
+}
+
+.kieseen{
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.submitAdmin{
+    width: 63.5%;
+    margin-top: 2%;
+}
+
+.vlagadmin{
+    width: 80%;
+    margin-top: 1%;
+    margin-left: 0%;
+}
+
+.LBRechts{
+    margin-top: -8.5%;
+    margin-left: 10%;
+    width: 80%;
+}
+
+.TableLB{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    height: 60px;
+    width: 98%;
+    text-align: left;
+}
+
+.TableLB:nth-child(2n) {
+    background-color: #efefef!important;
+}
+
+.nummeren{
+    margin-right: 20px;
+    font-size: 40px;
+    color: $oranje;
+}
+
+.puntenLBRE{
+    margin-left: 25%!important;
+    margin-top: 2%;
+}
+
+.puntjesLBR{
+    font-size: 40px;
+    color: $oranje;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1150px) {
+    .vlagadmin{
+        width: 400px!important;
+    }
+}
+
+@media screen and (max-width: 925px){
+    .naamLB{
+        font-size: 30px!important;
+        margin-top: 40px!important;
+    }
+
+    .nummeren{
+        font-size: 30px!important;
+        margin-top: 40px!important;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .submitAdmin{
+        width: 90%;
+    }
+
+    #invoer{
+        width: 75%;
+    }
+
+    .stats > h2{
+        font-size: 16px;
+    }
+
+    .functies{
+        grid-template-columns: 1fr!important;
+    }
+
+    .bannen{
+        margin-top: 10%;
+    }
+
+    .kieseen{
+        font-size: 15px;
+    }
+
+    .datum{
+        font-size: 16px;
+        display: inline-block;
+        margin-left: 0;
+        margin-bottom: 2vh;
+    }
+
+    .vlagadmin{
+        margin-left: 0;
+        width: 100vw!important;
+        margin-left: -10vw;
+    }
+
+    .LBRechts{
+        margin-left: 0;
+        width: 110vw;
+    }
+
+    .TableLB{
+        margin-left: 0;
+    }
+
+    .ranken{
+        margin-left: 2vw;
+    }
+
+    .stats{
+        margin-left: -10vw;
+        margin-bottom: 2vh;
+    }
+
+    .puntenLBRE{
+        margin-left: 15%!important;
+    }
 }

@@ -67,9 +67,9 @@
 }
 @media only screen and (max-width: 800px) and (orientation: portrait) { 
     .bovennav > a{
-        margin-left: 20px!important;
-        margin-top: -15px!important;
-        font-size: 18px;
+        margin-left: 20px;
+        margin-top: -15px;
+        font-size: 16px;
     }
 
     .bovennav{
@@ -92,5 +92,14 @@
     }
     .ondernav{
         height: 50px;
+    }
+
+    .navitems{
+        margin-left: -40px;
+        display: inline-block;
+    }
+
+    .mobielfix{
+        margin-right: -100vw!important;
     }
 }

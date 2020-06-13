@@ -34,7 +34,7 @@
                            <?php endif; ?>
                     </div>
                     <div class="wwv">
-                        <a href="index.php" class="button2">Wachtwoord vergeten?</a>
+                        <a href="<?php echo url('wachtwoord.vergeten') ?>" class="button2">Wachtwoord vergeten?</a>
                     </div>
                     <div class="buttons">
                         <button type="submit" class="button">INLOGGEN</button>

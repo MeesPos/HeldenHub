@@ -10,8 +10,6 @@ function getUsers(){
 
 function alleDetails()
 {
-    // $id = $_POST['postId'];
-    $id = 1;
 
     $connection = dbConnect();
     $sql = 'SELECT * 
@@ -21,11 +19,11 @@ function alleDetails()
         WHERE `posts`.`id` = :id';
     $statement = $connection->prepare($sql);
     $idQuery = [
-        'id' => $id
+        'id' => $_POST['postId']
     ];
     $statement->execute($idQuery);
-
-    return $statement->fetchAll();
+    
+    return $statement->fetch();
 }
 
 function getUsersByEmail($email){
@@ -80,19 +78,7 @@ function alleDetailsContact()
 
     return $statement->fetchAll();
 }
-function getUserData() {
-    $connection = dbConnect();
-    $query      = 'SELECT * FROM `gebruikers` WHERE `id` = :gebruiker_id';
-    $statement  = $connection->prepare($query);
 
-    $params = [
-        'gebruiker_id' => $_SESSION['user_id']
-    ];
-    
-    $statement->execute($params);
-    
-    return $statement->fetch();
-}
 
 
 
@@ -105,33 +91,6 @@ function getTotalTracks($connection) {
     return (int) $statement->fetchColumn();
 
 }
-
-function getCardData($page, $pagesize = 5) {
-    $connection = dbConnect();
-
-    // Amount of rows
-    $total = getTotalTracks($connection);
-    // Amount of pages
-    $num_pages = (int) round($total / $pagesize);
-    // Calculate offset
-    $offset = ( $page - 1 ) * $pagesize;
-
-    // Inner join query to get all info needed and skip deleted users 
-    $query      = 'SELECT * 
-    FROM `gebruikers`
-    INNER JOIN `posts` 
-    ON `posts`.`gebruiker_id` = `gebruikers`.`id`
-    LIMIT ' . $pagesize . ' OFFSET ' . $offset; 
-    
-    // Prepare and return executed query
-    $statement = $connection->query($query);
-    return [
-        'statement' => $statement,
-        'total'     => $total,
-        'pages'     => $num_pages,
-        'page'      => $page 
-    ];
-};
 
 
 function adminPageConn() {
@@ -164,6 +123,24 @@ function adminPageConn() {
 
 // OVERIGE FUNCTIES
 
+function getUserData() {
+    $connection = dbConnect();
+    $query      = 'SELECT * 
+                   FROM `gebruikers`
+                   INNER JOIN `punten` 
+                   ON `punten`.`gebruiker_id` = `gebruikers`.`id`
+                   WHERE `gebruikers`.`id` = :gebruiker_id ';
+    $statement  = $connection->prepare($query);
+
+    $params = [
+        'gebruiker_id' => $_SESSION['user_id']
+    ];
+    
+    $statement->execute($params);
+    
+    return $statement->fetch();
+}
+
 function logUserIn($email) {
     $connection = dbConnect();
     // Get userId via email
@@ -179,7 +156,6 @@ function logUserIn($email) {
     $userInfo = $statement->fetch();
     $_SESSION['user_id']    = $userInfo['id'];
 
-   
 }
 
 // AANMELDPAGINA
@@ -219,6 +195,22 @@ function createUser($data, $code) {
 
 }
 
+function createPuntenRow($user_id) {
+    $connection = dbConnect();
+
+    
+    $sql =  'INSERT INTO `punten` ( `punten`, `credits`, `gebruiker_id` )
+             VALUE (0, 0, :id)';
+    $statement = $connection->prepare($sql);
+    
+    $params = [
+        'id' => $user_id
+    ];
+
+    $statement->execute($params);
+
+}
+
 function getLoginUserInfo($email) {
 
     $connection = dbConnect();
@@ -247,6 +239,141 @@ function savePost() {
 
     $statement->execute($params);
 
-    $redirectURL = url('home');
+    $redirectURL = url('overview');
 	redirect($redirectURL);
 }
+
+
+// OVERVIEW
+
+function getCardData($page, $pagesize = 5) {
+    $connection = dbConnect();
+
+    // Amount of rows
+    $total = getTotalTracks($connection);
+    // Amount of pages
+    $num_pages = (int) round($total / $pagesize);
+    // Calculate offset
+    $offset = ( $page - 1 ) * $pagesize;
+
+    // Inner join query to get all info needed and skip deleted users 
+    $query      = 'SELECT * 
+    FROM `gebruikers`
+    INNER JOIN `posts` 
+    ON `posts`.`gebruiker_id` = `gebruikers`.`id`
+    LIMIT ' . $pagesize . ' OFFSET ' . $offset ; 
+    
+    // Prepare and return executed query
+    $statement = $connection->query($query);
+    return [
+        'statement' => $statement,
+        'total'     => $total,
+        'pages'     => $num_pages,
+        'page'      => $page 
+    ];
+};
+
+// GEBRUIKERS PAGINA
+
+function getUserCardData($page, $pagesize = 5) {
+    $connection = dbConnect();
+
+    // Amount of rows
+    $total = getTotalTracks($connection);
+    // Amount of pages
+    $num_pages = (int) round($total / $pagesize);
+    // Calculate offset
+    $offset = ( $page - 1 ) * $pagesize;
+
+    $user_id_ophalen = $_SESSION['user_id'];
+
+    // Inner join query to get all info needed and skip deleted users 
+    $query      = 'SELECT * FROM `gebruikers`
+    INNER JOIN `posts` 
+    ON `posts`.`gebruiker_id` = `gebruikers`.`id`
+    WHERE `gebruikers` . `id` = :gebruiker_id 
+    LIMIT ' . $pagesize . ' OFFSET  ' . $offset; 
+    $statement = $connection->prepare($query);
+    $param = [
+        'gebruiker_id' => $user_id_ophalen
+    ];
+    $statement->execute($param);
+    return [
+        'statement' => $statement,
+        'total'     => $total,
+        'pages'     => $num_pages,
+        'page'      => $page 
+    ];
+};
+
+
+// Punten geven
+
+function givePoint($receiver) {
+    $connection = dbConnect();
+    $sql = 'UPDATE `punten` SET `punten` = `punten` + "1" , `credits` = `credits` + "1" WHERE `punten` . `gebruiker_id` = :id';
+    
+    $statement = $connection->prepare($sql);
+    $statement->execute( ['id' => $receiver] );
+
+};
+
+function deletePost($postId) {
+    $connection = dbConnect();
+    $sql = 'DELETE FROM `posts` WHERE `id` = :id ';
+
+    $statement = $connection->prepare($sql);
+    $statement->execute( ['id' => $postId] );
+}
+
+
+// LEADERBORD PAGINA
+
+function puntenOphalen($limit) {
+
+    
+
+    $connection = dbConnect();
+    $sql = 'SELECT * FROM `punten`
+    INNER JOIN `gebruikers` 
+    ON `punten`.`gebruiker_id` = `gebruikers`.`id`
+    WHERE `gebruikers`.`id` = `punten`.`gebruiker_id` 
+    ORDER BY punten.punten DESC LIMIT ' . $limit .' ';
+    $statement = $connection->prepare($sql);
+    $param = [
+        'leadLimit' => $limit
+    ];
+    $statement->execute($param);
+
+    return $statement->fetchAll();
+
+}
+
+// WACHTWOORD VERGETEN PAGINA
+
+function getUsersByResetCode($reset_code){
+    $connection = dbConnect();
+	$sql =  'SELECT * FROM `gebruikers` WHERE `password_reset`= :code';
+	$statement = $connection->prepare($sql);
+    $statement->execute(['code' => $reset_code]);
+
+  if ($statement->rowCount() === 1) {
+   return $statement->fetch();
+  }
+
+return false;
+}
+
+function updatePassword($user_id, $new_password) {
+    $safe_new_password = password_hash($new_password, PASSWORD_DEFAULT);
+    $sql = 'UPDATE `gebruikers` SET `wachtwoord` = :wachtwoord, `password_reset` = NULL WHERE id = :id';
+    $connection = dbConnect();
+    $statement = $connection->prepare($sql);
+    $params = [
+        'wachtwoord' => $safe_new_password,
+        'id' => $user_id
+    ];
+
+    return $statement->execute($params);
+}
+

@@ -14,14 +14,22 @@
 </header>
 
 <body style="background-image: linear-gradient(rgba(123, 123, 123, 0.4), rgba(123, 123, 123, 0.4)), url( <?php echo site_url('/img/stad.png') ?> )">
-    <main class="mijnAccount">
-        <section class="mijnInfo">
-            <div id="mijnGegevens" class="small" href="<?php echo url("infoWijzigen")?>">
-                <h1>Mij profile</h1>
-                <img src=" <?php echo site_url() . 'uploads/' .  $userData['myfile']  ?>" class="myFile">
-                <h3><?php echo ucfirst($userData['voornaam']) . ' ' . ucfirst($userData['achternaam']); ?></h3>
-                <h3><?php echo ucfirst($userData['plaats']); ?></h3>
-                <div class="small">
+
+
+<?php 
+
+
+?>
+    <div class="ov-wrapper-gebruiker">
+        <div class="ov-wrapper-left">
+            <div class="user-account">
+                <div class="oranje-balk"></div>
+                <h1 class="user-title">Beginnende Held</h1>
+                <img src=" <?php echo site_url() . 'uploads/' . $user_data['myfile'] ?>  " class="myFile">
+
+                <h2><?php echo ucfirst($user_data['voornaam']) . ' ' . ucfirst($user_data['achternaam']); ?></h3>
+                    <p class="gebruiker-plaats"><?php echo ucfirst($user_data['plaats']); ?></p>
+                    <div class="small">
                     <a href="<?php echo url("infoWijzigen")?>" id="veranderenInfo"><i class="fas fa-pencil-alt"></i> Gegevens wijzigen </a>
                 </div>
                 <div class="big">
@@ -49,31 +57,97 @@
                             </div>
                             <div class="buttons">
                                 <button type="submit" value="Upload" name="Upload" class="button">Wijzigen</button>
-                            </div>
-                    </div>
-                </div>
-            </div>
-            <div id="mijnPunten">
-                <h3><i class="fas fa-donate"></i> 5</h3>
-                <h3><i class="fas fa-coins"></i> 130</h3>
-                <h3><i class="fas fa-trophy"></i> #2</h3>
-                <h3 id="titel">Titel:</h3>
-            </div>
-        </section>
-        <?php $connection = dbConnect();
-
-
-        ?>
-        <section>
-            <h1 id="postTitel"><span><strong>LAATSTE POSTS</</span> </h1> <div class="mijnPost">
-                        <h2>titel</h2>
-                        <p><?php echo ucfirst($userData['inhoud']); ?></p>
-                        <button class="hulpButton">Hulp gehad?</button>
+                                </div>
                         </div>
 
-        </section>
+                    </div>
+            </div>
+            <div class="user-held-info">
+                <div class="oranje-balk"></div>
+                <table class="gebruiker-table">
+                    <tr class="gebruiker-table-row" title="Deze punten houden bij hoevaak jij iemand hebt geholpen. Hiermee wordt jouw plaats op het leaderbord bepaalt!">
+                        <td class="gebruiker-table-data"><i class="fas fa-donate"></i></td>
+                        <td><?php echo $user_data['punten'] ?></td>
+                    </tr>
+                    <tr class="gebruiker-table-row" title="Gebruik deze credits om items uit de shop te kopen!">
+                        <td class="gebruiker-table-data"><i class="fas fa-coins gebruiker-credits"></i></td>
+                        <td><?php echo $user_data['credits'] ?></td>
+                    </tr>
+                    <tr class="disable-leaderbord-score gebruiker-table-row">
+                        <td class="gebruiker-table-data"><i class="fas fa-trophy"></i></td>
+                        <td>#1</td>
+                    </tr>
+                </table>
+            </div>
 
-    </main>
+        </div>
+        <div class="ov-wrapper-right">
+            <?php foreach ($cards['statement'] as $row) :
+
+            ?>
+                <div class="ov-card-gebruiker">
+                    <div class="oranje-balk"></div>
+                    <div class="ov-post">
+                        <div class="ov-post-user">
+                            <img src="<?php echo site_url() ?>uploads/<?php echo $row['myfile']; ?>" alt="Profielfoto" class="ov-profiel">
+                            <section class="ov-post-user-info">
+                                <p class="ov-post-naam"><?php echo ucfirst($row['voornaam']) . ' ' . ucfirst($row['achternaam']); ?></p>
+                                <p class="ov-post-plaats"><?php
+                                                            // Making first letter of place always uppercase
+                                                            echo ucfirst($row['plaats']); ?></p>
+                            </section>
+                        </div>
+                        <div class="ov-post-punten">
+                            <i class="fas fa-coins"></i>
+                            <p class="punt-hoeveelheid">1</p>
+                        </div>
+                        <div class="ov-post-info">
+                            <h3 class="ov-post-info-title"><?php echo ucfirst($row['titel']); ?></h3>
+                            <p class="ov-post-info-tekst"><?php echo ucfirst($row['inhoud']); ?></p>
+                        </div>
+                        <div class="ov-buttons">
+                            <div class="ov-post-knop">
+                                <form action="<?php echo url('details') ?>" method="POST" class="ov-post-form">
+                                    <input type="hidden" name="postId" value="<?php echo $row['id'] ?>">
+                                    <input type="submit" name="post-detail" id="ov-form-submit" value="Details">
+                                </form>
+                            </div>
+
+                            <div class="ov-geholpen-knop">
+                                <form action="<?php echo url('hulp-gehad') ?>" method="POST">
+                                    <input type="hidden" name="postId" value="<?php echo $row['id'] ?>">
+                                    <input type="submit" name="hulpgehad" id="ov-geholpen-submit" value="Ik ben geholpen">
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <?php endforeach;
+            ?>
+            <div class="pagination">
+            <div class="pagination-links">
+                <?php for ($i = 1; $i <= $cards['pages']; $i++) : ?>
+                    <a href="<?php echo site_url() . "mijnAccount/" . $i ?>" <?php
+                                                                            if ($i == $cards['page']) {
+                                                                                echo 'class="actieve-pagina pagination-buttons"';
+                                                                            } else {
+                                                                                echo 'class="pagination-buttons" ';
+                                                                            }
+
+
+
+                                                                            ?>><?php echo $i ?></a>
+                <?php endfor; ?>
+            </div>
+
+        </div>
+        </div>
+
+
+    </div>
+
 
     <script src="<?php echo site_url('/js/lightbox.js') ?>"></script>
 </body>

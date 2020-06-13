@@ -7,7 +7,7 @@
 }
 
 html, body{
-    overflow-x: hidden;
+    overflow-x: hidden; 
 }
 
 @import 'nav';
@@ -20,3 +20,6 @@ html, body{
 @import 'contactBedankt';
 @import 'bedanktpagina';
 @import 'adminPagina';
+@import 'hulpGehad';
+@import 'leaderbord';
+@import 'wachtwoordVergeten';
