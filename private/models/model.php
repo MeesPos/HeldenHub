@@ -26,6 +26,18 @@ function alleDetails()
     return $statement->fetch();
 }
 
+function detailsOphalen(){
+    $connection = dbConnect();
+    $sql = 'SELECT * FROM `gebruikers` WHERE `id` = :id';
+    $statement = $connection->prepare($sql);
+    $params = [
+        'id' => $_SESSION['user_id']
+    ];
+    $statement->execute($params);
+
+    return $statement->fetch();
+}
+
 function getUsersByEmail($email){
     $connection = dbConnect();
 	$sql =  'SELECT * FROM `gebruikers` WHERE `email`= :email';

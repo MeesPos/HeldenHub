@@ -14,12 +14,13 @@ class DetailsController {
 
 	public function details()
 	{
-
-		$details = alleDetails();
+		adminLoginCheck('aanmelden');
 		
+		$details = alleDetails();
+		$detailMailer = detailsOphalen();
 
 		$template_engine = get_template_engine();
-		echo $template_engine->render('details', ['alleDetails' => $details]);
+		echo $template_engine->render('details', ['alleDetails' => $details, 'details' => $detailMailer]);
 	}
 
 	public function detailsContact()
