@@ -1,11 +1,14 @@
 <?php
 // Model functions
 // In dit bestand zet je ALLE functions die iets met data of de database doen
-function getUsers(){
+
+use PhpParser\Node\Stmt\ElseIf_;
+
+function getUsers()
+{
     $connection = dbConnect();
     $sql = 'SELECT * FROM `gebruikers`';
-    $statement = $connection->query( $sql);
-
+    $statement = $connection->query($sql);
 }
 
 function alleDetails()
@@ -22,48 +25,50 @@ function alleDetails()
         'id' => $_POST['postId']
     ];
     $statement->execute($idQuery);
-    
+
     return $statement->fetch();
 }
 
-function getUsersByEmail($email){
+function getUsersByEmail($email)
+{
     $connection = dbConnect();
-	$sql =  'SELECT * FROM `gebruikers` WHERE `email`= :email';
-	$statement = $connection->prepare($sql);
+    $sql =  'SELECT * FROM `gebruikers` WHERE `email`= :email';
+    $statement = $connection->prepare($sql);
     $statement->execute(['email' => $email]);
 
-  if ($statement->rowCount() === 1);
-   return $statement->fetch();
+    if ($statement->rowCount() === 1);
+    return $statement->fetch();
 
-return false;
-
+    return false;
 }
 
-function getUsersById($id){
+function getUsersById($id)
+{
     $connection = dbConnect();
-	$sql =  'SELECT * FROM `gebruikers` WHERE `id`= :id';
-	$statement = $connection->prepare($sql);
+    $sql =  'SELECT * FROM `gebruikers` WHERE `id`= :id';
+    $statement = $connection->prepare($sql);
     $statement->execute(['id' => $id]);
 
-  if ($statement->rowCount() === 1);
-   return $statement->fetch();
+    if ($statement->rowCount() === 1);
+    return $statement->fetch();
 
 
-return false;
+    return false;
 }
 
 
-function getUsersByCode($code){
+function getUsersByCode($code)
+{
     $connection = dbConnect();
-	$sql =  'SELECT * FROM `gebruikers` WHERE `code`= :code';
-	$statement = $connection->prepare($sql);
+    $sql =  'SELECT * FROM `gebruikers` WHERE `code`= :code';
+    $statement = $connection->prepare($sql);
     $statement->execute(['code' => $code]);
 
-  if ($statement->rowCount() === 1);
-   return $statement->fetch();
+    if ($statement->rowCount() === 1);
+    return $statement->fetch();
 
 
-return false;
+    return false;
 }
 
 function alleDetailsContact()
@@ -82,18 +87,19 @@ function alleDetailsContact()
 
 
 
-	
 
-function getTotalTracks($connection) {
+
+function getTotalTracks($connection)
+{
     $sql       = 'SELECT count(*) as `total` FROM `posts`';
-    $statement = $connection->query( $sql );
+    $statement = $connection->query($sql);
 
     return (int) $statement->fetchColumn();
-
 }
 
 
-function adminPageConn() {
+function adminPageConn()
+{
     $connection = dbConnect();
     $sql = 'SELECT * FROM `gebruikers` WHERE `id` = :id';
     $statement  = $connection->prepare($sql);
@@ -106,12 +112,13 @@ function adminPageConn() {
 
     return $data = $statement->fetch();
 }
- function showPost() {
+function showPost()
+{
     $connection = dbConnect();
-	$query = "SELECT * from ` post` ";
+    $query = "SELECT * from ` post` ";
     $statement = $connection->query($query);
     // $template_engine = get_template_engine();
-	// 	echo $template_engine->render('gebruikersPagina');	
+    // 	echo $template_engine->render('gebruikersPagina');	
 
 }
 
@@ -123,7 +130,8 @@ function adminPageConn() {
 
 // OVERIGE FUNCTIES
 
-function getUserData() {
+function getUserData()
+{
     $connection = dbConnect();
     $query      = 'SELECT * 
                    FROM `gebruikers`
@@ -135,50 +143,52 @@ function getUserData() {
     $params = [
         'gebruiker_id' => $_SESSION['user_id']
     ];
-    
+
     $statement->execute($params);
-    
+
     return $statement->fetch();
 }
 
-function logUserIn($email) {
+function logUserIn($email)
+{
     $connection = dbConnect();
     // Get userId via email
     $getIdQuery = 'SELECT * FROM `gebruikers` WHERE `email` = :email ';
     $statement = $connection->prepare($getIdQuery);
 
     $param = [
-        'email' => $email 
+        'email' => $email
     ];
     $statement->execute($param);
 
     // Create session
     $userInfo = $statement->fetch();
     $_SESSION['user_id']    = $userInfo['id'];
-
 }
 
 // AANMELDPAGINA
 
-function userRegisteredCheck($email) {
-            // Als email al in db staat -> error
-			$connection = dbConnect();
-			$sql =  'SELECT * FROM `gebruikers` WHERE `email`= :email';
-			$statement = $connection->prepare( $sql );
-            $statement->execute( ['email' => $email] );
-            
-            return ( $statement->rowCount() === 0 );
+function userRegisteredCheck($email)
+{
+    // Als email al in db staat -> error
+    $connection = dbConnect();
+    $sql =  'SELECT * FROM `gebruikers` WHERE `email`= :email';
+    $statement = $connection->prepare($sql);
+    $statement->execute(['email' => $email]);
+
+    return ($statement->rowCount() === 0);
 }
 
-function createUser($data) {
+function createUser($data)
+{
 
     $connection = dbConnect();
 
-    
+
     $sql =  'INSERT INTO `gebruikers` ( `email`, `voornaam`, `achternaam`, `plaats`, `birthday`, `myfile`, `wachtwoord`)
              VALUE (:email, :voornaam, :achternaam, :plaats, :birthday, :profielfoto, :wachtwoord)';
     $statement = $connection->prepare($sql);
-    
+
     $safe_wachtwoord = password_hash($data['wachtwoord'], PASSWORD_DEFAULT);
 
     $params = [
@@ -192,41 +202,42 @@ function createUser($data) {
     ];
 
     $statement->execute($params);
-
 }
 
-function createPuntenRow($user_id) {
+function createPuntenRow($user_id)
+{
     $connection = dbConnect();
 
-    
+
     $sql =  'INSERT INTO `punten` ( `punten`, `credits`, `gebruiker_id` )
              VALUE (0, 0, :id)';
     $statement = $connection->prepare($sql);
-    
+
     $params = [
         'id' => $user_id
     ];
 
     $statement->execute($params);
-
 }
 
-function getLoginUserInfo($email) {
+function getLoginUserInfo($email)
+{
 
     $connection = dbConnect();
     $sql =  'SELECT * FROM `gebruikers` WHERE `email`= :email';
-    $statement = $connection->prepare( $sql );
-    $statement->execute( ['email' => $email] );
-    
-    return ( $statement->fetch() );
+    $statement = $connection->prepare($sql);
+    $statement->execute(['email' => $email]);
+
+    return ($statement->fetch());
 }
 
 //  HULP VRAGEN
 
-function savePost() {
+function savePost()
+{
     $connection = dbConnect();
     $query      = 'INSERT INTO `posts` (`id`, `titel`, `inhoud`, `gebruiker_id`) VALUES (NULL, :titel, :inhoud,  :gebruiker_id)';
- 
+
     $statement  = $connection->prepare($query);
 
     $params = [
@@ -238,13 +249,14 @@ function savePost() {
     $statement->execute($params);
 
     $redirectURL = url('overview');
-	redirect($redirectURL);
+    redirect($redirectURL);
 }
 
 
 // OVERVIEW
 
-function getCardData($page, $pagesize = 5) {
+function getCardData($page, $pagesize = 5)
+{
     $connection = dbConnect();
 
     // Amount of rows
@@ -252,28 +264,29 @@ function getCardData($page, $pagesize = 5) {
     // Amount of pages
     $num_pages = (int) round($total / $pagesize);
     // Calculate offset
-    $offset = ( $page - 1 ) * $pagesize;
+    $offset = ($page - 1) * $pagesize;
 
     // Inner join query to get all info needed and skip deleted users 
     $query      = 'SELECT * 
     FROM `gebruikers`
     INNER JOIN `posts` 
     ON `posts`.`gebruiker_id` = `gebruikers`.`id`
-    LIMIT ' . $pagesize . ' OFFSET ' . $offset ; 
-    
+    LIMIT ' . $pagesize . ' OFFSET ' . $offset;
+
     // Prepare and return executed query
     $statement = $connection->query($query);
     return [
         'statement' => $statement,
         'total'     => $total,
         'pages'     => $num_pages,
-        'page'      => $page 
+        'page'      => $page
     ];
 };
 
 // GEBRUIKERS PAGINA
 
-function getUserCardData($page, $pagesize = 5) {
+function getUserCardData($page, $pagesize = 5)
+{
     $connection = dbConnect();
 
     // Amount of rows
@@ -281,7 +294,7 @@ function getUserCardData($page, $pagesize = 5) {
     // Amount of pages
     $num_pages = (int) round($total / $pagesize);
     // Calculate offset
-    $offset = ( $page - 1 ) * $pagesize;
+    $offset = ($page - 1) * $pagesize;
 
     $user_id_ophalen = $_SESSION['user_id'];
 
@@ -290,7 +303,7 @@ function getUserCardData($page, $pagesize = 5) {
     INNER JOIN `posts` 
     ON `posts`.`gebruiker_id` = `gebruikers`.`id`
     WHERE `gebruikers` . `id` = ' .  $_SESSION['user_id'] . '
-    LIMIT ' . $pagesize .  ' OFFSET '  . $offset; 
+    LIMIT ' . $pagesize .  ' OFFSET '  . $offset;
 
     // $param = [
     //     'gebruiker_id' => $_SESSION['user_id']
@@ -302,43 +315,45 @@ function getUserCardData($page, $pagesize = 5) {
         'statement' => $statement,
         'total'     => $total,
         'pages'     => $num_pages,
-        'page'      => $page 
+        'page'      => $page
     ];
 };
 
 
 // Punten geven
 
-function givePoint($receiver) {
+function givePoint($receiver)
+{
     $connection = dbConnect();
     $sql = 'UPDATE `punten` SET `punten` = `punten` + "1" , `credits` = `credits` + "1" WHERE `punten` . `gebruiker_id` = :id';
-    
-    $statement = $connection->prepare($sql);
-    $statement->execute( ['id' => $receiver] );
 
+    $statement = $connection->prepare($sql);
+    $statement->execute(['id' => $receiver]);
 };
 
-function deletePost($postId) {
+function deletePost($postId)
+{
     $connection = dbConnect();
     $sql = 'DELETE FROM `posts` WHERE `id` = :id ';
 
     $statement = $connection->prepare($sql);
-    $statement->execute( ['id' => $postId] );
+    $statement->execute(['id' => $postId]);
 }
 
 
 // LEADERBORD PAGINA
 
-function puntenOphalen($limit) {
+function puntenOphalen($limit)
+{
 
-    
+
 
     $connection = dbConnect();
     $sql = 'SELECT * FROM `punten`
     INNER JOIN `gebruikers` 
     ON `punten`.`gebruiker_id` = `gebruikers`.`id`
     WHERE `gebruikers`.`id` = `punten`.`gebruiker_id` 
-    ORDER BY punten.punten DESC LIMIT ' . $limit .' ';
+    ORDER BY punten.punten DESC LIMIT ' . $limit . ' ';
     $statement = $connection->prepare($sql);
     $param = [
         'leadLimit' => $limit
@@ -346,25 +361,26 @@ function puntenOphalen($limit) {
     $statement->execute($param);
 
     return $statement->fetchAll();
-
 }
 
 // WACHTWOORD VERGETEN PAGINA
 
-function getUsersByResetCode($reset_code){
+function getUsersByResetCode($reset_code)
+{
     $connection = dbConnect();
-	$sql =  'SELECT * FROM `gebruikers` WHERE `password_reset`= :code';
-	$statement = $connection->prepare($sql);
+    $sql =  'SELECT * FROM `gebruikers` WHERE `password_reset`= :code';
+    $statement = $connection->prepare($sql);
     $statement->execute(['code' => $reset_code]);
 
-  if ($statement->rowCount() === 1) {
-   return $statement->fetch();
-  }
+    if ($statement->rowCount() === 1) {
+        return $statement->fetch();
+    }
 
-return false;
+    return false;
 }
 
-function updatePassword($user_id, $new_password) {
+function updatePassword($user_id, $new_password)
+{
     $safe_new_password = password_hash($new_password, PASSWORD_DEFAULT);
     $sql = 'UPDATE `gebruikers` SET `wachtwoord` = :wachtwoord, `password_reset` = NULL WHERE id = :id';
     $connection = dbConnect();
@@ -377,3 +393,62 @@ function updatePassword($user_id, $new_password) {
     return $statement->execute($params);
 }
 
+// Search data 
+function getSearchCardData($page, $pagesize = 5, $zoekterm, $zoeksoort)
+{
+    $connection = dbConnect();
+
+    // Amount of rows
+    $total = getTotalSearchTracks($connection, $zoekterm, $zoeksoort);
+    // Amount of pages
+    $num_pages = (int) round($total / $pagesize);
+    // Calculate offset
+    $offset = ($page - 1) * $pagesize;
+
+    // Inner join query to get all info needed and skip deleted users 
+    if ($zoeksoort == 'plaats') {
+        $query      = 'SELECT * 
+    FROM `gebruikers`
+    INNER JOIN `posts`  
+    ON `posts`.`gebruiker_id` = `gebruikers`.`id`
+    WHERE `plaats` LIKE :zoekterm
+    LIMIT ' . $pagesize . ' OFFSET ' . $offset;
+    } elseif ($zoeksoort == 'titel') {
+        $query      = 'SELECT * 
+        FROM `gebruikers`
+        INNER JOIN `posts`  
+        ON `posts`.`gebruiker_id` = `gebruikers`.`id`
+        WHERE `titel` LIKE :zoekterm
+        LIMIT ' . $pagesize . ' OFFSET ' . $offset;
+    }
+    // Prepare and return executed query
+    $statement = $connection->prepare($query);
+
+    $params = [
+        'zoekterm' => '%' . $zoekterm . '%'
+    ];
+
+    $statement->execute($params);
+    return [
+        'statement' => $statement,
+        'total'     => $total,
+        'pages'     => $num_pages,
+        'page'      => $page
+    ];
+};
+
+function getTotalSearchTracks($connection, $zoekterm, $zoeksoort)
+{
+    if ($zoeksoort == 'plaats') {
+        $sql       = 'SELECT count(*) as `total` FROM `posts` WHERE `plaats` LIKE :zoekterm ';
+    } elseif ($zoeksoort == 'titel') {
+        $sql       = 'SELECT count(*) as `total` FROM `posts` WHERE `titel` LIKE :zoekterm ';
+    }
+    $statement = $connection->prepare($sql);
+
+    $params = [
+        'zoekterm' => '%' . $zoekterm . '%'
+    ];
+    $statement->execute($params);
+    return (int) $statement->fetchColumn();
+}

@@ -53,6 +53,11 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::get( '/overview', 'OverviewController@displayOverview' )->name( 'overview' );
 	SimpleRouter::get( '/overview/{page}', 'OverviewController@displayOverviewPages' )->name( 'overview' );
 
+	// Overview zoek routes
+	SimpleRouter::post( '/zoeken' , 'SearchController@search')->name( 'zoeken' );
+	SimpleRouter::get( '/zoeken/{page}' , 'SearchController@searchPagination')->name( 'zoekenPaginas' );
+
+
 	// Leaderbord routes
 	SimpleRouter::get( '/leaderbord', 'LeaderbordController@Leaderbord')->name( 'leaderbord' );
 

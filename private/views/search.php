@@ -50,7 +50,7 @@
         <div class="pagination">
             <div class="pagination-links">
                 <?php for ($i = 1; $i <= $cards['pages']; $i++) : ?>
-                    <a href="<?php echo url() . $i ?>" <?php
+                    <a href="<?php echo site_url() . "search/" . $i ?>" <?php
                                                                             if ($i == $cards['page']) {
                                                                                 echo 'class="actieve-pagina pagination-buttons"';
                                                                             } else {
@@ -64,7 +64,7 @@
     </div>
     <div class="ov-wrapper-right">
         <div class="zoek-div">
-            <form class="zoek-form" action="<?php echo url('zoeken') ?>" method="POST">
+            <form class="zoek-form" action="<?php echo site_url('zoeken') ?>" method="POST">
 
                 <p class="zoek-info">Zoek op plaats of titel</p>
                 <div class="choice-div">

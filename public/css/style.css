@@ -908,8 +908,6 @@ input[type=comment] {
 }
 
 .zoek-div {
-  border: 3px solid #FF8800;
-  border-radius: 7px;
   width: 70%;
 }
 
@@ -920,6 +918,43 @@ input[type=comment] {
 
 .zoek-form {
   text-align: center;
+}
+
+.zoek-info {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.choice-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  color: #FF8800;
+  font-size: 25px;
+}
+
+.choice-div input[type=radio] {
+  border: none;
+  width: 100%;
+  height: 20px;
+}
+
+#plaats {
+  margin-left: 50%;
+}
+
+#titel {
+  margin-right: 50%;
+}
+
+.zoek-knop {
+  color: white;
+  background-color: #FF8800;
+  font-size: 25px;
+  border: none;
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  width: 130px;
 }
 
 .fa-check-circle {
