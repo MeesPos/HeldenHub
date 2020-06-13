@@ -93,3 +93,15 @@
     background-color: $oranje;
     color: black;
 }
+.zoek-div {
+    border: 3px solid $oranje;
+    border-radius: 7px;
+    width: 70%;
+}
+.zoek-input {
+    width: auto;
+    margin: 0 0 20px 0px;
+}
+.zoek-form {
+    text-align: center;
+}

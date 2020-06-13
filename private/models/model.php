@@ -289,8 +289,8 @@ function getUserCardData($page, $pagesize = 5) {
     $query      = 'SELECT * FROM `gebruikers`
     INNER JOIN `posts` 
     ON `posts`.`gebruiker_id` = `gebruikers`.`id`
-    WHERE `gebruikers` . `id` = ' .  $user_id_ophalen . '
-    LIMIT ' . $pagesize .  'OFFSET'  . $offset; 
+    WHERE `gebruikers` . `id` = ' .  $_SESSION['user_id'] . '
+    LIMIT ' . $pagesize .  ' OFFSET '  . $offset; 
 
     // $param = [
     //     'gebruiker_id' => $_SESSION['user_id']

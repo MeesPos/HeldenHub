@@ -42,7 +42,6 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::post( '/mijnAccount/hulp-gehad', 'GebruikerController@hulpGehad')->name('hulp-gehad');
 	SimpleRouter::get( '/mijnAccount/json', 'GebruikerController@hulpJson')->name('hulp.json');
 	SimpleRouter::post( '/mijnAccount/puntenGeven', 'GebruikerController@puntenGeven')->name('punten.geven');
-	SimpleRouter::get( '/mijnAccount/{page}', 'OverviewController@displayOverviewPages' )->name( 'anderePagina' );
 
 	// Admin page
 	SimpleRouter::get( '/admin', 'AdminController@adminPage')->name('adminPage');
@@ -56,6 +55,9 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 
 	// Leaderbord routes
 	SimpleRouter::get( '/leaderbord', 'LeaderbordController@Leaderbord')->name( 'leaderbord' );
+
+
+	// Zoek routes
 
 	// Overige routes
 	SimpleRouter::get( '/uitloggen', 'WebsiteController@loguit' )->name( 'loguit' );

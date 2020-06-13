@@ -907,6 +907,21 @@ input[type=comment] {
   color: black;
 }
 
+.zoek-div {
+  border: 3px solid #FF8800;
+  border-radius: 7px;
+  width: 70%;
+}
+
+.zoek-input {
+  width: auto;
+  margin: 0 0 20px 0px;
+}
+
+.zoek-form {
+  text-align: center;
+}
+
 .fa-check-circle {
   color: #FF8800;
   font-size: 100px;

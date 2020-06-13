@@ -56,9 +56,6 @@
                                                                             } else {
                                                                                 echo 'class="pagination-buttons" ';
                                                                             }
-
-
-
                                                                             ?>><?php echo $i ?></a>
                 <?php endfor; ?>
             </div>
@@ -66,7 +63,19 @@
         </div>
     </div>
     <div class="ov-wrapper-right">
+        <div class="zoek-div">
+            <form class="zoek-form" action="<?php echo site_url('resultaten') ?>" method="POST">
 
+                <label>Zoek op plaats<input type="radio" name="zoek" class="zoek-input" value="plaats" required></label>
+                <p>OF</p>
+                <label>Zoek op titel<input type="radio" name="zoek" class="zoek-input" value="titel" required></label><br>
+                <input type="text" name="zoekterm" class="zoekterm-input" placeholder="Vul uw zoekterm in"> 
+                <input type="submit" value="Zoek" class="zoek-knop">
+
+            </form>
+
+
+        </div>
     </div>
 
 
