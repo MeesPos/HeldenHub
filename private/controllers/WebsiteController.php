@@ -31,37 +31,59 @@ class WebsiteController
 
 	
 
-	public function bevestigenEmail()
-	{
-
-		$mailer = getSwiftMailer();
-		$connection = dbConnect();
-		$email      = filter_var($_POST['email']);
-		$sql =  'SELECT * FROM `gebruikers` WHERE `email`= :email';
-		$statement = $connection->prepare($sql);
-		$message = createEmailMessage($email , 'dit is een test email', 'Duneya', '29269@ma-web.nl');
-		$template_engine = get_template_engine();
-		echo $template_engine->render('email', ['message' => null]);	
-
-
-	}
-	public function viewsEmail()
-	{
-		$mailer = getSwiftMailer();
-		$connection = dbConnect();
-		$email      = filter_var($_POST['email']);
-		$sql =  'SELECT * FROM `gebruikers` WHERE `email`= :email';
-		$statement = $connection->prepare($sql);
-
-		$statement->execute(['email' => $email]);
-		$message = createEmailMessage($email, 'dit is een test email', 'Duneya', '29269@ma-web.nl');
-		$template_engine = get_template_engine();
-		$html =  $template_engine->render('email', ['message' => $message]);
-		$aantal_verstuurd = $mailer->send($message);
-		$message->setBody($html, 'text/html');
-		$template_engine = get_template_engine();
-		echo $template_engine->render('bedanktPagina');	
-	}
-
 	
+
+
+	public function update()
+	{
+		$id = (int) $_SESSION['user_id'];
+		$email = $_POST['email'];
+		$voornaam  = $_POST['voornaam'];
+		$achternaam = $_POST['achternaam'];
+		$plaats = $_POST['plaats'];
+		$connection = dbConnect();
+	
+		$sql = 'UPDATE `gebruikers` SET
+            `email` = :email,
+            `voornaam` = :voornaam,
+            `achternaam` = :achternaam,
+            `plaats` = :plaats
+          
+
+			WHERE  `id` = :id ';
+		
+		$statement = $connection->prepare($sql);
+		$gegevens = [
+			'id' => $id,
+			'email' => $email,
+			'voornaam' => $voornaam,
+			'achternaam' => $achternaam,
+			'plaats' => $plaats
+		];
+		$statement->execute($gegevens);
+       redirect(url('ingelogd'));
+	}
+	public function infoWijzigen()
+	{
+		$connection = dbConnect();
+		$id = (int)$_SESSION['user_id'];
+		$errors = [];
+        $newFileName = verwerkFotoUpload($_FILES, $errors);
+        $result = validateRegistrationForm($_POST, $newFileName, $errors);
+		if (count($result['errors']) === 0) {
+		
+		$sql = 'SELECT * FROM `gebruikers` WHERE `id` = :id';
+		$statement = $connection->prepare($sql);
+		$parameters =[
+			'id' => $id
+		 ];
+		$statement->execute($parameters);
+		$userData = $statement->fetch();
+	}
+		$template_engine = get_template_engine();
+		echo $template_engine->render('gebruikersPagina', ['userData'=>$userData]);
+		
+	}
 }
+
+

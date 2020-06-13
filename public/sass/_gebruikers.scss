@@ -20,20 +20,53 @@
 .user-account {
     width: 25%;
     background-color: white;
+
+//     box-shadow: 0 3px 6px rgba(0,0,0,.2);
+//     -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.2);
+//     margin-top: 3.5em;
+//     padding-top: 1.5em;
+//     width: 60%;
+//     height: 300px;
+//     margin-left: 15em;
+
     border-radius: 7px;
     position: fixed;
     left: 7%;
+
     text-align: center;
     padding-bottom: 20px;
 }
 .user-held-info {
     position: fixed;
     background-color: white;
+
+//     box-shadow: 0 3px 6px rgba(0,0,0,.2);
+//     -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.2);
+//     margin-top: 1em;
+//     padding-top: 1.5em;
+//     width: 260px;
+//     height: 200px;
+//     margin-left: 16.2em;
+//     text-align: left;
+//     border-radius: 4px;
+//     resize: vertical;
+// }
+// #mijnPunten h3 {
+//     margin-left: 1em;
+//     font-size: 22px;
+//     padding: .5em;
+// }
+// #mijnPunten i {
+//    color: #FF8800;
+//     font-size: 25px;
+
+
     padding-bottom: 20px;
     width: 15vw;
     border-radius: 7px;
     top: 70%;
     left: 11.5%;
+
 }
 .user-title {
     font-size: 20px;
@@ -115,11 +148,13 @@
 
     }
     #postTitel{
-        margin-left: .5em;
+        margin-left: 3em;
 
     }
     #mijnGegevens{
-        margin-left: 3.3em;
+        margin-left: 4.3em;
+        width: 260px;
+       
     }
 
     .mijnPost{
@@ -130,6 +165,9 @@
 
     }
     #mijnPunten{
-        margin-left: 4.5em;
+        margin-left: 5em;
+    }
+    .mijnPost button{
+        margin-left: 2.5em;
     }
 }

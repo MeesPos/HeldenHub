@@ -91,7 +91,7 @@ function userNotRegistered($email)
 	return ($statement->rowCount() === 0);
 }
 
-
+////////////////////////////////////////////////////email 
 /**
  * Maak de SwiftMailer aan en stet hem op de juiste manier in
  *
@@ -194,7 +194,7 @@ function sendConfirmationEmail($email, $code)
 
 
 
-
+////////////////////////////////////////////////////email stopt hier 
 
 
 // OVERIGE FUNCTIES
@@ -248,7 +248,8 @@ function verwerkFotoUpload($myfile, $errors)
 
 	// Check of er uberhaupt een file is geupload
 	if (!isset($_FILES['myfile'])) {
-		echo 'Geen bestand geupload!';
+		$message = "Geen bestand geupload!";
+		    echo "<script type='text/javascript'>alert('$message');</script>";
 		exit;
 	}
 
