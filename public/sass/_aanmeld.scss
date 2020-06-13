@@ -116,6 +116,18 @@ button{
     }
 }
 
+@media screen and (max-width: 800px) {
+    #login{
+        width: 90vw;
+        margin-left: -4.5vw;
+        margin-top: -10vh;
+        margin-bottom: 2vh;
+    }
+
+    #registreren{
+        width: 90vw;
+    }
+}
 // lightbox
 #modaall{
     position: fixed;
