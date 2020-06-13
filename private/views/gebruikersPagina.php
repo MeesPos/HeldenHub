@@ -16,7 +16,7 @@
 <body style="background-image: linear-gradient(rgba(123, 123, 123, 0.4), rgba(123, 123, 123, 0.4)), url( <?php echo site_url('/img/stad.png') ?> )">
     <main class="mijnAccount">
         <section class="mijnInfo">
-            <div id="mijnGegevens" class="small">
+            <div id="mijnGegevens" class="small" href="<?php echo url("infoWijzigen")?>">
                 <h1>Mij profile</h1>
                 <img src=" <?php echo site_url() . 'uploads/' .  $userData['myfile']  ?>" class="myFile">
                 <h3><?php echo ucfirst($userData['voornaam']) . ' ' . ucfirst($userData['achternaam']); ?></h3>

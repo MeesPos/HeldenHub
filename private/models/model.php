@@ -198,9 +198,8 @@ function createUser($data, $code) {
 
     $connection = dbConnect();
 
-    
-    $sql =  'INSERT INTO `gebruikers` ( `email`, `voornaam`, `achternaam`, `plaats`, `birthday`, `myfile`, `wachtwoord`, `code`)
-             VALUE (:email, :voornaam, :achternaam, :plaats, :birthday, :profielfoto, :wachtwoord, :code)';
+    $sql =  "INSERT INTO `gebruikers` ( `email`, `voornaam`, `achternaam`, `plaats`, `birthday`, `myfile`, `wachtwoord`, `code`)
+             VALUES (:email, :voornaam, :achternaam, :plaats, :birthday, :profielfoto, :wachtwoord, :code)";
     $statement = $connection->prepare($sql);
     
     $safe_wachtwoord = password_hash($data['wachtwoord'], PASSWORD_DEFAULT);

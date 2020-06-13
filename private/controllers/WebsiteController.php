@@ -115,17 +115,14 @@ class WebsiteController
 		$voornaam  = $_POST['voornaam'];
 		$achternaam = $_POST['achternaam'];
 		$plaats = $_POST['plaats'];
-		// $birthday = $_POST['birthday'];
-		$myfile = $_FILES['myfile'];
 		$connection = dbConnect();
 	
 		$sql = 'UPDATE `gebruikers` SET
             `email` = :email,
             `voornaam` = :voornaam,
             `achternaam` = :achternaam,
-            `plaats` = :plaats,
-            -- `birthday` = :birthday,
-			`myfile` = :myfile
+            `plaats` = :plaats
+          
 
 			WHERE  `id` = :id ';
 		
@@ -135,20 +132,20 @@ class WebsiteController
 			'email' => $email,
 			'voornaam' => $voornaam,
 			'achternaam' => $achternaam,
-			'plaats' => $plaats,
-			// 'birthday' => $birthday,
-			'myfile' =>  $myfile
+			'plaats' => $plaats
 		];
 		$statement->execute($gegevens);
        redirect(url('ingelogd'));
 	}
 	public function infoWijzigen()
 	{
-		
-		$id = (int)$_SESSION['user_id'];
-
 		$connection = dbConnect();
-	
+		$id = (int)$_SESSION['user_id'];
+		$errors = [];
+        $newFileName = verwerkFotoUpload($_FILES, $errors);
+        $result = validateRegistrationForm($_POST, $newFileName, $errors);
+		if (count($result['errors']) === 0) {
+		
 		$sql = 'SELECT * FROM `gebruikers` WHERE `id` = :id';
 		$statement = $connection->prepare($sql);
 		$parameters =[
@@ -156,9 +153,10 @@ class WebsiteController
 		 ];
 		$statement->execute($parameters);
 		$userData = $statement->fetch();
-
+	}
 		$template_engine = get_template_engine();
 		echo $template_engine->render('gebruikersPagina', ['userData'=>$userData]);
 		
-	}}
+	}
+}
 

@@ -796,11 +796,12 @@ h1#postTitel span:before {
   }
 
   #postTitel {
-    margin-left: 0.5em;
+    margin-left: 3em;
   }
 
   #mijnGegevens {
-    margin-left: 3.3em;
+    margin-left: 4.3em;
+    width: 260px;
   }
 
   .mijnPost {
@@ -811,7 +812,11 @@ h1#postTitel span:before {
   }
 
   #mijnPunten {
-    margin-left: 4.5em;
+    margin-left: 5em;
+  }
+
+  .mijnPost button {
+    margin-left: 2.5em;
   }
 }
 .ov-wrapper {
