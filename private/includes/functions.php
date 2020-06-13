@@ -338,9 +338,9 @@ function loggedInCheck()
 	}
 }
 
-function adminLoginCheck() {
+function adminLoginCheck($url) {
 	if(!isset($_SESSION['user_id'])) {
-		$bedanktUrl = url("home");
+		$bedanktUrl = url($url);
 		redirect($bedanktUrl);
 	}
 }

@@ -1029,7 +1029,7 @@ input[type=comment] {
   margin-top: 1%;
 }
 
-.datum {
+.datumAD {
   margin-left: 27%;
 }
 
@@ -1137,7 +1137,7 @@ input[type=comment] {
     font-size: 15px;
   }
 
-  .datum {
+  .datumAD {
     font-size: 16px;
     display: inline-block;
     margin-left: 0;

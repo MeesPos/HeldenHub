@@ -16,7 +16,7 @@ class AdminController
     {
 
         $puntenLeaderbord = puntenOphalen(5);
-        adminLoginCheck();
+        adminLoginCheck('aanmelden');
 
         $connection = dbConnect();
         $sql = 'SELECT * FROM `gebruikers` WHERE `id` = :id';

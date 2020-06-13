@@ -47,7 +47,7 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::post( '/mijnAccount/hulp-gehad', 'GebruikerController@hulpGehad')->name('hulp-gehad');
 	SimpleRouter::get( '/mijnAccount/json', 'GebruikerController@hulpJson')->name('hulp.json');
 	SimpleRouter::post( '/mijnAccount/puntenGeven', 'GebruikerController@puntenGeven')->name('punten.geven');
-	SimpleRouter::get( '/mijnAccount/{page}', 'OverviewController@displayOverviewPages' )->name( 'overview' );
+	SimpleRouter::get( '/mijnAccount/{page}', 'OverviewController@displayOverviewPages' )->name( 'overview.gebruikers' );
 
 
 	// Admin page
