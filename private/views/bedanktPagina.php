@@ -20,7 +20,9 @@
                 <?php
             };
         } else {
-            echo "Bedankt voor het registreren!" ?>
+            echo "Bedankt voor het registreren!, u krijgt binnen 5 secondeer Email voor
+            bevestigen.
+           Bedankt" ?>
             <a href="<?php echo url('overview'); ?>"><button>Naar overview</button></a>
         <?php
         }

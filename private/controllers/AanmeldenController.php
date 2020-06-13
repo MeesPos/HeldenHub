@@ -33,7 +33,7 @@ class AanmeldenController
                 //verificatie code bv(ece3d94aa2df1ae03df9f24d5f9eba25)
                   $code =md5(uniqid( rand(), true ) );
                 // Als email nog niet in db staat -> Nieuwe user aanmaken
-                createUser($result['data']['email'],$result['data']['wachtwoord'], $code);
+                createUser($result['data'], $code);
                 // send een email 
                 sendConfirmationEmail($result['data']['email'], $code);
                 // Inloggen door sessie te maken
