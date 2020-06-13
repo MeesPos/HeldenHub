@@ -74,7 +74,7 @@ function get_template_engine()
 function isAdmin($data)
 {
 
-	if ($data['admin'] === '0') {
+	if ($data['admin'] !== '1') {
 		$redirectURL = url('home');
 		redirect($redirectURL);
 	}
@@ -91,7 +91,8 @@ function userNotRegistered($email)
 	return ($statement->rowCount() === 0);
 }
 
-////////////////////////////////////////////////////email 
+//email 
+
 /**
  * Maak de SwiftMailer aan en stet hem op de juiste manier in
  *
@@ -185,20 +186,6 @@ function sendConfirmationEmail($email, $code)
 
 	$mailer->send($message);
 }
-
-
-
-
-
-
-
-
-
-////////////////////////////////////////////////////email stopt hier 
-
-
-// OVERIGE FUNCTIES
-
 
 // AANMELDPAGINA 
 

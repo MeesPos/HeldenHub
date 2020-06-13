@@ -83,7 +83,7 @@ class AanmeldenController
         echo "<script type='text/javascript'>alert('$message');</script>";
 
         $template_engine = get_template_engine();
-        echo $template_engine->render('AanmeldPagina');
+        echo $template_engine->render('homepage');
 
         //bevestigings 
 
