@@ -493,10 +493,6 @@ function getItems($item_soort){
     return $statement->fetchAll();
 }
 
-function shopBuyCheck() {
-
-}
-
 function getItemInfo($item_id) {
     $connection = dbConnect();
 
@@ -549,3 +545,125 @@ function giveUserItem($item_id) {
     $statement->execute($params);
 
 }
+// Wanneer je oproept, juiste soort actieve item invoeren en die word vervolgens opgehaald.
+function displayItems($soort) {
+    $connection = dbConnect();
+    
+    $sql = 'SELECT * FROM `user_items` WHERE `type` = :soort AND `gebruiker_id` = :id AND `actief` = 1';
+    $statement = $connection->prepare($sql);
+
+    $statement->execute(['id' => $_SESSION['user_id'], 'soort' => $soort] );
+
+    if ($statement->rowCount() === 1){
+        return $statement->fetch();
+       }
+}
+
+function isItemActive($item_id) {
+    $item_info = getItemInfo($item_id);
+    $connection = dbConnect();
+
+    $sql = 'SELECT * FROM `user_items` WHERE `type` = :soort AND `item_inhoud` = :inhoud AND `gebruiker_id` = :id AND `actief` = 1';
+    $statement = $connection->prepare($sql);
+
+    $params = [
+        'soort' => $item_info['type'],
+        'inhoud' => $item_info['inhoud'],
+        'id' => $_SESSION['user_id']
+    ];
+
+    $statement->execute($params);
+    if ($statement->rowCount() === 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function isItemOwned($item_id) {
+    $item_info = getItemInfo($item_id);
+    $connection = dbConnect();
+
+    $sql = 'SELECT * FROM `user_items` WHERE `type` = :soort AND `item_inhoud` = :inhoud AND `gebruiker_id` = :id';
+    $statement = $connection->prepare($sql);
+
+    $params = [
+        'soort' => $item_info['type'],
+        'inhoud' => $item_info['inhoud'],
+        'id' => $_SESSION['user_id']
+    ];
+
+    $statement->execute($params);
+    if ($statement->rowCount() === 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function getOldActiveItem( $item_info ) {
+    $connection = dbConnect();
+
+    $sql = 'SELECT * FROM `user_items` WHERE `type` = :soort AND `gebruiker_id` = :id AND `actief` = 1';
+    $statement = $connection->prepare($sql);
+
+    $params = [
+        'soort' => $item_info['type'],
+        'id' => $_SESSION['user_id']
+    ];
+
+    $statement->execute($params);
+    return $statement->fetch();
+}
+
+function deactivateItem($old_item) {
+    $connection = dbConnect();
+    $sql = 'UPDATE `user_items` SET `actief` = 0 WHERE `user_items` . `id` = :item_row_id';
+
+    $statement = $connection->prepare($sql);
+    $params = [
+        'item_row_id'      => $old_item['id'],
+    ];
+    $statement->execute($params);
+}
+
+function getItemRow($item_info) {
+    $connection = dbConnect();
+
+    $sql = 'SELECT * FROM `user_items` WHERE `type` = :soort AND `item_inhoud` = :inhoud AND `gebruiker_id` = :id ';
+    $statement = $connection->prepare($sql);
+
+    $params = [
+        'soort' => $item_info['type'],
+        'inhoud' => $item_info['inhoud'],
+        'id' => $_SESSION['user_id']
+    ];
+
+    $statement->execute($params);
+    return $statement->fetch();
+}
+
+function activateItem($item_id) {
+    $connection = dbConnect();
+    $sql = 'UPDATE `user_items` SET `actief` = 1 WHERE `user_items` . `id` = :item_row_id';
+
+    $statement = $connection->prepare($sql);
+    $params = [
+        'item_row_id'      => $item_id['id'],
+    ];
+    $statement->execute($params);
+}
+
+function displayAllItems(){
+    $titleItem = displayItems('titel');
+    $kleurItem = displayItems('kleur');
+    $kaderItem = displayItems('kader');
+    $overigItem = displayItems('overig');
+
+    return [
+        'titelItem' => $titleItem, 'kleurItem' => $kleurItem, 'kaderItem' => $kaderItem,  'overigItem' => $overigItem
+    ];
+}
+
+
+

@@ -11,6 +11,7 @@
 </head>
 <!-- Body wordt geopend in nav.php -->
 <?php include '../private/includes/nav.php' ?>
+<?php $items = displayAllItems();?>
 <div class="shop-page">
     <div class="shop-user">
         <div class="credits">   
@@ -18,9 +19,9 @@
         </div>
         <div class="user">
             <img src="<?php echo site_url() ?>uploads/<?php echo $user['myfile']; ?>" alt="profielfoto" class="shop-user-image">
-            <p class="shop-user-name"><?php echo ucfirst($user['voornaam']) . " " . ucfirst($user['achternaam']) ?></p>
-            <p class="user-title">
-                <!-- TODO user titel -->
+            <p class="shop-user-name <?php if (empty($items['kleurItem']['item_inhoud']) ) { echo "geen-item";  } else {echo $items['kleurItem']['item_inhoud'];  } ?>"><?php echo ucfirst($user['voornaam']) . " " . ucfirst($user['achternaam']) ?></p>
+            <p class="user-title ">
+                <?php $items['titelItem']['item_inhoud']?> 
             </p>
         </div>
     </div>
@@ -34,18 +35,32 @@
                         <p class="coins"><i class="fas fa-coins"></i> <span class="item-cost-amount"><?php echo $item['prijs'] ?></p>
                     </div>
                     <?php
-                    if (enoughCredits($item['prijs'], $user['credits'])) { ?>
-                        <a href="<?php echo url('kopen') . $item['id'] ?>"><button class="item-buy-button" style="color:<?php echo shopBuyCheck('kleur', $item['id']); ?>"><?php echo shopBuyCheck('tekst', $item['id']); ?></button></a>
+                    if ( isItemOwned($item['id']) == true ) {
+                        // If item owned, see if it is active or not and give choice to activate it
+                        if (isItemActive($item['id']) == true) {
+                            // If active, show that it is active
+                        ?>    <button class="item-buy-button" style="background-color: purple;">Actief</button> <?php
+                        } else {
+                            // if not active, make active
+                           ?> <a href="<?php echo url('actief') . $item['id'] ?>"><button class="item-buy-button" >Zet actief</button></a> <?php
 
-                    <?php    } else { ?>
-                        <button class="item-buy-button" style="color:<?php echo shopBuyCheck('kleur', $item['id']); ?>"><?php echo shopBuyCheck('tekst', $item['id']); ?></button>
+                        }
+                    } else {
+                        // If not owned, give chance to be bought
+                        if (enoughCredits($item['prijs'], $user['credits'])) { ?>
+                        
+                        <!-- If enough credits, able to buy -->
+                        <a href="<?php echo url('kopen') . $item['id'] ?>"><button class="item-buy-button" style="background-color: green;">Koop nu</button></a>
 
+                    <?php } else { ?>
+
+                        <button class="item-buy-button" style="background-color: red;">Niet mogelijk</button>
                     <?php }
                     ?>
 
                     <div class="lijnonder"></div>
                 </div>
-            <?php } ?>
+            <?php } } ?>
         </div>
         <div class="kaders">
             <h2 class="categorie">Kaders</h2>
@@ -58,16 +73,35 @@
                         <p class="coins"><i class="fas fa-coins"></i> <?php echo $item['prijs'] ?></p>
                     </div>
                     <?php
-                    if (enoughCredits($item['prijs'], $user['credits'])) { ?>
-                        <a href="<?php echo url('kopen') . $item['id'] ?>"><button class="item-buy-button" style="color:<?php echo shopBuyCheck('kleur', $item['id']); ?>"><?php echo shopBuyCheck('tekst', $item['id']); ?></button></a>
+                    if ( isItemOwned($item['id']) == true ) {
+                        // If item owned, see if it is active or not and give choice to activate it
+                        if (isItemActive($item['id']) == true) {
+                            // If active, show that it is active
+                        ?>    <button class="item-buy-button" style="background-color: purple;">Actief</button> <?php
+                        } else {
+                            // if not active, make active
+                           ?> <a href="<?php echo url('actief') . $item['id'] ?>"><button class="item-buy-button" >Zet actief</button></a> <?php
 
-                    <?php    } else { ?>
-                        <button class="item-buy-button" style="color:<?php echo shopBuyCheck('kleur', $item['id']); ?>"><?php echo shopBuyCheck('tekst', $item['id']); ?></button>
+                        }
+                    } else {
+                        // If not owned, give chance to be bought
+                        if (enoughCredits($item['prijs'], $user['credits'])) { ?>
+                        
+                        <!-- If enough credits, able to buy -->
+                        <a href="<?php echo url('kopen') . $item['id'] ?>"><button class="item-buy-button" style="background-color: green;">Koop nu</button></a>
 
-                    <?php } ?>
+
+                    <?php } else { ?>
+
+                        <button class="item-buy-button" style="background-color: red;">Niet mogelijk</button>
+                    <?php }
+                    ?>
+
+                    
                     <div class="lijnonder"></div>
+
                 </div>
-            <?php } ?>
+            <?php } } ?>
         </div>
         <div class="kleurtjes">
             <h2 class="categorie">Kleuren</h2>
@@ -78,17 +112,31 @@
                         <p class="coins"><i class="fas fa-coins"></i> <?php echo $item['prijs'] ?></p>
                     </div>
                     <?php
-                    if (enoughCredits($item['prijs'], $user['credits'])) { ?>
-                        <a href="<?php echo url('kopen') . $item['id'] ?>"><button class="item-buy-button" style="color:<?php echo shopBuyCheck('kleur', $item['id']); ?>"><?php echo shopBuyCheck('tekst', $item['id']); ?></button></a>
+                    if ( isItemOwned($item['id']) == true ) {
+                        // If item owned, see if it is active or not and give choice to activate it
+                        if (isItemActive($item['id']) == true) {
+                            // If active, show that it is active
+                        ?>    <button class="item-buy-button" style="background-color: purple;">Actief</button> <?php
+                        } else {
+                            // if not active, make active
+                           ?> <a href="<?php echo url('actief') . $item['id'] ?>"><button class="item-buy-button" >Zet actief</button></a> <?php
 
-                    <?php    } else { ?>
-                        <button class="item-buy-button" style="color:<?php echo shopBuyCheck('kleur', $item['id']); ?>"><?php echo shopBuyCheck('tekst', $item['id']); ?></button>
+                        }
+                    } else {
+                        // If not owned, give chance to be bought
+                        if (enoughCredits($item['prijs'], $user['credits'])) { ?>
+                        
+                        <!-- If enough credits, able to buy -->
+                        <a href="<?php echo url('kopen') . $item['id'] ?>"><button class="item-buy-button" style="background-color: green;">Koop nu</button></a>
 
+                    <?php } else { ?>
+
+                        <button class="item-buy-button" style="background-color: red;">Niet mogelijk</button>
                     <?php }
                     ?>
                     <div class="lijnonder"></div>
                 </div>
-            <?php } ?>
+            <?php } }?>
         </div>
         <div class="overig">
             <h2 class="categorie">Overig</h2>
@@ -100,18 +148,36 @@
                             <p class="coins"><i class="fas fa-coins"></i> <?php echo $item['prijs'] ?></p>
                         </div>
                         <?php
+                    if ( isItemOwned($item['id']) == true ) {
+                        // If item owned, see if it is active or not and give choice to activate it
+                        if (isItemActive($item['id']) == true) {
+                            // If active, show that it is active
+                        ?>    <button class="item-buy-button" style="background-color: purple;">Actief</button> <?php
+                        } else {
+                            // if not active, make active
+                           ?> <a href="<?php echo url('actief') . $item['id'] ?>"><button class="item-buy-button" >Zet actief</button></a> <?php
+
+                        }
+                    } else {
+                        // If not owned, give chance to be bought
                         if (enoughCredits($item['prijs'], $user['credits'])) { ?>
-                            <a href="<?php echo url('kopen') . $item['id'] ?>"><button class="item-buy-button" style="color:<?php echo shopBuyCheck('kleur', $item['id']); ?>"><?php echo shopBuyCheck('tekst', $item['id']); ?></button></a>
+                        
+                        <!-- If enough credits, able to buy -->
+                        <a href="<?php echo url('kopen') . $item['id'] ?>"><button class="item-buy-button" style="background-color: green;">Koop nu</button></a>
 
-                        <?php    } else { ?>
-                            <button class="item-buy-button" style="color:<?php echo shopBuyCheck('kleur', $item['id']); ?>"><?php echo shopBuyCheck('tekst', $item['id']); ?></button>
+                    <?php } else { ?>
 
-                        <?php }
-                        ?>
+
+                        <button class="item-buy-button" style="background-color: red;">Niet mogelijk</button>
+                    <?php }
+                    ?>
+
+                       
                         <div class="lijnonder"></div>
+
                     </div>
                 </div>
-            <?php } ?>
+            <?php } }?>
         </div>
     </div>
 </div>
