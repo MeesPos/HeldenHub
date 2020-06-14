@@ -1146,7 +1146,6 @@ input[type=comment] {
   .corona_gegevens {
     margin-bottom: 20px;
   }
-
 }
 .fa-check-circle {
   color: #FF8800;
@@ -1581,18 +1580,6 @@ input[type=comment] {
     text-align: center;
   }
 }
-
-.item-5 {
-  border: dashed 5px #FF8800;
-}
-
-.item-6 {
-  border: outset 5px #FF8800;
-}
-
-.item-7 {
-  color: red;
-
 .shop-items {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -1676,7 +1663,6 @@ input[type=comment] {
     margin-left: 40vw;
     display: inline-block;
   }
-
 }
 
 /*# sourceMappingURL=style.css.map */
