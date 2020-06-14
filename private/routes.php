@@ -57,10 +57,11 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::post( '/zoeken' , 'SearchController@search')->name( 'zoeken' );
 	SimpleRouter::post( '/zoeken/{page}' , 'SearchController@searchPagination')->name( 'zoekenPaginas' );
 
+	// Shop routes
+	SimpleRouter::get( 'shop' , 'ShopController@shop')->name('shop');
 
 	// Leaderbord routes
 	SimpleRouter::get( '/leaderbord', 'LeaderbordController@Leaderbord')->name( 'leaderbord' );
-
 
 	// Zoek routes
 
