@@ -72,8 +72,6 @@
     margin-bottom: 20px;
     margin-top: 20px;
     width: 130px;
-    margin-left: 4.5vw;
-    cursor: pointer;
 }
 .pagination {
     margin-bottom: 60px;
@@ -139,7 +137,7 @@
     margin-bottom: 20px;
     margin-top: 20px;
     width: 130px;
-
+<<<<<<< HEAD
     cursor: pointer;
 }
 
@@ -164,6 +162,8 @@
 .corona_gegevens > p{
     font-size: 20px;
     margin-bottom: 10px;
+=======
+>>>>>>> parent of f59714e... Merge branch 'master' into PaniekMasterFix-Cornell
 }
 
 @media screen and (max-width: 800px){
@@ -171,7 +171,8 @@
         width: 100vw;
         border-radius: 0!important;
     }
-  
+<<<<<<< HEAD
+
     .ov-wrapper{
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
@@ -202,4 +203,6 @@
         margin-bottom: 20px;
     }
 }
-
+=======
+}
+>>>>>>> parent of f59714e... Merge branch 'master' into PaniekMasterFix-Cornell
