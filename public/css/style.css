@@ -114,14 +114,14 @@ html, body {
 }
 /* Home */
 #header {
-  height: 70vh;
+  height: 40vh;
   background-position: bottom;
 }
 
 .logoheader {
   width: 50%;
   margin-left: 25vw;
-  margin-top: 15vh;
+  margin-top: -7vh;
 }
 
 .kominactie {
@@ -1005,6 +1005,8 @@ input[type=comment] {
   margin-bottom: 20px;
   margin-top: 20px;
   width: 130px;
+  margin-left: 4.5vw;
+  cursor: pointer;
 }
 
 .pagination {
@@ -1083,6 +1085,7 @@ input[type=comment] {
   margin-bottom: 20px;
   margin-top: 20px;
   width: 130px;
+  cursor: pointer;
 }
 
 .corona_info > h3 {
