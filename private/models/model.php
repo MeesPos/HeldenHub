@@ -440,7 +440,7 @@ function getSearchCardData($page, $pagesize = 5, $zoekterm, $zoeksoort)
 function getTotalSearchTracks($connection, $zoekterm, $zoeksoort)
 {
     if ($zoeksoort == 'plaats') {
-        $sql       = 'SELECT count(*) as `total` FROM `posts` WHERE `plaats` LIKE :zoekterm ';
+        $sql       = 'SELECT count(*) as `total` FROM `gebruikers` WHERE `plaats` LIKE :zoekterm ';
     } elseif ($zoeksoort == 'titel') {
         $sql       = 'SELECT count(*) as `total` FROM `posts` WHERE `titel` LIKE :zoekterm ';
     }

@@ -395,3 +395,19 @@ function sendPasswordResetEmail($email) {
 	$message->setBody($email_text, 'text/html');
 	$mailer->send($message);
 }
+
+// api
+function krijgCoronaData() {
+	$url = 'https://api.covid19api.com/summary';
+
+	// HTTP client aanmaken
+	$client = new \GuzzleHttp\Client();
+
+	// Request doen
+	$response = $client->request('GET', $url);
+	$json	  = $response->getBody();
+
+	// JSON omzetten in een array met json_decode()
+	$country_info	= json_decode($json, true);
+	return $country_info;
+}

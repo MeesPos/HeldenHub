@@ -17,25 +17,23 @@ class SearchController
         $zoekterm = $_POST['zoekterm'];
         $zoeksoort = $_POST['zoek'];
         $cardData = getSearchCardData($page, 5, $zoekterm, $zoeksoort);
-        
-        print_r($cardData);
-		
+        $api_data = krijgCoronaData();
 
 		$template_engine = get_template_engine();
-		echo $template_engine->render('search', [	'cards' => $cardData ]);
+		echo $template_engine->render('search', [	'cards' => $cardData, 'api_summary' => $api_data ]);
     }
     public function searchPagination($page) {
         $zoekterm = $_POST['zoekterm'];
         $zoeksoort = $_POST['zoek'];
         $cardData = getSearchCardData($page, 5, $zoekterm, $zoeksoort);
-
+        $api_data = krijgCoronaData();
         
         
 
 		
 
-		$template_engine = get_template_engine();
-		echo $template_engine->render('search', [	'cards' => $cardData ]);
+        $template_engine = get_template_engine();
+		echo $template_engine->render('search', [	'cards' => $cardData, 'api_summary' => $api_data ]);
 	}
     
         

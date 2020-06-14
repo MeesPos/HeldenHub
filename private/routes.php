@@ -55,7 +55,7 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 
 	// Overview zoek routes
 	SimpleRouter::post( '/zoeken' , 'SearchController@search')->name( 'zoeken' );
-	SimpleRouter::get( '/zoeken/{page}' , 'SearchController@searchPagination')->name( 'zoekenPaginas' );
+	SimpleRouter::post( '/zoeken/{page}' , 'SearchController@searchPagination')->name( 'zoekenPaginas' );
 
 
 	// Leaderbord routes

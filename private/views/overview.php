@@ -50,13 +50,13 @@
         <div class="pagination">
             <div class="pagination-links">
                 <?php for ($i = 1; $i <= $cards['pages']; $i++) : ?>
-                    <a href="<?php echo url() . $i ?>" <?php
-                                                                            if ($i == $cards['page']) {
-                                                                                echo 'class="actieve-pagina pagination-buttons"';
-                                                                            } else {
-                                                                                echo 'class="pagination-buttons" ';
-                                                                            }
-                                                                            ?>><?php echo $i ?></a>
+                    <a href="<?php echo url('overview') . $i ?>" <?php
+                                                        if ($i == $cards['page']) {
+                                                            echo 'class="actieve-pagina pagination-buttons"';
+                                                        } else {
+                                                            echo 'class="pagination-buttons" ';
+                                                        }
+                                                        ?>><?php echo $i ?></a>
                 <?php endfor; ?>
             </div>
 
@@ -68,9 +68,9 @@
 
                 <p class="zoek-info">Zoek op plaats of titel</p>
                 <div class="choice-div">
-                    <label id="plaats">Plaats<br><input type="radio" name="zoek" class="zoek-input" value="plaats"  required checked></label>
+                    <label id="plaats">Plaats<br><input type="radio" name="zoek" class="zoek-input" value="plaats" required checked></label>
 
-                    <label id="titel">Titel<br><input type="radio" name="zoek" class="zoek-input" value="titel"  required></label>
+                    <label id="titel">Titel<br><input type="radio" name="zoek" class="zoek-input" value="titel" required></label>
                 </div>
 
                 <input type="text" name="zoekterm" class="zoekterm-input" placeholder="Vul uw zoekterm in"><br>
@@ -79,6 +79,24 @@
             </form>
 
 
+        </div>
+        <div class="corona_info">
+            <?php
+                foreach ($api_summary['Countries'] as $row) {
+                    if ($row['Slug'] == "netherlands") {
+                        $totalConfirmed = $row['TotalConfirmed'];
+                        $totalDeaths    = $row['TotalDeaths'];
+                        $totalRecovered = $row['TotalRecovered'];
+                    }
+                }
+                // Deze php zou bovenin dit bestand gezet kunnen worden, of zelfs in functions.php maar 
+                // dit is zodat je weet waar de info vandaan
+            ?>
+            <h3>Corona Nederland</h3>
+            <p>Aantal Corona gevallen: <?php echo $totalConfirmed; ?></p>
+            <p>Aantal Corona doden: <?php echo $totalDeaths; ?></p>
+            <p>Aantal Corona gevallen geheeld: <?php echo $totalRecovered; ?></p>
+            
         </div>
     </div>
 
