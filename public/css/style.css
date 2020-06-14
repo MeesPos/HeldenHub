@@ -1572,5 +1572,57 @@ input[type=comment] {
     text-align: center;
   }
 }
+.shop-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  text-align: center;
+}
+
+.categorie {
+  background: linear-gradient(90deg, #020024 0%, #ff8400 0%, #ffd600 100%);
+  width: 200px;
+  padding: 10px 0;
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+  margin-top: 2vh;
+  margin-bottom: 3vh;
+}
+
+.titel-item-titel {
+  margin: 0 auto;
+  margin-top: 20px;
+  font-style: italic;
+  font-size: 20px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  width: 40%;
+  padding-bottom: 20px;
+}
+
+.coins {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.item-cost {
+  margin-top: 2vh;
+}
+
+.item-buy-button {
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+  width: 150px;
+  height: 50px;
+  border: none;
+  border-radius: 40px;
+}
+
+.lijnonder {
+  border-bottom: 1px solid black;
+  width: 40%;
+  margin-bottom: 20px;
+  margin: 0 auto;
+}
 
 /*# sourceMappingURL=style.css.map */
