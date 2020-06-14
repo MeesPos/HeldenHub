@@ -49,60 +49,65 @@
         ?>
         <div class="pagination">
             <!-- <div class="pagination-links">
-                <?php //for ($i = 1; $i <= $cards['pages']; $i++) : ?>
-                    <a href="<?php //echo url('zoekenPaginas') .  $i ?>" <?php /*
+                <?php //for ($i = 1; $i <= $cards['pages']; $i++) : 
+                ?>
+                    <a href="<?php //echo url('zoekenPaginas') .  $i 
+                                ?>" <?php /*
                                                                             if ($i == $cards['page']) {
                                                                                 echo 'class="actieve-pagina pagination-buttons"';
                                                                             } else {
                                                                                 echo 'class="pagination-buttons" ';
                                                                             } */
-                                                                            ?>><?php // echo $i ?></a>
-                <?php // endfor; ?>
+                                                                            ?>><?php // echo $i 
+                                                                                ?></a>
+                <?php // endfor; 
+                ?>
             </div> -->
 
         </div>
     </div>
     <div class="ov-wrapper-right">
         <div class="zoek-div">
-             <form class="zoek-form" action="<?php  echo site_url('zoeken') ?>" method="POST"> 
+            <form class="zoek-form" action="<?php echo site_url('zoeken') ?>" method="POST">
 
                 <p class="zoek-info">Zoek op plaats of titel</p>
                 <div class="choice-div">
-                    <label id="plaats">Plaats<br><input type="radio" name="zoek" class="zoek-input" value="plaats"  required checked></label>
+                    <label id="plaats">Plaats<br><input type="radio" name="zoek" class="zoek-input" value="plaats" required checked></label>
 
-                    <label id="titel">Titel<br><input type="radio" name="zoek" class="zoek-input" value="titel"  required></label>
+                    <label id="titel">Titel<br><input type="radio" name="zoek" class="zoek-input" value="titel" required></label>
                 </div>
 
                 <input type="text" name="zoekterm" class="zoekterm-input" placeholder="Vul uw zoekterm in"><br>
                 <input type="submit" value="Zoek" class="zoek-knop">
 
-            </form> 
+            </form>
 
 
         </div>
         <div class="corona_info">
             <?php
-                foreach ($api_summary['Countries'] as $row) {
-                    if ($row['Slug'] == "netherlands") {
-                        $totalConfirmed = $row['TotalConfirmed'];
-                        $totalDeaths    = $row['TotalDeaths'];
-                        $totalRecovered = $row['TotalRecovered'];
-                    }
+            foreach ($api_summary['Countries'] as $row) {
+                if ($row['Slug'] == "netherlands") {
+                    $totalConfirmed = $row['TotalConfirmed'];
+                    $totalDeaths    = $row['TotalDeaths'];
+                    $totalRecovered = $row['TotalRecovered'];
                 }
-                // Deze php zou bovenin dit bestand gezet kunnen worden, of zelfs in functions.php maar 
-                // dit is zodat je weet waar de info vandaan komt.
+            }
+            // Deze php zou bovenin dit bestand gezet kunnen worden, of zelfs in functions.php maar 
+            // dit is zodat je weet waar de info vandaan komt.
             ?>
             <h3>Corona Nederland</h3>
-            <p>Aantal Corona gevallen: <?php echo $totalConfirmed; ?></p>
-            <p>Aantal Corona doden: <?php echo $totalDeaths; ?></p>
-            <p>Aantal Corona gevallen geheeld: <?php echo $totalRecovered; ?></p>
-            
+            <div class="corona_gegevens">
+                <p><span>Besmet</span><br> <?php echo $totalConfirmed; ?></p>
+                <p><span>Overleden</span><br> <?php echo $totalDeaths; ?></p>
+                <p><span>Genezen</span><br> <?php echo $totalRecovered; ?></p>
+            </div>
+
         </div>
+
+
     </div>
 
-
-</div>
-
-</body>
+    </body>
 
 </html>

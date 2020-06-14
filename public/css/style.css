@@ -1030,7 +1030,6 @@ input[type=comment] {
   color: black;
 }
 
-
 .zoek-div {
   width: 70%;
 }
@@ -1081,14 +1080,65 @@ input[type=comment] {
   width: 130px;
 }
 
+.corona_info > h3 {
+  text-align: center;
+  margin-left: -10vw;
+  font-size: 30px;
+  margin-bottom: 1%;
+}
+
+.corona_gegevens {
+  text-align: center;
+  margin-left: -10vw;
+}
+
+.corona_gegevens > p > span {
+  font-size: 25px;
+  color: #FF8800;
+  font-weight: bold;
+}
+
+.corona_gegevens > p {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
 
 @media screen and (max-width: 800px) {
   .ov-card {
     width: 100vw;
     border-radius: 0 !important;
   }
-}
 
+  .ov-wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .ov-wrapper-right {
+    grid-row: 1/2;
+  }
+
+  .zoek-form {
+    text-align: center;
+    width: 100vw;
+  }
+
+  .zoek-info {
+    text-align: center;
+  }
+
+  .corona_info > h3, .corona_gegevens {
+    margin-left: 0 !important;
+  }
+
+  .zoek-form {
+    margin-top: -30px;
+  }
+
+  .corona_gegevens {
+    margin-bottom: 20px;
+  }
+}
 .fa-check-circle {
   color: #FF8800;
   font-size: 100px;
