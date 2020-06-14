@@ -18,7 +18,7 @@
                             }
                             </style>
                         <?php endif; ?>
-                        <a class="nav-items" href="#">Shop</a>
+                        <a class="nav-items" href="<?php echo url('shop') ?> ">Shop</a>
                         <a class="nav-items mobielfix" href="<?php echo url("leaderbord") ?>">Leaderbord</a>
                     </div>
                 </div>

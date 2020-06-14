@@ -473,3 +473,79 @@ function getTotalSearchTracks($connection, $zoekterm, $zoeksoort)
     $statement->execute($params);
     return (int) $statement->fetchColumn();
 }
+
+function getItems($item_soort){
+    $connection = dbConnect();
+
+    if($item_soort == 'titel') {
+        // Make query based on what items to retrieve
+        $sql = 'SELECT * FROM `item_info` WHERE `type` = "titel" ';
+    } else if ($item_soort == 'kader') {
+        $sql = 'SELECT * FROM `item_info` WHERE `type` = "kader" ';
+    } else if ($item_soort == 'kleur') {
+        $sql = 'SELECT * FROM `item_info` WHERE `type` = "kleur" ';
+    } else if ($item_soort == 'overig') {
+        $sql = 'SELECT * FROM `item_info` WHERE `type` = "overig" ';
+    }
+
+    $statement = $connection->prepare($sql);
+    $statement->execute();
+    return $statement->fetchAll();
+}
+
+function shopBuyCheck() {
+
+}
+
+function getItemInfo($item_id) {
+    $connection = dbConnect();
+
+    $sql = 'SELECT * FROM `item_info` WHERE `id` = :id';
+    $statement = $connection->prepare($sql);
+
+    $params = [
+        'id' => $item_id
+    ];
+
+    $statement->execute($params);
+    return $statement->fetch();
+}
+
+function enoughCredits($prijs, $user_credits) {
+    if ($prijs <= $user_credits){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function buyItemPayment($prijs) {
+    $connection = dbConnect();
+    $sql = 'UPDATE `punten` SET `credits` = `credits` - :prijs WHERE `punten` . `gebruiker_id` = :id';
+
+    $statement = $connection->prepare($sql);
+    $params = [
+        'id'      => $_SESSION['user_id'],
+        'prijs'   => $prijs
+    ];
+    $statement->execute($params);
+}
+
+function giveUserItem($item_id) {
+    // Get info of bought item
+    $item_info = getItemInfo($item_id);
+
+    $connection = dbConnect();
+    // Create query to put into user_item
+    $sql = 'INSERT INTO `user_items` (`id`, `type`, `item_inhoud`, `actief`,  `gebruiker_id`) VALUES (NULL, :soort, :inhoud, :actief, :gebruiker_id)';
+    $statement = $connection->prepare($sql);
+
+    $params = [
+        'soort'         => $item_info['type'],
+        'inhoud'        => $item_info['inhoud'],
+        'actief'        => 1,
+        'gebruiker_id'  => $_SESSION['user_id']
+    ];
+    $statement->execute($params);
+
+}
