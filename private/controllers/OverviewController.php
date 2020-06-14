@@ -15,20 +15,22 @@ class OverviewController {
 	public function displayOverview() {
 		$page = 1;
 		$cardData = getCardData($page, 5);
+		$api_data = krijgCoronaData();
 
 		
 
 		$template_engine = get_template_engine();
-		echo $template_engine->render('overview', [	'cards' => $cardData ]);
+		echo $template_engine->render('overview', [	'cards' => $cardData, 'api_summary' => $api_data ]);
 	}
 
 	public function displayOverviewPages($page) {
 		$cardData = getCardData($page, 5);
+		$api_data = krijgCoronaData();
 
 		
 
 		$template_engine = get_template_engine();
-		echo $template_engine->render('overview', [	'cards' => $cardData ]);
+		echo $template_engine->render('overview', [	'cards' => $cardData, 'api_summary' => $api_data ]);
 	}
 
 

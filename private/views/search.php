@@ -11,7 +11,6 @@
 
 </head>
 <!-- Body wordt geopend in nav.php -->
-<body class="bodyOV">
 <?php include '../private/includes/nav.php' ?>
 <div class="ov-wrapper">
     <div class="ov-wrapper-left">
@@ -49,35 +48,35 @@
         <?php endforeach;
         ?>
         <div class="pagination">
-            <div class="pagination-links">
-                <?php for ($i = 1; $i <= $cards['pages']; $i++) : ?>
-                    <a href="<?php echo url('overview') . $i ?>" <?php
-                                                        if ($i == $cards['page']) {
-                                                            echo 'class="actieve-pagina pagination-buttons"';
-                                                        } else {
-                                                            echo 'class="pagination-buttons" ';
-                                                        }
-                                                        ?>><?php echo $i ?></a>
-                <?php endfor; ?>
-            </div>
+            <!-- <div class="pagination-links">
+                <?php //for ($i = 1; $i <= $cards['pages']; $i++) : ?>
+                    <a href="<?php //echo url('zoekenPaginas') .  $i ?>" <?php /*
+                                                                            if ($i == $cards['page']) {
+                                                                                echo 'class="actieve-pagina pagination-buttons"';
+                                                                            } else {
+                                                                                echo 'class="pagination-buttons" ';
+                                                                            } */
+                                                                            ?>><?php // echo $i ?></a>
+                <?php // endfor; ?>
+            </div> -->
 
         </div>
     </div>
     <div class="ov-wrapper-right">
         <div class="zoek-div">
-            <form class="zoek-form" action="<?php echo url('zoeken') ?>" method="POST">
+             <form class="zoek-form" action="<?php  echo site_url('zoeken') ?>" method="POST"> 
 
                 <p class="zoek-info">Zoek op plaats of titel</p>
                 <div class="choice-div">
-                    <label id="plaats">Plaats<br><input type="radio" name="zoek" class="zoek-input" value="plaats" required checked></label>
+                    <label id="plaats">Plaats<br><input type="radio" name="zoek" class="zoek-input" value="plaats"  required checked></label>
 
-                    <label id="titel">Titel<br><input type="radio" name="zoek" class="zoek-input" value="titel" required></label>
+                    <label id="titel">Titel<br><input type="radio" name="zoek" class="zoek-input" value="titel"  required></label>
                 </div>
 
                 <input type="text" name="zoekterm" class="zoekterm-input" placeholder="Vul uw zoekterm in"><br>
                 <input type="submit" value="Zoek" class="zoek-knop">
 
-            </form>
+            </form> 
 
 
         </div>
@@ -91,7 +90,7 @@
                     }
                 }
                 // Deze php zou bovenin dit bestand gezet kunnen worden, of zelfs in functions.php maar 
-                // dit is zodat je weet waar de info vandaan
+                // dit is zodat je weet waar de info vandaan komt.
             ?>
             <h3>Corona Nederland</h3>
             <p>Aantal Corona gevallen: <?php echo $totalConfirmed; ?></p>
