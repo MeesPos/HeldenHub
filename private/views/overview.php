@@ -23,9 +23,9 @@
                     <div class="oranje-balk"></div>
                     <div class="ov-post">
                         <div class="ov-post-user">
-                            <img src="<?php echo site_url() ?>uploads/<?php echo $row['myfile']; ?>" alt="Profielfoto" class="ov-profiel">
+                            <img src="<?php echo site_url() ?>uploads/<?php echo $row['myfile']; ?>" alt="Profielfoto" class="ov-profiel <?php if (empty($items['kaderItem']['item_inhoud']) ) { echo "geen-item";  } else {echo $items['kaderItem']['item_inhoud'];  } ?>">
                             <section class="ov-post-user-info">
-                                <p class="ov-post-naam"><?php echo ucfirst($row['voornaam']) . ' ' . ucfirst($row['achternaam']); ?></p>
+                                <p class="ov-post-naam <?php if (empty($items['kleurItem']['item_inhoud']) ) { echo "geen-item";  } else {echo $items['kleurItem']['item_inhoud'];  } ?>"><?php echo ucfirst($row['voornaam']) . ' ' . ucfirst($row['achternaam']); ?></p>
                                 <p class="ov-post-plaats"><?php
                                                             // Making first letter of place always uppercase
                                                             echo ucfirst($row['plaats']); ?></p>
