@@ -24,10 +24,11 @@
         <div class="ov-wrapper-left">
             <div class="user-account">
                 <div class="oranje-balk"></div>
-                <h1 class="user-title">Beginnende Held</h1>
-                <img src=" <?php echo site_url() . 'uploads/' . $user_data['myfile'] ?>  " class="myFile">
+                <h1 class="user-title">
+<?php if (empty($items['titelItem']['item_inhoud']) ) { echo "Beginnende held";  } else {echo $items['titelItem']['item_inhoud'];  } ?></h1>
+                <img src=" <?php echo site_url() . 'uploads/' . $user_data['myfile'] ?>  " class="myFile <?php if (empty($items['kaderItem']['item_inhoud']) ) { echo "geen-item";  } else {echo $items['kaderItem']['item_inhoud'];  } ?>">
 
-                <h2><?php echo ucfirst($user_data['voornaam']) . ' ' . ucfirst($user_data['achternaam']); ?></h3>
+                <h2 class="<?php if (empty($items['kleurItem']['item_inhoud']) ) { echo "geen-item";  } else {echo $items['kleurItem']['item_inhoud'];  } ?>"><?php echo ucfirst($user_data['voornaam']) . ' ' . ucfirst($user_data['achternaam']); ?></h2>
                     <p class="gebruiker-plaats"><?php echo ucfirst($user_data['plaats']); ?></p>
                     <div class="small">
                     <a href="<?php echo url("infoWijzigen")?>" id="veranderenInfo"><i class="fas fa-pencil-alt"></i> Gegevens wijzigen </a>

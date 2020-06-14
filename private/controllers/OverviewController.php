@@ -15,7 +15,6 @@ class OverviewController {
 	public function displayOverview() {
 		$page = 1;
 		$cardData = getCardData($page, 5);
-		print_r($cardData);
 		$api_data = krijgCoronaData();
 
 		
