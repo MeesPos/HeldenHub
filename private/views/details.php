@@ -32,8 +32,8 @@
                 <h2>Wilt u <?php echo $alleDetails['voornaam'] ?> helpen?</h2>
                 <form method="post" action="<?php echo url("detailsContact") ?>">
                     <input type="hidden" name="hiddenId" value="<?php echo $alleDetails['id'] ?>">
-                    <input type="text" name="naam" placeholder="Naam">
-                    <input type="email" name="email" placeholder="Email Adres">
+                    <input type="text" name="naam" placeholder="Naam" value="<?php echo $details['voornaam'] ?>">
+                    <input type="email" name="email" placeholder="Email Adres" value="<?php echo $details['email'] ?>">
                     <input type="comment" name="bericht" placeholder="Bericht">
                     <input type="submit" name="submit" value="Verstuur">
                 </form>

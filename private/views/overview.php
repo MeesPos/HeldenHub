@@ -11,6 +11,7 @@
 
 </head>
 <!-- Body wordt geopend in nav.php -->
+<body class="bodyOV">
 <?php include '../private/includes/nav.php' ?>
 <div class="ov-wrapper">
     <div class="ov-wrapper-left">

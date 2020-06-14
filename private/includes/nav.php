@@ -10,6 +10,13 @@
                         <?php else : ?>
                             <a class="nav-items" href="<?php echo url("gebruiker")?>">Mijn Account</a>
                             <a class="nav-items" href="<?php echo url("loguit")?>">Uitloggen</a>
+                            <style>
+                            @media screen and (max-width: 800px) {
+                                .mobielfix{
+                                    margin-right: -100vw!important;
+                                }
+                            }
+                            </style>
                         <?php endif; ?>
                         <a class="nav-items" href="<?php echo url('shop') ?> ">Shop</a>
                         <a class="nav-items mobielfix" href="<?php echo url("leaderbord") ?>">Leaderbord</a>

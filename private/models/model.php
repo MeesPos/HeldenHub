@@ -29,15 +29,30 @@ function alleDetails()
     return $statement->fetch();
 }
 
-function getUsersByEmail($email)
-{
+
+function detailsOphalen(){
+    $connection = dbConnect();
+    $sql = 'SELECT * FROM `gebruikers` WHERE `id` = :id';
+    $statement = $connection->prepare($sql);
+    $params = [
+        'id' => $_SESSION['user_id']
+    ];
+    $statement->execute($params);
+
+    return $statement->fetch();
+}
+
+function getUsersByEmail($email){
+
     $connection = dbConnect();
     $sql =  'SELECT * FROM `gebruikers` WHERE `email`= :email';
     $statement = $connection->prepare($sql);
     $statement->execute(['email' => $email]);
 
-    if ($statement->rowCount() === 1);
-    return $statement->fetch();
+
+  if ($statement->rowCount() === 1){
+   return $statement->fetch();
+  }
 
     return false;
 }
@@ -49,8 +64,10 @@ function getUsersById($id)
     $statement = $connection->prepare($sql);
     $statement->execute(['id' => $id]);
 
-    if ($statement->rowCount() === 1);
-    return $statement->fetch();
+
+  if ($statement->rowCount() === 1){
+   return $statement->fetch();
+  }
 
 
     return false;
@@ -179,14 +196,14 @@ function userRegisteredCheck($email)
     return ($statement->rowCount() === 0);
 }
 
-function createUser($data)
-{
+
+function createUser($data, $code) {
 
     $connection = dbConnect();
 
+    $sql =  "INSERT INTO `gebruikers` ( `email`, `voornaam`, `achternaam`, `plaats`, `birthday`, `myfile`, `wachtwoord`, `code`)
+             VALUES (:email, :voornaam, :achternaam, :plaats, :birthday, :profielfoto, :wachtwoord, :code)";
 
-    $sql =  'INSERT INTO `gebruikers` ( `email`, `voornaam`, `achternaam`, `plaats`, `birthday`, `myfile`, `wachtwoord`)
-             VALUE (:email, :voornaam, :achternaam, :plaats, :birthday, :profielfoto, :wachtwoord)';
     $statement = $connection->prepare($sql);
 
     $safe_wachtwoord = password_hash($data['wachtwoord'], PASSWORD_DEFAULT);
@@ -199,6 +216,7 @@ function createUser($data)
         'birthday' => $data['birthday'],
         'profielfoto' => $data['profielfoto'],
         'wachtwoord' => $safe_wachtwoord,
+        'code' => $code
     ];
 
     $statement->execute($params);
@@ -225,10 +243,14 @@ function getLoginUserInfo($email)
 
     $connection = dbConnect();
     $sql =  'SELECT * FROM `gebruikers` WHERE `email`= :email';
-    $statement = $connection->prepare($sql);
-    $statement->execute(['email' => $email]);
 
-    return ($statement->fetch());
+    $statement = $connection->prepare( $sql );
+    $statement->execute( ['email' => $email] );
+    if($statement->rowCount() === 1){
+    return  $statement->fetch() ;
+}
+return false;
+
 }
 
 //  HULP VRAGEN
@@ -302,15 +324,25 @@ function getUserCardData($page, $pagesize = 5)
     $query      = 'SELECT * FROM `gebruikers`
     INNER JOIN `posts` 
     ON `posts`.`gebruiker_id` = `gebruikers`.`id`
-    WHERE `gebruikers` . `id` = ' .  $_SESSION['user_id'] . '
-    LIMIT ' . $pagesize .  ' OFFSET '  . $offset;
+
+   // WHERE `gebruikers` . `id` = ' .  $_SESSION['user_id'] . '
+   // LIMIT ' . $pagesize .  ' OFFSET '  . $offset;
 
     // $param = [
     //     'gebruiker_id' => $_SESSION['user_id']
     // ];
 
     // Prepare and return executed query
-    $statement = $connection->query($query);
+   // $statement = $connection->query($query);
+
+    WHERE `gebruikers` . `id` = :gebruiker_id 
+    LIMIT ' . $pagesize . ' OFFSET  ' . $offset; 
+    $statement = $connection->prepare($query);
+    $param = [
+        'gebruiker_id' => $user_id_ophalen
+    ];
+    $statement->execute($param);
+
     return [
         'statement' => $statement,
         'total'     => $total,

@@ -16,14 +16,14 @@ class AdminController
     {
 
         $puntenLeaderbord = puntenOphalen(5);
-        adminLoginCheck();
+        adminLoginCheck('aanmelden');
 
         $connection = dbConnect();
         $sql = 'SELECT * FROM `gebruikers` WHERE `id` = :id';
         $statement  = $connection->prepare($sql);
 
         $params = [
-            'id' => 1
+            'id' => $_SESSION['user_data']
         ];
 
         $statement->execute($params);

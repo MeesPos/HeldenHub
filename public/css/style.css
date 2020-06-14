@@ -111,10 +111,6 @@ html, body {
     margin-left: -40px;
     display: inline-block;
   }
-
-  .mobielfix {
-    margin-right: -100vw !important;
-  }
 }
 /* Home */
 #header {
@@ -208,11 +204,11 @@ button {
   .logoheader {
     width: 100%;
     margin: 0 auto;
-    margin-top: 8vh;
+    margin-top: -4.5vh;
   }
 
   #header {
-    height: 30vh;
+    height: 20vh;
   }
 }
 .content-wrapper {
@@ -372,6 +368,54 @@ button {
   margin-top: 20px;
 }
 
+@media screen and (max-width: 800px) {
+  .post-vlak {
+    width: 90%;
+    margin-top: 2vh;
+  }
+
+  .over-hulp {
+    text-align: center;
+  }
+
+  .hulp-h1 {
+    font-size: 30px;
+    margin-left: -35vw;
+    margin-top: 1vh;
+  }
+
+  .mijn-post, .mijn-post-user {
+    grid-template-columns: 1fr;
+  }
+
+  .mijn-post-punten {
+    margin-top: 1.3em;
+  }
+
+  .hulp-woonplaats {
+    margin-top: 0;
+  }
+
+  .mijn-post-form {
+    margin-left: -20vw;
+  }
+
+  #post-hulp {
+    width: 70vw;
+  }
+
+  #post-titel {
+    width: 67.5vw;
+  }
+
+  ::placeholder {
+    font-size: 17px !important;
+  }
+
+  #post-form-submit {
+    margin-left: 27.5vw;
+  }
+}
 #image {
   background-size: cover;
 }
@@ -495,6 +539,18 @@ button {
 
   button {
     font-size: 13px;
+  }
+}
+@media screen and (max-width: 800px) {
+  #login {
+    width: 90vw;
+    margin-left: -4.5vw;
+    margin-top: -10vh;
+    margin-bottom: 2vh;
+  }
+
+  #registreren {
+    width: 90vw;
   }
 }
 #modaall {
@@ -776,11 +832,12 @@ input[type=comment] {
   }
 
   #postTitel {
-    margin-left: 0.5em;
+    margin-left: 3em;
   }
 
   #mijnGegevens {
-    margin-left: 3.3em;
+    margin-left: 4.3em;
+    width: 260px;
   }
 
   .mijnPost {
@@ -791,7 +848,69 @@ input[type=comment] {
   }
 
   #mijnPunten {
-    margin-left: 4.5em;
+    margin-left: 5em;
+  }
+
+  .mijnPost button {
+    margin-left: 2.5em;
+  }
+}
+@media screen and (max-width: 800px) {
+  .user-account {
+    width: 80vw;
+    margin-left: 4vw;
+  }
+
+  .ov-wrapper-gebruiker {
+    grid-template-columns: 1fr;
+    overflow-y: hidden;
+    height: 100%;
+  }
+
+  .user-held-info {
+    width: 80vw;
+    top: 10%;
+  }
+
+  .ov-card-gebruiker {
+    width: 100vw;
+    left: 0;
+    margin-top: 10vh;
+  }
+
+  .user-held-info, .user-account {
+    position: relative;
+  }
+
+  .ov-post-punten {
+    margin-left: -10vw !important;
+    margin-top: 2vh !important;
+  }
+
+  .ov-post-user-info {
+    padding-right: 30px;
+  }
+
+  .ov-post-naam {
+    font-size: 18px !important;
+  }
+
+  .ov-post-plaats {
+    font-size: 20px !important;
+  }
+
+  .ov-buttons {
+    margin-left: 5vw !important;
+  }
+
+  #ov-geholpen-submit {
+    font-size: 20px !important;
+    width: 180px !important;
+  }
+
+  #ov-form-submit {
+    font-size: 20px !important;
+    width: 100px !important;
   }
 }
 .ov-wrapper {
@@ -799,6 +918,10 @@ input[type=comment] {
   grid-template-columns: 1.6fr 0.8fr;
   height: 100vh;
   width: 100vw;
+}
+
+.bodyOV {
+  overflow-x: visible;
 }
 
 .ov-card {
@@ -907,6 +1030,7 @@ input[type=comment] {
   color: black;
 }
 
+
 .zoek-div {
   width: 70%;
 }
@@ -955,6 +1079,14 @@ input[type=comment] {
   margin-bottom: 20px;
   margin-top: 20px;
   width: 130px;
+}
+
+
+@media screen and (max-width: 800px) {
+  .ov-card {
+    width: 100vw;
+    border-radius: 0 !important;
+  }
 }
 
 .fa-check-circle {
@@ -1044,7 +1176,7 @@ input[type=comment] {
   margin-top: 1%;
 }
 
-.datum {
+.datumAD {
   margin-left: 27%;
 }
 
@@ -1152,7 +1284,7 @@ input[type=comment] {
     font-size: 15px;
   }
 
-  .datum {
+  .datumAD {
     font-size: 16px;
     display: inline-block;
     margin-left: 0;

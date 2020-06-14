@@ -15,6 +15,8 @@ class HulpController
     // Hulp vragen page
     public function hulpVragen()
     {
+        adminLoginCheck('aanmelden');
+
         $userData = getUserData();
         $template_engine = get_template_engine();
         echo $template_engine->render('hulp', ['userData' => $userData]);

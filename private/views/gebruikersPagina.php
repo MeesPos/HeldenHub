@@ -15,6 +15,7 @@
 
 <body style="background-image: linear-gradient(rgba(123, 123, 123, 0.4), rgba(123, 123, 123, 0.4)), url( <?php echo site_url('/img/stad.png') ?> )">
 
+
 <?php 
 
 
@@ -29,37 +30,33 @@
                 <h2><?php echo ucfirst($user_data['voornaam']) . ' ' . ucfirst($user_data['achternaam']); ?></h3>
                     <p class="gebruiker-plaats"><?php echo ucfirst($user_data['plaats']); ?></p>
                     <div class="small">
-                        <a href="#" id="veranderenInfo"><i class="fas fa-pencil-alt"></i> Gegevens wijzigen </a>
-                    </div>
-                    <div class="big">
-                        <h1 class="infoTitel"> Mijn gegevens wijzigen</h1>
-                        <div class="form">
-                            <form action="<?php // echo url("infoWijzigen", ['id']) 
-                                            ?>" method="POST" class="form2">
-                                <div class="voornaam">
-                                    <input type="name" class="form-control" name="voornaam" required placeholder="<?php // echo getLoggedInVoornaam(); 
-                                                                                                                    ?>">
-                                </div>
-                                <div class="achternaam">
-                                    <input type="name" class="form-control" name="achternaam" required placeholder="<?php // echo getLoggedInAchternaam(); 
-                                                                                                                    ?>">
-                                </div>
-                                <div class="email">
-                                    <input type="email" class="form-control" name="email" required placeholder=" <?php //  echo getLoggedInEmail(); 
-                                                                                                                    ?>"><br>
-                                </div>
-                                <div class="datum">
-                                    <input type="date" class="form-control" id="birthday" name="<?php // echo getLoggedInBirthday(); 
-                                                                                                ?></h3>">
-                                </div>
-                                <div class="plaats">
-                                    <input type="name" class="form-control" name="plaats" required placeholder=" <?php // echo getLoggedInPlaats(); 
-                                                                                                                    ?>">
-                                </div>
-                                <div class="foto">
-                                    <input type="file" class="form-control" id="myfile" name="myfile[]" accept="image/*" multiple="" /><br><br></div>
-                                <div class="buttons">
-                                    <button type="submit" value="upload" class="button">Wijzigen</button>
+                    <a href="<?php echo url("infoWijzigen")?>" id="veranderenInfo"><i class="fas fa-pencil-alt"></i> Gegevens wijzigen </a>
+                </div>
+                <div class="big">
+                    <h1 class="infoTitel"> Mijn gegevens wijzigen</h1>
+                    <div class="form">
+                
+                    <form action="<?php echo url("update")?>" method="POST" class="form2">
+                            <div class="voornaam">
+                                <input type="name" class="form-control" name="voornaam" required placeholder="<?php echo ucfirst($userData['voornaam']); ?>">
+                            </div>
+                            <div class="achternaam">
+                                <input type="name" class="form-control" name="achternaam" required placeholder="<?php echo ucfirst($userData['achternaam']); ?>">
+                            </div>
+                            <div class="email">
+                                <input type="email" class="form-control" name="email" required placeholder="<?php echo ucfirst($userData['email']); ?>"><br>
+                            </div>
+                            <div class="datum">
+                                <input type="date" class="form-control" id="birthday" name="<?php echo ucfirst($userData['dd-mm-jjjj']); ?></h3>">
+                            </div>
+                            <div class="plaats">
+                                <input type="name" class="form-control" name="plaats" required placeholder="<?php echo ucfirst($userData['plaats']); ?>">
+                            </div>
+                            <div class="foto">
+                                <input type="file" class="form-control" id="myfile" name="myfile" accept="image/*" /><br><br>
+                            </div>
+                            <div class="buttons">
+                                <button type="submit" value="Upload" name="Upload" class="button">Wijzigen</button>
                                 </div>
                         </div>
 
@@ -121,10 +118,12 @@
                                     <input type="hidden" name="postId" value="<?php echo $row['id'] ?>">
                                     <input type="submit" name="hulpgehad" id="ov-geholpen-submit" value="Ik ben geholpen">
                                 </form>
+
                             </div>
                         </div>
                     </div>
                 </div>
+
             <?php endforeach;
             ?>
             <div class="pagination">
@@ -133,6 +132,7 @@
 
 
     </div>
+
 
     <script src="<?php echo site_url('/js/lightbox.js') ?>"></script>
 </body>

@@ -12,6 +12,22 @@
 <body>
     <?php include '../private/includes/nav.php' ?>
 
+    <div class="registratie-bedankt-content">
+        <?php if (isset($errors)) {
+            foreach ($errors as $row) {
+                echo $row; ?>
+                <a href="<?php echo url('aanmelden') ?>"><button>Terug naar aanmelden</button></a>
+                <?php
+            };
+        } else {
+            echo "Bedankt voor het registreren!, u krijgt binnen 5 seconden Email voor
+            bevestigen.
+           Bedankt" ?>
+            <a href="<?php echo url('overview'); ?>"><button>Naar overview</button></a>
+        <?php
+        }
+        ?>
+
     <section id="bedankt">
         <div class="check" style="margin-bottom: 1%;">
             <?php if (isset($errors)) { ?>
