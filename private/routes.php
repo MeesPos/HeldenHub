@@ -23,9 +23,9 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::match(['get','post'], '/aanmelden/wachtwoord-vergeten', 'AanmeldenController@wachtwoordvergeten')->name( 'wachtwoord.vergeten' );
 	SimpleRouter::match(['get','post'], '/aanmelden/wachtwoord-vergeten/{reset_code}', 'AanmeldenController@wachtwoordReset')->name( 'wachtwoord.reset' );
 	// Emails
-	SimpleRouter::get( '/aanmelden/registreren/bevestigenEmail', 'WebsiteController@viewsEmail' )->name( 'viewsEmail' );
-	SimpleRouter::get( '/aanmelden/registreren/bevestigenEmail/{code}', 'WebsiteController@bevestigenEmailCode' )->name( 'bevestigenEmailCode' );
-	SimpleRouter::get( '/testEmail', 'WebsiteController@bevestigenEmail' )->name( 'bevestigenEmail' );
+	SimpleRouter::get( '/aanmelden/registreren/bevestigenEmail', 'EmailController@viewsEmail' )->name( 'viewsEmail' );
+	SimpleRouter::get( '/aanmelden/registreren/bevestigenEmail/{code}', 'EmailController@bevestigenEmailCode' )->name( 'bevestigenEmailCode' );
+	SimpleRouter::get( '/testEmail', 'EmailController@bevestigenEmail' )->name( 'bevestigenEmail' );
 
 	// Hulp vragen
 	SimpleRouter::get( '/hulp-vragen', 'HulpController@hulpVragen' )->name( 'hulp-vragen' );
@@ -37,11 +37,20 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	SimpleRouter::post( '/details/contact', 'DetailsController@detailsContact' )->name ( 'detailsContact' );
 	
 	// Gebruikers page
+
+	// SimpleRouter::get( '/MijnAccount', 'AanmeldenController@ingelogd' )->name( 'ingelogd' );
+	SimpleRouter::post('/MijnAccount/MijnInfoWijzigen','WebsiteController@update')->name('update');
+	SimpleRouter::get('MijnAccount/MijnInfoWijzigen/gegevenswijzigen', "WebsiteController@infoWijzigen")->name('infoWijzigen');
+
 	SimpleRouter::get( '/mijnAccount', 'GebruikerController@gebruikersPagina' )->name( 'gebruiker' );
-	SimpleRouter::post('/mijnAccount/MijnInfoWijzigen','GebruikerController@infoWijzigen')->name('infoWijzigen');
+	// SimpleRouter::post('/mijnAccount/MijnInfoWijzigen','GebruikerController@infoWijzigen')->name('infoWijzigen');
 	SimpleRouter::post( '/mijnAccount/hulp-gehad', 'GebruikerController@hulpGehad')->name('hulp-gehad');
 	SimpleRouter::get( '/mijnAccount/json', 'GebruikerController@hulpJson')->name('hulp.json');
 	SimpleRouter::post( '/mijnAccount/puntenGeven', 'GebruikerController@puntenGeven')->name('punten.geven');
+
+	SimpleRouter::get( '/mijnAccount/{page}', 'OverviewController@displayOverviewPages' )->name( 'overview.gebruikers' );
+
+
 
 	// Admin page
 	SimpleRouter::get( '/admin', 'AdminController@adminPage')->name('adminPage');

@@ -133,3 +133,52 @@
     margin-bottom: 20px;
     margin-top: 20px;
 }
+
+@media screen and (max-width: 800px) {
+    .post-vlak{
+        width: 90%;
+        margin-top: 2vh;
+    }
+
+    .over-hulp{
+        text-align: center;
+    }
+
+    .hulp-h1{
+        font-size: 30px;
+        margin-left: -35vw;
+        margin-top: 1vh;
+    }
+
+    .mijn-post, .mijn-post-user{
+        grid-template-columns: 1fr;
+    }
+
+    .mijn-post-punten{
+        margin-top: 1.3em;
+    }
+
+    .hulp-woonplaats{
+        margin-top: 0;
+    }
+
+    .mijn-post-form{
+        margin-left: -20vw;
+    }
+
+    #post-hulp{
+        width: 70vw;
+    }
+
+    #post-titel{
+        width: 67.5vw;
+    }
+
+    ::placeholder{
+        font-size: 17px!important;
+    }
+
+    #post-form-submit{
+        margin-left: 27.5vw;
+    }
+}
