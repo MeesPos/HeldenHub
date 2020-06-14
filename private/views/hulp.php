@@ -12,6 +12,7 @@
 </head>
 <!-- Body wordt geopend in nav.php -->
 <?php include '../private/includes/nav.php' ?>
+<?php $items = displayAllItems();?>
 <div class="content-wrapper">
 
     <div class="over-hulp">
@@ -28,9 +29,10 @@
             <div class="oranje-balk"></div>
             <div class="mijn-post">
                 <div class="mijn-post-user">
-                    <img src=" <?php echo site_url() . 'uploads/' .  $userData['myfile']  ?>" alt="Profielfoto van persoon die post" class="hulp-profielfoto">
+                    <img src=" <?php echo site_url() . 'uploads/' .  $userData['myfile']  ?>" alt="Profielfoto van persoon die post" class="hulp-profielfoto 
+<?php if (empty($items['kaderItem']['item_inhoud']) ) { echo "geen-item";  } else {echo $items['kaderItem']['item_inhoud'];  } ?>">
                     <section class="post-user-info">
-                        <p class="hulp-naam"><?php echo ucfirst($userData['voornaam']) . ' ' . ucfirst($userData['achternaam']); ?></p>
+                        <p class="hulp-naam <?php if (empty($items['kleurItem']['item_inhoud']) ) { echo "geen-item";  } else {echo $items['kleurItem']['item_inhoud'];  } ?>"><?php echo ucfirst($userData['voornaam']) . ' ' . ucfirst($userData['achternaam']); ?></p>
                         <p class="hulp-woonplaats"><?php 
                                                     // Making first letter of place always uppercase
                                                     echo ucfirst($userData['plaats']); ?></p>

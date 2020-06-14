@@ -1030,7 +1030,6 @@ input[type=comment] {
   color: black;
 }
 
-
 .zoek-div {
   width: 70%;
 }
@@ -1081,14 +1080,12 @@ input[type=comment] {
   width: 130px;
 }
 
-
 @media screen and (max-width: 800px) {
   .ov-card {
     width: 100vw;
     border-radius: 0 !important;
   }
 }
-
 .fa-check-circle {
   color: #FF8800;
   font-size: 100px;
@@ -1521,6 +1518,17 @@ input[type=comment] {
   #inloggen {
     text-align: center;
   }
+}
+.item-5 {
+  border: dashed 5px #FF8800;
+}
+
+.item-6 {
+  border: outset 5px #FF8800;
+}
+
+.item-7 {
+  color: red;
 }
 
 /*# sourceMappingURL=style.css.map */
