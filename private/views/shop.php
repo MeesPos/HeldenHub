@@ -16,62 +16,98 @@
     <div class="shop-user">
         <div class="credits">
             <i class="fas fa-credits"></i>
-            <p class="shop-user-punten"><!-- TODO Punt hoeveelheid --></p> 
+            <p class="shop-user-punten"><?php echo $user['credits'] ?></p>
         </div>
         <div class="user">
-            <!-- TODO image source -->
-            <img src="#" alt="profielfoto" class="shop-user-image">
-            <p class="shop-user-name"><!-- TODO user naam --></p>
-            <p><!-- TODO user titel --></p>
+            <img src="<?php echo site_url() ?>uploads/<?php echo $user['myfile']; ?>" alt="profielfoto" class="shop-user-image">
+            <p class="shop-user-name"><?php echo ucfirst($user['voornaam']) . " " . ucfirst($user['achternaam']) ?></p>
+            <p class="user-title">
+                <!-- TODO user titel -->
+            </p>
         </div>
     </div>
     <div class="shop-items">
         <div class="titels">
-            <!-- TODO foreach -->
-            <div class="titel-item">
-                <p class="titel-item-titel"><!-- TODO titel --></p>
-                <div class="item-cost">
-                    <i class="fas fa-credits"></i>
-                    <p class="item-cost-amount"><!-- TODO amount --></p>
+            <?php foreach ($titels as $item) { ?>
+                <div class="titel-item">
+                    <p class="titel-item-titel"><?php echo $item['inhoud'] ?></p>
+                    <div class="item-cost">
+                        <i class="fas fa-credits"></i>
+                        <p class="item-cost-amount"><?php echo $item['prijs'] ?></p>
+                    </div>
+                    <?php
+                    if (enoughCredits($item['prijs'], $user['credits'])) { ?>
+                        <a href="<?php echo url('kopen') . $item['id'] ?>"><button class="item-buy-button" style="color:<?php echo shopBuyCheck('kleur', $item['id']); ?>"><?php echo shopBuyCheck('tekst', $item['id']); ?></button></a>
+
+                    <?php    } else { ?>
+                        <button class="item-buy-button" style="color:<?php echo shopBuyCheck('kleur', $item['id']); ?>"><?php echo shopBuyCheck('tekst', $item['id']); ?></button>
+
+                    <?php }
+                    ?>
                 </div>
-                <button class="item-buy-button"><!-- TODO check if bought --></button>
-            </div>
+            <?php } ?>
         </div>
         <div class="kaders">
-            <!-- TODO foreach -->
-            <div class="kader-item">           
-                <i class="fas fa-user" style="border: <?php // TODO border item inhoud ?>"></i>
-                <div class="item-cost">
-                    <i class="fas fa-credits"></i>
-                    <p class="item-cost-amount"><!-- TODO amount --></p>
+            <?php foreach ($kaders as $item) { ?>
+                <div class="kader-item">
+                    <i class="fas fa-user" style="border: <?php echo $item['inhoud'] ?>"></i>
+                    <div class="item-cost">
+                        <i class="fas fa-credits"></i>
+                        <p class="item-cost-amount"><?php echo $item['prijs'] ?></p>
+                    </div>
+                    <?php
+                    if (enoughCredits($item['prijs'], $user['credits'])) { ?>
+                        <a href="<?php echo url('kopen') . $item['id'] ?>"><button class="item-buy-button" style="color:<?php echo shopBuyCheck('kleur', $item['id']); ?>"><?php echo shopBuyCheck('tekst', $item['id']); ?></button></a>
+
+                    <?php    } else { ?>
+                        <button class="item-buy-button" style="color:<?php echo shopBuyCheck('kleur', $item['id']); ?>"><?php echo shopBuyCheck('tekst', $item['id']); ?></button>
+
+                    <?php }
+                    ?>
                 </div>
-                <button class="item-buy-button"><!-- TODO check if bought --></button>
-            </div>
+            <?php } ?>
         </div>
         <div class="kleurtjes">
-            <!-- TODO foreach -->
-            <div class="kleur-item">
-                <p class="titel-item-kleur" style="color: <?php // TODO kleur item inhoud ?> "><!-- TODO username --></p>
-                <div class="item-cost">
-                    <i class="fas fa-credits"></i>
-                    <p class="item-cost-amount"><!-- TODO amount --></p>
-                </div>
-                <button class="item-buy-button"><!-- TODO check if bought --></button>
-            </div>
+            <?php foreach ($kleur as $item) { ?>
+                <div class="kleur-item">
+                    <p class="titel-item-kleur" style="color: <?php echo $item['inhoud'] ?> "><?php echo ucfirst($user['voornaam']) ?></p>
+                    <div class="item-cost">
+                        <i class="fas fa-credits"></i>
+                        <p class="item-cost-amount"><?php echo $item['prijs'] ?></p>
+                    </div>
+                    <?php
+                    if (enoughCredits($item['prijs'], $user['credits'])) { ?>
+                        <a href="<?php echo url('kopen') . $item['id'] ?>"><button class="item-buy-button" style="color:<?php echo shopBuyCheck('kleur', $item['id']); ?>"><?php echo shopBuyCheck('tekst', $item['id']); ?></button></a>
 
+                    <?php    } else { ?>
+                        <button class="item-buy-button" style="color:<?php echo shopBuyCheck('kleur', $item['id']); ?>"><?php echo shopBuyCheck('tekst', $item['id']); ?></button>
+
+                    <?php }
+                    ?>
+                </div>
+            <?php } ?>
         </div>
         <div class="overig">
-            <!-- TODO foreach -->
-            <div class="overig-item">
-            <div class="kleur-item">
-                <p class="titel-item-overig" ?> "><!-- TODO item naam --></p>
-                <div class="item-cost">
-                    <i class="fas fa-credits"></i>
-                    <p class="item-cost-amount"><!-- TODO amount --></p>
+            <?php foreach ($overig as $item) { ?>
+                <div class="overig-item">
+                    <div class="kleur-item">
+                        <p class="titel-item-overig" ?><?php echo $item['inhoud'] ?></p>
+                        <div class="item-cost">
+                            <i class="fas fa-credits"></i>
+                            <p class="item-cost-amount"><?php echo $item['prijs'] ?></p>
+                        </div>
+                        <?php
+                        if (enoughCredits($item['prijs'], $user['credits'])) { ?>
+                            <a href="<?php echo url('kopen') . $item['id'] ?>"><button class="item-buy-button" style="color:<?php echo shopBuyCheck('kleur', $item['id']); ?>"><?php echo shopBuyCheck('tekst', $item['id']); ?></button></a>
+
+                        <?php    } else { ?>
+                            <button class="item-buy-button" style="color:<?php echo shopBuyCheck('kleur', $item['id']); ?>"><?php echo shopBuyCheck('tekst', $item['id']); ?></button>
+
+                        <?php }
+                        ?>
+                    </div>
                 </div>
-                <button class="item-buy-button"><!-- TODO check if bought --></button>
-            </div>
-            </div>
+            <?php } ?>
         </div>
     </div>
 </div>

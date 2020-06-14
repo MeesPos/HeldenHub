@@ -68,7 +68,7 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 
 	// Shop routes
 	SimpleRouter::get( 'shop' , 'ShopController@shop')->name('shop');
-
+	SimpleRouter::post( 'shop/kopen/{item_id}', 'ShopController$koop')->name('kopen');
 	// Leaderbord routes
 	SimpleRouter::get( '/leaderbord', 'LeaderbordController@Leaderbord')->name( 'leaderbord' );
 

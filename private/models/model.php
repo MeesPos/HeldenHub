@@ -473,3 +473,48 @@ function getTotalSearchTracks($connection, $zoekterm, $zoeksoort)
     $statement->execute($params);
     return (int) $statement->fetchColumn();
 }
+
+function getItems($item_soort){
+    $connection = dbConnect();
+
+    if($item_soort == 'titel') {
+        // Make query based on what items to retrieve
+        $sql = 'SELECT * FROM `item_info` WHERE `type` = "titel" ';
+    } else if ($item_soort == 'kader') {
+        $sql = 'SELECT * FROM `item_info` WHERE `type` = "kader" ';
+    } else if ($item_soort == 'kleur') {
+        $sql = 'SELECT * FROM `item_info` WHERE `type` = "kleur" ';
+    } else if ($item_soort == 'overig') {
+        $sql = 'SELECT * FROM `item_info` WHERE `type` = "overig" ';
+    }
+
+    $statement = $connection->prepare($sql);
+    $statement->execute();
+    return $statement->fetchAll();
+}
+
+function shopBuyCheck() {
+
+}
+
+function getItemInfo($item_id) {
+    $connection = dbConnect();
+
+    $sql = 'SELECT * FROM `item_info` WHERE `id` = :id';
+    $statement = $connection->prepare($sql);
+
+    $params = [
+        'id' => $item_id
+    ];
+
+    $statement->execute($params);
+    return $statement->fetch();
+}
+
+function enoughCredits($prijs, $user_credits) {
+    if ($prijs <= $user_credits){
+        return true;
+    } else {
+        return false;
+    }
+}
