@@ -296,7 +296,8 @@ function getCardData($page, $pagesize = 5)
     LIMIT ' . $pagesize . ' OFFSET ' . $offset;
 
     // Prepare and return executed query
-    $statement = $connection->query($query);
+    $statement = $connection->prepare($query);
+    $statement->execute();
     return [
         'statement' => $statement,
         'total'     => $total,

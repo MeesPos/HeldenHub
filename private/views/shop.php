@@ -151,9 +151,9 @@
                         <?php }
                         ?>
                         <div class="lijnonder"></div>
-                </div>
-        <?php }
-                                                                                                                                                                                                                }  ?>
+                
+        <?php } ?>
+                                            </div> <?php          }  ?>
 
         </div>
         <div class="overig">
@@ -189,10 +189,10 @@
                             <?php }
                             ?>
                             <div class="lijnonder"></div>
-                    </div>
-                            <?php }
-                                                                                                                                                                                                                } ?>
-                </div>
+                    
+                            <?php }?>
+                                 </div>      </div>   <?php     } ?>
+                
         </div>
 
         </body>
