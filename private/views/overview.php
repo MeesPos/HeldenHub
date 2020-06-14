@@ -12,37 +12,38 @@
 </head>
 <!-- Body wordt geopend in nav.php -->
 <body class="bodyOV">
-<?php include '../private/includes/nav.php' ?>
-<div class="ov-wrapper">
-    <div class="ov-wrapper-left">
-        <?php foreach ($cards['statement'] as $row) :
+    <?php include '../private/includes/nav.php' ?>
+    <div class="ov-wrapper">
+        <div class="ov-wrapper-left">
+            <?php foreach ($cards['statement'] as $row) :
 
-        ?>
-            <div class="ov-card">
-                <div class="oranje-balk"></div>
-                <div class="ov-post">
-                    <div class="ov-post-user">
-                        <img src="<?php echo site_url() ?>uploads/<?php echo $row['myfile']; ?>" alt="Profielfoto" class="ov-profiel">
-                        <section class="ov-post-user-info">
-                            <p class="ov-post-naam"><?php echo ucfirst($row['voornaam']) . ' ' . ucfirst($row['achternaam']); ?></p>
-                            <p class="ov-post-plaats"><?php
-                                                        // Making first letter of place always uppercase
-                                                        echo ucfirst($row['plaats']); ?></p>
-                        </section>
-                    </div>
-                    <div class="ov-post-punten">
-                        <i class="fas fa-coins"></i>
-                        <p class="punt-hoeveelheid">1</p>
-                    </div>
-                    <div class="ov-post-info">
-                        <h3 class="ov-post-info-title"><?php echo ucfirst($row['titel']); ?></h3>
-                        <p class="ov-post-info-tekst"><?php echo ucfirst($row['inhoud']); ?></p>
-                    </div>
-                    <div class="ov-post-knop">
-                        <form action="<?php echo url('details') ?>" method="POST" class="ov-post-form">
-                            <input type="hidden" name="postId" value="<?php echo $row['id'] ?>">
-                            <input type="submit" name="post-detail" id="ov-form-submit" value="Details">
-                        </form>
+            ?>
+                <div class="ov-card">
+                    <div class="oranje-balk"></div>
+                    <div class="ov-post">
+                        <div class="ov-post-user">
+                            <img src="<?php echo site_url() ?>uploads/<?php echo $row['myfile']; ?>" alt="Profielfoto" class="ov-profiel <?php if (empty($items['kaderItem']['item_inhoud']) ) { echo "geen-item";  } else {echo $items['kaderItem']['item_inhoud'];  } ?>">
+                            <section class="ov-post-user-info">
+                                <p class="ov-post-naam <?php if (empty($items['kleurItem']['item_inhoud']) ) { echo "geen-item";  } else {echo $items['kleurItem']['item_inhoud'];  } ?>"><?php echo ucfirst($row['voornaam']) . ' ' . ucfirst($row['achternaam']); ?></p>
+                                <p class="ov-post-plaats"><?php
+                                                            // Making first letter of place always uppercase
+                                                            echo ucfirst($row['plaats']); ?></p>
+                            </section>
+                        </div>
+                        <div class="ov-post-punten">
+                            <i class="fas fa-coins"></i>
+                            <p class="punt-hoeveelheid">1</p>
+                        </div>
+                        <div class="ov-post-info">
+                            <h3 class="ov-post-info-title"><?php echo ucfirst($row['titel']); ?></h3>
+                            <p class="ov-post-info-tekst"><?php echo ucfirst($row['inhoud']); ?></p>
+                        </div>
+                        <div class="ov-post-knop">
+                            <form action="<?php echo url('details') ?>" method="POST" class="ov-post-form">
+                                <input type="hidden" name="postId" value="<?php echo $row['id'] ?>">
+                                <input type="submit" name="post-detail" id="ov-form-submit" value="Details">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
