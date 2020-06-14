@@ -7,17 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Shop</title>
     <link rel="stylesheet" href="<?php echo site_url('/css/style.css') ?>" media="all">
-    <script src="https://kit.fontawesome.com/1eb7c10cba.js" crossorigin="anonymous"></script>
-
+    <script src="https://kit.fontawesome.com/a82e000026.js"></script>
 </head>
 <!-- Body wordt geopend in nav.php -->
 <?php include '../private/includes/nav.php' ?>
 <?php $items = displayAllItems();?>
 <div class="shop-page">
     <div class="shop-user">
-        <div class="credits">
-            <i class="fas fa-credits"></i>
-            <p class="shop-user-punten"><?php echo $user['credits'] ?></p>
+        <div class="credits">   
+            <p class="coins"><i class="fas fa-coins"></i> <?php echo $user['credits'] ?></p>
         </div>
         <div class="user">
             <img src="<?php echo site_url() ?>uploads/<?php echo $user['myfile']; ?>" alt="profielfoto" class="shop-user-image">
@@ -29,12 +27,12 @@
     </div>
     <div class="shop-items">
         <div class="titels">
+            <h2 class="categorie">Titels</h2>
             <?php foreach ($titels as $item) { ?>
                 <div class="titel-item">
                     <p class="titel-item-titel"><?php echo $item['inhoud'] ?></p>
                     <div class="item-cost">
-                        <i class="fas fa-credits"></i>
-                        <p class="item-cost-amount"><?php echo $item['prijs'] ?></p>
+                        <p class="coins"><i class="fas fa-coins"></i> <span class="item-cost-amount"><?php echo $item['prijs'] ?></p>
                     </div>
                     <?php
                     if ( isItemOwned($item['id']) == true ) {
@@ -59,16 +57,20 @@
                         <button class="item-buy-button" style="background-color: red;">Niet mogelijk</button>
                     <?php }
                     ?>
+
+                    <div class="lijnonder"></div>
                 </div>
             <?php } } ?>
         </div>
         <div class="kaders">
+            <h2 class="categorie">Kaders</h2>
             <?php foreach ($kaders as $item) { ?>
                 <div class="kader-item">
-                    <i class="fas fa-user" style="border: <?php echo $item['inhoud'] ?>"></i>
+                    <div class="titel-item-titel kader">
+                        <i class="fas fa-user" style="border: <?php echo $item['inhoud'] ?>"></i>
+                    </div>
                     <div class="item-cost">
-                        <i class="fas fa-credits"></i>
-                        <p class="item-cost-amount"><?php echo $item['prijs'] ?></p>
+                        <p class="coins"><i class="fas fa-coins"></i> <?php echo $item['prijs'] ?></p>
                     </div>
                     <?php
                     if ( isItemOwned($item['id']) == true ) {
@@ -88,21 +90,26 @@
                         <!-- If enough credits, able to buy -->
                         <a href="<?php echo url('kopen') . $item['id'] ?>"><button class="item-buy-button" style="background-color: green;">Koop nu</button></a>
 
+
                     <?php } else { ?>
 
                         <button class="item-buy-button" style="background-color: red;">Niet mogelijk</button>
                     <?php }
                     ?>
+
+                    
+                    <div class="lijnonder"></div>
+
                 </div>
             <?php } } ?>
         </div>
         <div class="kleurtjes">
+            <h2 class="categorie">Kleuren</h2>
             <?php foreach ($kleur as $item) { ?>
                 <div class="kleur-item">
-                    <p class="titel-item-kleur" style="color: <?php echo $item['inhoud'] ?> "><?php echo ucfirst($user['voornaam']) ?></p>
+                    <p class="titel-item-titel" style="color: <?php echo $item['inhoud'] ?> "><?php echo ucfirst($user['voornaam']) ?></p>
                     <div class="item-cost">
-                        <i class="fas fa-credits"></i>
-                        <p class="item-cost-amount"><?php echo $item['prijs'] ?></p>
+                        <p class="coins"><i class="fas fa-coins"></i> <?php echo $item['prijs'] ?></p>
                     </div>
                     <?php
                     if ( isItemOwned($item['id']) == true ) {
@@ -127,17 +134,18 @@
                         <button class="item-buy-button" style="background-color: red;">Niet mogelijk</button>
                     <?php }
                     ?>
+                    <div class="lijnonder"></div>
                 </div>
             <?php } }?>
         </div>
         <div class="overig">
+            <h2 class="categorie">Overig</h2>
             <?php foreach ($overig as $item) { ?>
                 <div class="overig-item">
                     <div class="kleur-item">
-                        <p class="titel-item-overig" ?><?php echo $item['inhoud'] ?></p>
+                        <p class="titel-item-titel" ?><?php echo $item['inhoud'] ?></p>
                         <div class="item-cost">
-                            <i class="fas fa-credits"></i>
-                            <p class="item-cost-amount"><?php echo $item['prijs'] ?></p>
+                            <p class="coins"><i class="fas fa-coins"></i> <?php echo $item['prijs'] ?></p>
                         </div>
                         <?php
                     if ( isItemOwned($item['id']) == true ) {
@@ -159,9 +167,14 @@
 
                     <?php } else { ?>
 
+
                         <button class="item-buy-button" style="background-color: red;">Niet mogelijk</button>
                     <?php }
                     ?>
+
+                       
+                        <div class="lijnonder"></div>
+
                     </div>
                 </div>
             <?php } }?>

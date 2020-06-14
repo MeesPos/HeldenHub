@@ -15,6 +15,8 @@ class ShopController
     // Hulp vragen page
     public function shop()
     {
+        adminLoginCheck('aanmelden');
+
         // Get user info
         $user_data = getUserData();
 

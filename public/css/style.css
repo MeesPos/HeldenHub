@@ -114,14 +114,14 @@ html, body {
 }
 /* Home */
 #header {
-  height: 70vh;
+  height: 40vh;
   background-position: bottom;
 }
 
 .logoheader {
   width: 50%;
   margin-left: 25vw;
-  margin-top: 15vh;
+  margin-top: -7vh;
 }
 
 .kominactie {
@@ -759,6 +759,10 @@ input[type=comment] {
   font-size: 35px;
 }
 
+.myFile {
+  max-width: 200px !important;
+}
+
 .user-punten-info {
   font-size: 20px;
   font-weight: lighter;
@@ -779,6 +783,7 @@ input[type=comment] {
 #veranderenInfo {
   text-decoration: none;
   color: gray;
+  display: none;
 }
 
 #veranderenInfo:hover {
@@ -1000,6 +1005,8 @@ input[type=comment] {
   margin-bottom: 20px;
   margin-top: 20px;
   width: 130px;
+  margin-left: 4.5vw;
+  cursor: pointer;
 }
 
 .pagination {
@@ -1078,6 +1085,30 @@ input[type=comment] {
   margin-bottom: 20px;
   margin-top: 20px;
   width: 130px;
+  cursor: pointer;
+}
+
+.corona_info > h3 {
+  text-align: center;
+  margin-left: -10vw;
+  font-size: 30px;
+  margin-bottom: 1%;
+}
+
+.corona_gegevens {
+  text-align: center;
+  margin-left: -10vw;
+}
+
+.corona_gegevens > p > span {
+  font-size: 25px;
+  color: #FF8800;
+  font-weight: bold;
+}
+
+.corona_gegevens > p {
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
 @media screen and (max-width: 800px) {
@@ -1085,6 +1116,37 @@ input[type=comment] {
     width: 100vw;
     border-radius: 0 !important;
   }
+
+  .ov-wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .ov-wrapper-right {
+    grid-row: 1/2;
+  }
+
+  .zoek-form {
+    text-align: center;
+    width: 100vw;
+  }
+
+  .zoek-info {
+    text-align: center;
+  }
+
+  .corona_info > h3, .corona_gegevens {
+    margin-left: 0 !important;
+  }
+
+  .zoek-form {
+    margin-top: -30px;
+  }
+
+  .corona_gegevens {
+    margin-bottom: 20px;
+  }
+
 }
 .fa-check-circle {
   color: #FF8800;
@@ -1519,6 +1581,7 @@ input[type=comment] {
     text-align: center;
   }
 }
+
 .item-5 {
   border: dashed 5px #FF8800;
 }
@@ -1529,6 +1592,91 @@ input[type=comment] {
 
 .item-7 {
   color: red;
+
+.shop-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  text-align: center;
+}
+
+.categorie {
+  background: linear-gradient(90deg, #020024 0%, #ff8400 0%, #ffd600 100%);
+  width: 200px;
+  padding: 10px 0;
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+  margin-top: 2vh;
+  margin-bottom: 3vh;
+}
+
+.titel-item-titel {
+  margin: 0 auto;
+  margin-top: 20px;
+  font-style: italic;
+  font-size: 20px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  width: 40%;
+  padding-bottom: 20px;
+}
+
+.coins {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.item-cost {
+  margin-top: 2vh;
+}
+
+.item-buy-button {
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+  width: 150px;
+  height: 50px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+.lijnonder {
+  border-bottom: 1px solid black;
+  width: 40%;
+  margin-bottom: 20px;
+  margin: 0 auto;
+}
+
+.user {
+  text-align: center;
+  font-size: 30px;
+}
+
+.shop-user-image {
+  max-width: 200px;
+}
+
+.credits {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 800px) {
+  .shop-items {
+    grid-template-columns: 1fr;
+  }
+
+  .lijnonder {
+    margin-bottom: 20px;
+  }
+
+  .credits {
+    margin-top: -10px;
+    margin-left: 40vw;
+    display: inline-block;
+  }
+
 }
 
 /*# sourceMappingURL=style.css.map */
