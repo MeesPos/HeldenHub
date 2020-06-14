@@ -38,7 +38,7 @@ SimpleRouter::group( [ 'prefix' => site_url() ], function () {
 	
 	// Gebruikers page
 
-	// SimpleRouter::get( '/MijnAccount', 'AanmeldenController@ingelogd' )->name( 'ingelogd' );
+	SimpleRouter::get( '/MijnAccount', 'AanmeldenController@ingelogd' )->name( 'ingelogd' );
 	SimpleRouter::post('/MijnAccount/MijnInfoWijzigen','WebsiteController@update')->name('update');
 	SimpleRouter::get('MijnAccount/MijnInfoWijzigen/gegevenswijzigen', "WebsiteController@infoWijzigen")->name('infoWijzigen');
 
