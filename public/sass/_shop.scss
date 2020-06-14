@@ -42,6 +42,7 @@
     height: 50px;
     border: none;
     border-radius: 40px;
+    cursor: pointer;
 }
 
 .lijnonder{
@@ -49,4 +50,35 @@
     width: 40%;
     margin-bottom: 20px;
     margin: 0 auto;
+}
+
+.user{
+    text-align: center;
+    font-size: 30px;
+}
+
+.shop-user-image{
+    max-width: 200px;
+}
+
+.credits{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 800px){
+    .shop-items{
+        grid-template-columns: 1fr;
+    }
+    
+    .lijnonder{
+        margin-bottom: 20px;
+    }
+
+    .credits{
+        margin-top: -10px;
+        margin-left: 40vw;
+        display: inline-block;
+    }
 }
