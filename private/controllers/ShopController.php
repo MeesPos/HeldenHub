@@ -28,13 +28,20 @@ class ShopController
         echo $template_engine->render('shop', ['user' => $user_data, 'titels' => $titels, 'kaders' => $kaders, 'kleur' => $kleur, 'overig' => $overig ]);
     }
     
-    public function kopen($item_id)
+    public function koop($item_id)
     {
         // Get item data
         $item_info = getItemInfo($item_id);
-        // Check if enough credits -> if so do user credits - item cost
+        
+        // User credits - cost
+        buyItemPayment($item_info['prijs']);
 
-        // Make item row in user_items
+        // Make item row in user_items (also make active item
+        giveUserItem($item_id);
+
+        // Redirect to shop page
+        $redirectURL = url('shop');
+        redirect($redirectURL);
 
     }
 }

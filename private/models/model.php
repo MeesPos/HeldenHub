@@ -518,3 +518,34 @@ function enoughCredits($prijs, $user_credits) {
         return false;
     }
 }
+
+function buyItemPayment($prijs) {
+    $connection = dbConnect();
+    $sql = 'UPDATE `punten` SET `credits` = `credits` - :prijs WHERE `punten` . `gebruiker_id` = :id';
+
+    $statement = $connection->prepare($sql);
+    $params = [
+        'id'      => $_SESSION['user_id'],
+        'prijs'   => $prijs
+    ];
+    $statement->execute($params);
+}
+
+function giveUserItem($item_id) {
+    // Get info of bought item
+    $item_info = getItemInfo($item_id);
+
+    $connection = dbConnect();
+    // Create query to put into user_item
+    $sql = 'INSERT INTO `user_items` (`id`, `type`, `item_inhoud`, `actief`,  `gebruiker_id`) VALUES (NULL, :soort, :inhoud, :actief, :gebruiker_id)';
+    $statement = $connection->prepare($sql);
+
+    $params = [
+        'soort'         => $item_info['type'],
+        'inhoud'        => $item_info['inhoud'],
+        'actief'        => 1,
+        'gebruiker_id'  => $_SESSION['user_id']
+    ];
+    $statement->execute($params);
+
+}
