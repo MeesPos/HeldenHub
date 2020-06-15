@@ -23,7 +23,7 @@ class AdminController
         $statement  = $connection->prepare($sql);
 
         $params = [
-            'id' => $_SESSION['user_data']
+            'id' => $_SESSION['user_id']
         ];
 
         $statement->execute($params);
