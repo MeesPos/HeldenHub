@@ -51,7 +51,7 @@
 
             <div class="bannen">
                 <form method="POST" action="<?php echo url('admin.ban') ?>">
-                    <label for="invoer" class="kieseen">Kies een gebruiker</label><br>
+                    <label for="invoer" class="kieseen">Ban een gebruiker</label><br>
                     <input type="text" id="invoer" name="invoer" list="lijst" placeholder="Zoek">
                     <datalist id="lijst"></datalist>
                     <button type="submit" class="submitAdmin">Submit</button>
