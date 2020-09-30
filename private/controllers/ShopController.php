@@ -44,6 +44,7 @@ class ShopController
         $redirectURL = url('shop');
         redirect($redirectURL);
     }
+    
     public function activeer($item_id)
     {   
         // Get what type it is

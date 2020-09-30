@@ -559,7 +559,7 @@ function displayItems($soort) {
        }
 }
 
-function isItemActive($item_id) {
+function isItemActive($item_id) { 
     $item_info = getItemInfo($item_id);
     $connection = dbConnect();
 
