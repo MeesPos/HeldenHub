@@ -16,28 +16,40 @@
 <body style="background-image: linear-gradient(rgba(123, 123, 123, 0.4), rgba(123, 123, 123, 0.4)), url( <?php echo site_url('/img/stad.png') ?> )">
 
 
-<?php 
+    <?php
 
 
-?>
+    ?>
     <div class="ov-wrapper-gebruiker">
         <div class="ov-wrapper-left">
             <div class="user-account">
                 <div class="oranje-balk"></div>
                 <h1 class="user-title">
-<?php if (empty($items['titelItem']['item_inhoud']) ) { echo "Beginnende held";  } else {echo $items['titelItem']['item_inhoud'];  } ?></h1>
-                <img src=" <?php echo site_url() . 'uploads/' . $user_data['myfile'] ?>  " class="myFile <?php if (empty($items['kaderItem']['item_inhoud']) ) { echo "geen-item";  } else {echo $items['kaderItem']['item_inhoud'];  } ?>">
+                    <?php if (empty($items['titelItem']['item_inhoud'])) {
+                        echo "Beginnende held";
+                    } else {
+                        echo $items['titelItem']['item_inhoud'];
+                    } ?></h1>
+                <img src=" <?php echo site_url() . 'uploads/' . $user_data['myfile'] ?>  " class="myFile <?php if (empty($items['kaderItem']['item_inhoud'])) {
+                                                                                                                echo "geen-item";
+                                                                                                            } else {
+                                                                                                                echo $items['kaderItem']['item_inhoud'];
+                                                                                                            } ?>">
 
-                <h2 class="<?php if (empty($items['kleurItem']['item_inhoud']) ) { echo "geen-item";  } else {echo $items['kleurItem']['item_inhoud'];  } ?>"><?php echo ucfirst($user_data['voornaam']) . ' ' . ucfirst($user_data['achternaam']); ?></h2>
-                    <p class="gebruiker-plaats"><?php echo ucfirst($user_data['plaats']); ?></p>
-                    <div class="small">
-                    <a href="<?php echo url("infoWijzigen")?>" id="veranderenInfo"><i class="fas fa-pencil-alt"></i> Gegevens wijzigen </a>
+                <h2 class="<?php if (empty($items['kleurItem']['item_inhoud'])) {
+                                echo "geen-item";
+                            } else {
+                                echo $items['kleurItem']['item_inhoud'];
+                            } ?>"><?php echo ucfirst($user_data['voornaam']) . ' ' . ucfirst($user_data['achternaam']); ?></h2>
+                <p class="gebruiker-plaats"><?php echo ucfirst($user_data['plaats']); ?></p>
+                <div class="small">
+                    <a href="<?php echo url("infoWijzigen") ?>" id="veranderenInfo"><i class="fas fa-pencil-alt"></i> Gegevens wijzigen </a>
                 </div>
                 <div class="big">
                     <h1 class="infoTitel"> Mijn gegevens wijzigen</h1>
                     <div class="form">
-                
-                    <form action="<?php echo url("update")?>" method="POST" class="form2">
+
+                        <form action="<?php echo url("update") ?>" method="POST" class="form2">
                             <div class="voornaam">
                                 <input type="name" class="form-control" name="voornaam" required placeholder="<?php echo ucfirst($userData['voornaam']); ?>">
                             </div>
@@ -58,10 +70,10 @@
                             </div>
                             <div class="buttons">
                                 <button type="submit" value="Upload" name="Upload" class="button">Wijzigen</button>
-                                </div>
-                        </div>
-
+                            </div>
                     </div>
+
+                </div>
             </div>
             <div class="user-held-info">
                 <div class="oranje-balk"></div>
@@ -128,7 +140,7 @@
             <?php endforeach;
             ?>
             <div class="pagination">
-        </div>
+            </div>
         </div>
 
 
